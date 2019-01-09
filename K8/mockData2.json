@@ -1,0 +1,8 @@
+{
+  "containers": [
+    {
+      "image": "bbbryan14/amanda:client",
+      "port": "8002"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "listOfNodes": [
+    {
+    "name": "Minikube",
+    "status": "Ready",
+    "roles": "maser",
+    "age": "31",
+    "version": "v1"
+    }
+  ]
+}
