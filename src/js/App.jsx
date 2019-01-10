@@ -1,17 +1,24 @@
 import React, { Component} from 'react';
 import ReactDOM from 'react-dom';
+import styled from 'styled-components';
+
+const ColoredTitle = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: red;
+`;
 
 class App extends Component {
   constructor() {
     super();
     this.state= {
-      title: 'Hello Kubricks!'
+      title: 'Hello Kubricks!!!'
     }
   }
 
   render() {
     return (
-      <h1>{this.state.title}</h1>
+      <ColoredTitle>{this.state.title}</ColoredTitle>
     )
   }
 }
