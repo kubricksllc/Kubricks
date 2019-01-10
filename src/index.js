@@ -4,5 +4,5 @@ import App from  './js/App.jsx';
 
 render(
   <App />,
-  document.querySelector('#window')
+  document.querySelector('#app')
 );
