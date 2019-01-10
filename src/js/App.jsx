@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import MainWindow from './components/container/MainWindow.jsx';
 
 const ColoredTitle = styled.h1`
   font-size: 1.5em;
@@ -18,8 +19,11 @@ class App extends Component {
 
   render() {
     return (
-      <ColoredTitle>{this.state.title}</ColoredTitle>
-    )
+      <div>
+        <ColoredTitle>{this.state.title}</ColoredTitle>
+        <MainWindow />
+      </div>
+    );
   }
 }
 
