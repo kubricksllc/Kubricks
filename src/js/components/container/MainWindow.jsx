@@ -1,17 +1,17 @@
 import React, { Component} from 'react';
 import ReactDOM from 'react-dom';
-import MainWindow from './components/container/MainWindow.jsx';
+import HexWindow from './HexWindow.jsx';
 
-class App extends Component {
+class MainWindow extends Component {
   constructor() {
     super();
   }
 
   render() {
     return (
-      <MainWindow />
+      <HexWindow />
     )
   }
 }
 
-export default App;
+export default MainWindow;
