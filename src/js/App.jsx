@@ -1,7 +1,8 @@
-import React, { Component} from 'react';
-import ReactDOM from 'react-dom';
-import styled from 'styled-components';
-import MainWindow from './components/container/MainWindow.jsx';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import styled from "styled-components";
+import Chart from "./components/presentational/Chart";
+import MainWindow from "./components/container/MainWindow.jsx";
 
 const ColoredTitle = styled.h1`
   font-size: 1.5em;
@@ -12,9 +13,9 @@ const ColoredTitle = styled.h1`
 class App extends Component {
   constructor() {
     super();
-    this.state= {
-      title: 'Hello Kubricks!!!'
-    }
+    this.state = {
+      title: "Hello Kubricks!!!"
+    };
   }
 
   render() {
