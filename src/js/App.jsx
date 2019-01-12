@@ -8,8 +8,11 @@ import {
 } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 import HexTitle from './layout/HexTitle.jsx';
+import ClusterPage from './components/cluster_page/ClusterPage.jsx';
 import NodePage from './components/node_page/NodePage.jsx';
 import PodPage from './components/pod_page/PodPage.jsx';
+import Chart from "./components/cluster_page/Chart";
+import MainWindow from "./components/container/MainWindow.jsx";
 
 const ColoredTitle = styled.h1`
   font-size: 1.5em;
@@ -43,6 +46,7 @@ class App extends Component {
               <section className="content">
                   <Switch>
                       <Route exact path="/" render={() => (<Home title={this.state.title}/>)}/>
+                      <Route path="/cluster/:id" render={(props) => (<ClusterPage clusterID={parseInt(props.match.params.id)}/>)} />
                       <Route path="/node/:id" render={(props) => (<NodePage nodeID={parseInt(props.match.params.id)}/>)} />
                       <Route path="/pod/:id" render={(props) => (<PodPage podID={parseInt(props.match.params.id)}/>)} />
                       {/* add route paths here */}
