@@ -1,7 +1,5 @@
 import React, { Component} from 'react';
-import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import MainWindow from './components/container/MainWindow.jsx';
 import {
   BrowserRouter as Router,
   Route,
@@ -9,6 +7,9 @@ import {
   Link
 } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
+import HexTitle from './layout/HexTitle.jsx';
+import NodePage from './components/node_page/NodePage.jsx';
+import PodPage from './components/pod_page/PodPage.jsx';
 
 const ColoredTitle = styled.h1`
   font-size: 1.5em;
@@ -37,27 +38,13 @@ class App extends Component {
       <Router history={history}>
           <div>
               <header className="header">
-                  <nav className="navbar container">
-                      <div className="navbar-brand">
-                          <Link to="/">
-                              <span className="navbar-item">Lazy Loading Routes</span>
-                          </Link>
-                      </div>
-
-                      <div className="navbar-end">
-                          <Link to="/maps">
-                              <span className="navbar-item">Maps</span>
-                          </Link>
-                          <Link to="/blog">
-                              <span className="navbar-item">Blog</span>
-                          </Link>
-                      </div>
-                  </nav>
+                  <HexTitle title={this.state.title}></HexTitle>
               </header>
               <section className="content">
                   <Switch>
                       <Route exact path="/" render={() => (<Home title={this.state.title}/>)}/>
-                      <Route path="/node/:id" render={(props) => (<MainWindow nodeID={parseInt(props.match.params.id)}/>)} />
+                      <Route path="/node/:id" render={(props) => (<NodePage nodeID={parseInt(props.match.params.id)}/>)} />
+                      <Route path="/pod/:id" render={(props) => (<PodPage podID={parseInt(props.match.params.id)}/>)} />
                       {/* add route paths here */}
                       <Route path="*" component={NotFound} />
                   </Switch>
@@ -68,6 +55,7 @@ class App extends Component {
   }
 }
 
+// TODO: remove later
 const Home = (props) => (
   <div>
     <ColoredTitle>{props.title}</ColoredTitle>
