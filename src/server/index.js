@@ -1,24 +1,31 @@
 const express = require('express');
 const clusterQuery = require('./clusterQuery.js');
 const nodeQuery = require('./nodeQuery.js');
+const path = require('path');
 
 const app = express();
 
+app.use(express.static(path.join(__dirname, '../../dist')));
 app.use('*', (req, res, next) => {
   console.log('hitting server', req.query);
   next();
 });
 
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '../../dist/index.html');
+});
+
 app.get('/api', (req, res, next) => {
-  const reqQueryType = Object.keys(req.query)[0];
+  const reqQueryType = Object.keys(req.query);
   console.log(reqQueryType);
   if (reqQueryType.length === 0) {
     clusterQuery.getCluster(req, res, next);
-  } else if (reqQueryType === 'node') {
+  } else if (reqQueryType[0] === 'node') {
     nodeQuery.getNode(req, res, next);
-  } else if (reqQueryType === 'pod') {
-    podQuery.getPod(req, res, next);
-  } else {
+  } 
+  // else if (reqQueryType[0] === 'pod') {
+  //   podQuery.getPod(req, res, next);} 
+  else {
     res.status(404);
     res.statusMessage = 'invalid query';
     res.end();

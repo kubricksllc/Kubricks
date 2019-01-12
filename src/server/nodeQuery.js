@@ -1,11 +1,12 @@
 const kube = require('./kubeApi.js');
 
 function parseContainers(containerArr) {
+  console.log(containerArr[0]);
   return containerArr.reduce((listOfContainers, container) => {
     const temp = {};
     temp.containerName = container.name;
     temp.imageName = container.image;
-    temp.mappedContainerPort = container.ports.containerPort;
+    // temp.mappedContainerPort = container.ports[0].containerPort;
     temp.env = container.env;
     return listOfContainers.concat([temp]);
   }, []);

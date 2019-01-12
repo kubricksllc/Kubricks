@@ -20,6 +20,7 @@ function parseClusterQuery(nodesArr) {
 
 const clusterQuery = {
   getCluster: (req, res) => {
+    console.log('hitting the cluster query')
     kube
       .listNode(
         true,
@@ -30,9 +31,10 @@ const clusterQuery = {
         undefined,
         undefined,
         undefined,
-        true
+        undefined
       )
       .then(result => {
+        console.log('query came back')
         const body = parseClusterQuery(result.body.items);
         res.set({
           'Content-Type': 'application/json'
