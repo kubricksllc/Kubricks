@@ -1,0 +1,9 @@
+#	to skip some files
+
+./K8API/node_modules/
+./K8API/.eslintrc.json
+./K8API/.prettierrc.json
+./K8API/script.sh
+./K8API/src/devTest.js
+
+
