@@ -7,7 +7,14 @@ class MainWindow extends Component {
     super();
   }
 
+  componentDidMount() {
+    fetch('http://localhost:3000/posts/1')
+    .then(response => response.json())
+    .then(json => console.log(json));
+  }
+
   render() {
+    console.log(this.props);
     return (
       <HexWindow />
     )

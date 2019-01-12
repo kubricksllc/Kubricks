@@ -10,9 +10,14 @@ class HexWindow extends Component {
     }
   }
 
+  componentDidMount() {
+    
+  }
+
   render() {
     return (
       <HexTitle title={this.state.title} />
+
     )
   }
 }
