@@ -32,6 +32,14 @@ app.get('/api', (req, res, next) => {
   }
 });
 
+app.get('/api/nodes', (req, res, next) => {
+  clusterQuery.getCluster(req, res, next);
+});
+
+app.get('/api/node', (req, res, next) => {
+  nodeQuery.getNode(req, res, next);
+});
+
 app.use((req, res) => {
   console.log('hitting the invalid path');
   res.status(404);
