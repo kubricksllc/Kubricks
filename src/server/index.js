@@ -11,10 +11,6 @@ app.use('*', (req, res, next) => {
   next();
 });
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '../../dist/index.html');
-});
-
 app.get('/api', (req, res, next) => {
   const reqQueryType = Object.keys(req.query);
   console.log(reqQueryType);
@@ -33,11 +29,15 @@ app.get('/api', (req, res, next) => {
 });
 
 app.get('/api/nodes', (req, res, next) => {
-  clusterQuery.getCluster(req, res, next);
+  return clusterQuery.getCluster(req, res, next);
 });
 
 app.get('/api/node', (req, res, next) => {
-  nodeQuery.getNode(req, res, next);
+  return nodeQuery.getNode(req, res, next);
+});
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../../dist/index.html'));
 });
 
 app.use((req, res) => {

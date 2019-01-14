@@ -11,7 +11,6 @@ import HexTitle from './layout/HexTitle.jsx';
 import ClusterPage from './components/cluster_page/ClusterPage.jsx';
 import NodePage from './components/node_page/NodePage.jsx';
 import PodPage from './components/pod_page/PodPage.jsx';
-import Chart from "./components/cluster_page/Chart";
 
 const ColoredTitle = styled.h1`
   font-size: 1.5em;
