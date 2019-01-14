@@ -25,6 +25,7 @@ module.exports = {
     ]
   },
   devServer: {
+    writeToDisk: true,
     historyApiFallback: true,
     port: 3000
   },
