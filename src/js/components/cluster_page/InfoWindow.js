@@ -22,6 +22,14 @@ export default class InfoWindow extends Component {
       top: this.props.mouseY - 100,
       left: this.props.mouseX + 20
     };
-    return <Window style={windowStyle}>InfoWindow</Window>;
+
+    return (
+      <Window style={windowStyle}>
+        <p>Name: {this.props.node.name}</p>
+        <p>Status: {this.props.node.status}</p>
+        <p>CreatedAt: {this.props.node.createdAt}</p>
+        <p>Version: {this.props.node.version}</p>
+      </Window>
+    );
   }
 }

@@ -1,16 +1,11 @@
-import React, { Component} from 'react';
-import styled from 'styled-components';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Link
-} from 'react-router-dom';
-import createBrowserHistory from 'history/createBrowserHistory';
-import HexTitle from './layout/HexTitle.jsx';
-import ClusterPage from './components/cluster_page/ClusterPage.jsx';
-import NodePage from './components/node_page/NodePage.jsx';
-import PodPage from './components/pod_page/PodPage.jsx';
+import React, { Component } from "react";
+import styled from "styled-components";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import createBrowserHistory from "history/createBrowserHistory";
+import HexTitle from "./layout/HexTitle.jsx";
+import ClusterPage from "./components/cluster_page/ClusterPage.jsx";
+import NodePage from "./components/node_page/NodePage.jsx";
+import PodPage from "./components/pod_page/PodPage.jsx";
 import Chart from "./components/cluster_page/Chart";
 
 const ColoredTitle = styled.h1`
@@ -24,9 +19,9 @@ const history = createBrowserHistory();
 class App extends Component {
   constructor() {
     super();
-    this.state= {
-      title: 'Hello Kubricks!'
-    }
+    this.state = {
+      title: "Hello Kubricks!"
+    };
   }
 
   componentDidMount() {
@@ -59,7 +54,7 @@ class App extends Component {
 }
 
 // TODO: remove later
-const Home = (props) => (
+const Home = props => (
   <div>
     <ColoredTitle>{props.title}</ColoredTitle>
   </div>
@@ -67,8 +62,8 @@ const Home = (props) => (
 
 const NotFound = () => (
   <div className="">
-      <p>404</p>
-      <p>Page not found - </p>
+    <p>404</p>
+    <p>Page not found - </p>
   </div>
 );
 
