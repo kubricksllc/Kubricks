@@ -6,7 +6,7 @@ function parseContainers(containerArr) {
     const temp = {};
     temp.containerName = container.name;
     temp.imageName = container.image;
-    // temp.mappedContainerPort = container.ports[0].containerPort;
+    temp.mappedContainerPorts = container.ports;
     temp.env = container.env;
     return listOfContainers.concat([temp]);
   }, []);
@@ -78,8 +78,8 @@ function getPods(namespace) {
   return kube
     .listNamespacedPod(
       namespace,
-      true,
-      undefined,
+      true,       
+      undefined,  
       undefined,
       true,
       undefined,
@@ -106,7 +106,7 @@ function getPods(namespace) {
 }
 
 const nodeQuery = {
-  getNode: (req, res) => {
+  getNode: (req, res, next) => {
     getNamespace()
       .then(listOfNamespaces => {
         return listOfNamespaces.reduce(
@@ -120,8 +120,8 @@ const nodeQuery = {
           },
           { services: null, pods: null }
         );
-      })
-      .then(result => res.send(result))
+      }) 
+      .then(result => res.send(result)) //TODO: to add more middleware, use next()
       .catch(err => console.log(err));
   }
 };

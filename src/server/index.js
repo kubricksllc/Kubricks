@@ -7,25 +7,8 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '../../dist')));
 app.use('*', (req, res, next) => {
-  console.log('hitting server', req.query);
+  console.log('processing request', req.query);
   next();
-});
-
-app.get('/api', (req, res, next) => {
-  const reqQueryType = Object.keys(req.query);
-  console.log(reqQueryType);
-  if (reqQueryType.length === 0) {
-    clusterQuery.getCluster(req, res, next);
-  } else if (reqQueryType[0] === 'node') {
-    nodeQuery.getNode(req, res, next);
-  } 
-  // else if (reqQueryType[0] === 'pod') {
-  //   podQuery.getPod(req, res, next);} 
-  else {
-    res.status(404);
-    res.statusMessage = 'invalid query';
-    res.end();
-  }
 });
 
 app.get('/api/nodes', (req, res, next) => {
@@ -40,12 +23,11 @@ app.get('/*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../../dist/index.html'));
 });
 
-app.use((req, res) => {
-  console.log('hitting the invalid path');
+app.get('*', (req, res) => {
+  console.log('Invalid request', req.url)
   res.status(404);
-  res.statusMessage = 'Invalid Request';
-  res.end();
-});
+  res.send(JSON.stringify('Invalid request'))
+})
 
 app.listen(process.env.PORT || 8080, (err) => {
   err ? console.log(err) : console.log('listening at', process.env.PORT || 8080)
