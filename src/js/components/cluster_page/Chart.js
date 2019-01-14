@@ -33,7 +33,6 @@ class Chart extends React.Component {
       .extent([[-100, -100], [props.width + 100, props.height + 100]])
       .on("zoom", this.zoomed.bind(this));
 
-    this.handleSliderChange = this.handleSliderChange.bind(this);
     this.showNodeInfo = this.showNodeInfo.bind(this);
     this.hideNodeInfo = this.hideNodeInfo.bind(this);
   }
@@ -52,14 +51,6 @@ class Chart extends React.Component {
     });
   }
 
-  handleSliderChange(e) {
-    this.setState({ data: [] });
-    this.setState({
-      data: this.getData(e.target.value, this.state.radius),
-      slider: e.target.value
-    });
-  }
-
   showNodeInfo(node) {
     this.props.showNodeInfo(node);
   }
@@ -71,13 +62,14 @@ class Chart extends React.Component {
   render() {
     const { zoomTransform } = this.state,
       { width, height } = this.props;
+
     return (
       <Box id="chart">
         <svg width={width} height={height} ref="svg">
           <NodePlot
             data={this.props.data}
-            x={100}
-            y={-100}
+            x={0}
+            y={(height / 2) * -1}
             width={width / 2}
             height={height}
             zoomTransform={zoomTransform}

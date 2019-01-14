@@ -20,8 +20,8 @@ class ClusterPage extends Component {
       windowOpen: false,
       target: null,
       data: [],
-      mouseX: 0, 
-      mouseY: 0 
+      mouseX: 0,
+      mouseY: 0
     };
     this.showNodeInfo = this.showNodeInfo.bind(this);
     this.hideNodeInfo = this.hideNodeInfo.bind(this);
@@ -29,23 +29,23 @@ class ClusterPage extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      data: this.getNodes(12, 100)
-    });
+    const self = this;
+    const data = [];
+    fetch("http://localhost:8080/api/nodes")
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        console.log("fetch", data);
+        self.setState({ data: this.getNodes(data) });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    //IF THEW NODE LIST CHANGES UPDATE IT
-    // this.setState({ nodes: [] });
-    // this.setState({
-    //   nodes: this.createNodes(e.target.value, this.state.radius),
-    //   slider: e.target.value
-    // });
-  }
-
-  getNodes(numNodes, radius) {
-    var nodes = [],
-      width = radius * 2 + 50,
+  getNodes(nodes, radius = 200) {
+    var width = radius * 2 + 50,
       height = radius * 2 + 50,
       angle,
       x,
@@ -54,13 +54,14 @@ class ClusterPage extends Component {
       ring = 1;
 
     const sides = 6;
-    while (j < numNodes) {
-      for (let i = 0; j < numNodes && i < ring * sides; i++) {
+    while (j < nodes.length) {
+      for (let i = 0; j < nodes.length && i < ring * sides; i++) {
         angle = (i / ((ring * sides) / 2)) * Math.PI; // Calculate the angle at which the element will be placed.
         // For a semicircle, we would use (i / numNodes) * Math.PI.
         x = ((radius * ring) / 2) * Math.cos(angle) + width / 2; // Calculate the x position of the element.
         y = ((radius * ring) / 2) * Math.sin(angle) + height / 2; // Calculate the y position of the element.
-        nodes.push([x, y, angle]);
+        nodes[j].x = x;
+        nodes[j].y = y;
         j++;
       }
       ring++;
@@ -87,7 +88,7 @@ class ClusterPage extends Component {
     return (
       <div>
         <div onMouseMove={this.handleMouseMove}>
-          <Chart 
+          <Chart
             data={this.state.data}
             width={1000}
             height={500}

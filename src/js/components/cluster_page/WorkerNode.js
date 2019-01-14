@@ -8,7 +8,7 @@ class WorkerNode extends Component {
   }
 
   handleMouseEnter(e) {
-    this.props.showNodeInfo(e.target);
+    this.props.showNodeInfo(this.props.info);
   }
 
   handleMouseLeave(e) {
@@ -16,7 +16,7 @@ class WorkerNode extends Component {
   }
 
   render() {
-    const dist = 10;
+    const dist = 20;
     const offsetX = 1.5;
     const offsetY = 1.6;
     const scaleX = this.props.scaleX;

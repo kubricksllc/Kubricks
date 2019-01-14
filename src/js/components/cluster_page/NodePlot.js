@@ -13,14 +13,13 @@ class NodePlot extends Component {
 
   updateD3(props) {
     const { data, width, height, zoomTransform, zoomType } = props;
-
     (this.xScale = d3
       .scaleLinear()
-      .domain([0, d3.max(data, ([x, y]) => x)])
+      .domain([0, d3.max(data, (node) => node.x)])
       .range([0, width])),
       (this.yScale = d3
         .scaleLinear()
-        .domain([0, d3.max(data, ([x, y]) => y)])
+        .domain([0, d3.max(data, (node) => node.y)])
         .range([0, height]));
 
     if (zoomTransform && zoomType === "detail") {
@@ -45,15 +44,15 @@ class NodePlot extends Component {
   render() {
     const { data } = this.props;
     let i = 0;
-
     return (
       <g transform={this.transform} ref="scatterplot">
-        {data.map(([x, y]) => {
+        {data.map(node => {
           return (
             <WorkerNode
               key={i++}
-              scaleX={this.xScale(x)}
-              scaleY={this.yScale(y)}
+              scaleX={this.xScale(node.x)}
+              scaleY={this.yScale(node.y)}
+              info={node}
               showNodeInfo={this.props.showNodeInfo}
               hideNodeInfo={this.props.hideNodeInfo}
             />
