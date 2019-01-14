@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import WorkerNode from "./WorkerNode";
 import InfoWindow from "./InfoWindow";
 import Chart from "./Chart";
-import { clusterFetchData } from './components/cluster_page/clusterActions';
+import { clusterFetchData } from './clusterActions.js';
 
 import styled from "styled-components";
 
