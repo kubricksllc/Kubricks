@@ -1,12 +1,12 @@
 const kube = require('./kubeApi.js');
 
 function parseContainers(containerArr) {
-  console.log(containerArr[0]);
+  // console.log(containerArr[0]); 
   return containerArr.reduce((listOfContainers, container) => {
     const temp = {};
     temp.containerName = container.name;
     temp.imageName = container.image;
-    temp.mappedContainerPorts = container.ports;
+    temp.mappedContainerPort = container.ports;
     temp.env = container.env;
     return listOfContainers.concat([temp]);
   }, []);
@@ -118,11 +118,25 @@ const nodeQuery = {
             responseBody.pods = listOfPods;
             return responseBody;
           },
-          { services: null, pods: null }
+          { services: null, pods: null } //this is to intialize the accumulator
         );
-      }) 
-      .then(result => res.send(result)) //TODO: to add more middleware, use next()
-      .catch(err => console.log(err));
+      })
+      .then(result => {
+        res.set({
+          'Content-Type': 'application/json'
+        });
+        res.write(JSON.stringify(result));
+        next();
+      })
+      .catch(err => {
+        console.log('node query error', err);
+        res.status(400);
+        res.write(JSON.stringify(`failed to query Kubernetes API, possible reasons: 
+        unauthorized access, please refresh your token with your cloud provider
+        if you are using minikube, please run minikube start`
+        ));
+        next();
+      });
   }
 };
 
