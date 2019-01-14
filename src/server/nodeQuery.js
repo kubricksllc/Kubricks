@@ -1,12 +1,12 @@
 const kube = require('./kubeApi.js');
 
 function parseContainers(containerArr) {
-  console.log(containerArr[0]);
+  // console.log(containerArr[0]); 
   return containerArr.reduce((listOfContainers, container) => {
     const temp = {};
     temp.containerName = container.name;
     temp.imageName = container.image;
-    // temp.mappedContainerPort = container.ports[0].containerPort;
+    temp.mappedContainerPort = container.ports;
     temp.env = container.env;
     return listOfContainers.concat([temp]);
   }, []);
@@ -106,7 +106,7 @@ function getPods(namespace) {
 }
 
 const nodeQuery = {
-  getNode: (req, res) => {
+  getNode: (req, res, next) => {
     getNamespace()
       .then(listOfNamespaces => {
         return listOfNamespaces.reduce(
@@ -118,10 +118,16 @@ const nodeQuery = {
             responseBody.pods = listOfPods;
             return responseBody;
           },
-          { services: null, pods: null }
+          { services: null, pods: null } //this is to intialize the accumulator
         );
       })
-      .then(result => res.send(result))
+      .then(result => {
+        res.set({
+          'Content-Type': 'application/json'
+        });
+        res.write(JSON.stringify(result));
+        next();
+      })
       .catch(err => console.log(err));
   }
 };
