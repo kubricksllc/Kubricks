@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import WorkerNode from "./WorkerNode";
 import ReactDOM from "react-dom";
+import { connect } from 'react-redux';
+import WorkerNode from "./WorkerNode";
 import InfoWindow from "./InfoWindow";
 import Chart from "./Chart";
+import { clusterFetchData } from './components/cluster_page/clusterActions';
 
 import styled from "styled-components";
 
@@ -29,19 +31,19 @@ class ClusterPage extends Component {
   }
 
   componentDidMount() {
-    const self = this;
-    const data = [];
-    fetch("http://localhost:8080/api/nodes")
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        console.log("fetch", data);
-        self.setState({ data: this.getNodes(data) });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.props.fetchData('localhost:8080/api/nodes');
+    this.setState({
+      data: this.getNodes(12, 100)
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    //IF THEW NODE LIST CHANGES UPDATE IT
+    // this.setState({ nodes: [] });
+    // this.setState({
+    //   nodes: this.createNodes(e.target.value, this.state.radius),
+    //   slider: e.target.value
+    // });
   }
 
   getNodes(nodes, radius = 200) {
@@ -110,4 +112,16 @@ class ClusterPage extends Component {
   }
 }
 
-export default ClusterPage;
+const mapStateToProps = (state) => {
+  return {
+    listOfNodes: state.listOfNodes
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchData: (url) => dispatch(clusterFetchData(url))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ClusterPage);
