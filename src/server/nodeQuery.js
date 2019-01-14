@@ -135,7 +135,7 @@ const nodeQuery = {
         unauthorized access, please refresh your token with your cloud provider
         if you are using minikube, please run minikube start`
         ));
-        next()
+        next();
       });
   }
 };
