@@ -78,8 +78,8 @@ function getPods(namespace) {
   return kube
     .listNamespacedPod(
       namespace,
-      true,
-      undefined,
+      true,       
+      undefined,  
       undefined,
       true,
       undefined,
@@ -128,7 +128,15 @@ const nodeQuery = {
         res.write(JSON.stringify(result));
         next();
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log('node query error', err);
+        res.status(400);
+        res.write(JSON.stringify(`failed to query Kubernetes API, possible reasons: 
+        unauthorized access, please refresh your token with your cloud provider
+        if you are using minikube, please run minikube start`
+        ));
+        next()
+      });
   }
 };
 

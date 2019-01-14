@@ -46,10 +46,13 @@ const clusterQuery = {
         next();
       })
       .catch(err => {
-        console.log(err);
-        res.send(
-          'unauthorized access, please refresh your token with your cloud provider'
-        );
+        console.log('cluster query error', err);
+        res.status(400);
+        res.write(JSON.stringify(`failed to query Kubernetes API, possible reasons: 
+          unauthorized access, please refresh your token with your cloud provider
+          if you are using minikube, please run minikube start`
+          ));
+        next();
       });
   }
 };

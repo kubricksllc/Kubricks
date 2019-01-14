@@ -7,7 +7,7 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '../../dist')));
 app.use('*', (req, res, next) => {
-  console.log('hitting server', req.query);
+  console.log('processing request', req.query);
   next();
 });
 
