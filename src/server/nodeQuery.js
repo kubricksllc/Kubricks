@@ -95,6 +95,7 @@ function getPods(namespace) {
         const temp = {};
         const { metadata, spec, status } = pod;
         temp.name = metadata.name;
+        temp.labels = metadata.labels;
         temp.containers = parseContainers(spec.containers);
         temp.listOfVolumes = spec.volumes.map(volume => volume.name);
         temp.createdAt = metadata.creationTimestamp;
