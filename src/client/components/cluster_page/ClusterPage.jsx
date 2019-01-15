@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import WorkerNode from "./WorkerNode";
-import ReactDOM from "react-dom";
 import InfoWindow from "./InfoWindow";
 import Chart from "./Chart";
-
+import { clusterFetchData } from "../redux/actions/clusterActions.js";
 import styled from "styled-components";
 
 const Box = styled.div`
@@ -29,19 +29,15 @@ class ClusterPage extends Component {
   }
 
   componentDidMount() {
-    const self = this;
-    const data = [];
-    fetch("http://localhost:8080/api/nodes")
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        console.log("fetch", data);
-        self.setState({ data: this.getNodes(data) });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.props.fetchData("http://localhost:8080/api/nodes");
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    //IF THEW NODE LIST CHANGES UPDATE IT
+
+    if (this.props.listOfNodes !== prevProps.listOfNodes) {
+      this.setState({ data: this.getNodes(this.props.listOfNodes) });
+    }
   }
 
   getNodes(nodes, radius = 200) {
@@ -85,29 +81,47 @@ class ClusterPage extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <div onMouseMove={this.handleMouseMove}>
-          <Chart
-            data={this.state.data}
-            width={1000}
-            height={500}
-            mouseX={this.state.mouseX}
-            mouseY={this.state.mouseY}
-            showNodeInfo={this.showNodeInfo}
-            hideNodeInfo={this.hideNodeInfo}
-          />
+    if (this.props.listOfNodes !== undefined) {
+      return (
+        <div>
+          <div onMouseMove={this.handleMouseMove}>
+            <Chart
+              data={this.state.data}
+              width={1000}
+              height={500}
+              mouseX={this.state.mouseX}
+              mouseY={this.state.mouseY}
+              showNodeInfo={this.showNodeInfo}
+              hideNodeInfo={this.hideNodeInfo}
+            />
+          </div>
+          {this.state.windowOpen && (
+            <InfoWindow
+              node={this.state.target}
+              mouseX={this.state.mouseX}
+              mouseY={this.state.mouseY}
+            />
+          )}
         </div>
-        {this.state.windowOpen && (
-          <InfoWindow
-            node={this.state.target}
-            mouseX={this.state.mouseX}
-            mouseY={this.state.mouseY}
-          />
-        )}
-      </div>
-    );
+      );
+    }
+    return <div />;
   }
 }
 
-export default ClusterPage;
+const mapStateToProps = state => {
+  return {
+    listOfNodes: state.nodesReducer.listOfNodes
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchData: url => dispatch(clusterFetchData(url))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ClusterPage);

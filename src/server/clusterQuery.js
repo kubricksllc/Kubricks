@@ -19,7 +19,7 @@ function parseClusterQuery(nodesArr) {
 }
 
 const clusterQuery = {
-  getCluster: (req, res) => {
+  getCluster: (req, res, next) => {
     console.log('hitting the cluster query')
     kube
       .listNode(
@@ -36,19 +36,23 @@ const clusterQuery = {
       .then(result => {
         console.log('query came back')
         const body = parseClusterQuery(result.body.items);
-        res.set({
-          'Content-Type': 'application/json'
-        });
         return body;
       })
       .then(body => {
-        res.send(JSON.stringify(body));
+        res.set({
+          'Content-Type': 'application/json'
+        });
+        res.write(JSON.stringify(body));
+        next();
       })
       .catch(err => {
-        console.log(err);
-        res.send(
-          'unauthorized access, please refresh your token with your cloud provider'
-        );
+        console.log('cluster query error', err);
+        res.status(400);
+        res.write(JSON.stringify(`failed to query Kubernetes API, possible reasons: 
+          unauthorized access, please refresh your token with your cloud provider
+          if you are using minikube, please run minikube start`
+          ));
+        next();
       });
   }
 };
