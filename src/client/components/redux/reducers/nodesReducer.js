@@ -1,5 +1,4 @@
-import { NODES_FETCH_DATA_SUCCESS } from "../actions/actionTypes";
-import { TOGGLE_INFO_WINDOW } from "../actions/actionTypes";
+import { NODES_FETCH_DATA_SUCCESS, DISPLAY_NODE_INFO, HIDE_NODE_INFO } from "../actions/actionTypes";
 
 const initalState = {
   listOfNodes: [],
@@ -14,11 +13,15 @@ export function nodesReducer(state = initalState, action) {
         ...state,
         listOfNodes: tmpListofNodes
       };
-    case TOGGLE_INFO_WINDOW:
-      const currentNode = state.listOfNodes[action.payload.nodeIndex];
+    case DISPLAY_NODE_INFO:
       return {
         ...state,
-        currentNode
+        currentNode : state.listOfNodes[action.payload.nodeIndex]
+      };
+    case HIDE_NODE_INFO:
+      return {
+        ...state,
+        currentNode : null
       };
     default:
       return state;
