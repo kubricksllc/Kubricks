@@ -1,3 +1,5 @@
+import { CLUSTER_FETCH_DATA_SUCCESS } from './actionTypes';
+
 // Action creators
 export function clusterFetchDataSuccess(listOfNodes) {
   return {

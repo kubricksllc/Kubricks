@@ -25,7 +25,6 @@ class WorkerNode extends Component {
     const target = this.state.intialSize;
     const descale = function() {
       if (this.state.size != target) {
-        console.log(this.state.size, target);
         this.setState({ size: this.state.size - 1 });
         setTimeout(descale, 2);
       }

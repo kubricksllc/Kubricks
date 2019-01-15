@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import { listOfNodes } from './js/components/cluster_page/clusterReducer';
+import { nodesReducer } from './client/components/redux/reducers/clusterReducer';
 
 const rootReducers = combineReducers({
-  listOfNodes
+  nodesReducer
 });
 
 export default rootReducers;
