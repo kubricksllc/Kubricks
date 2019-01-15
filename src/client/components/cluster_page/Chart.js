@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import InfoWindow from "./InfoWindow";
 import NodePlot from "./NodePlot";
 import * as d3 from "d3";
