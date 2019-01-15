@@ -1,14 +1,14 @@
-import { CLUSTER_FETCH_DATA_SUCCESS } from './actionTypes';
+import { NODES_FETCH_DATA_SUCCESS } from './actionTypes';
 
 // Action creators
-export function clusterFetchDataSuccess(listOfNodes) {
+export function nodesFetchDataSuccess(listOfNodes) {
   return {
-    type: CLUSTER_FETCH_DATA_SUCCESS,
+    type: NODES_FETCH_DATA_SUCCESS,
     listOfNodes
   }
 }
 
-export const clusterFetchData = function(url) {
+export const nodesFetchData = function(url) {
   return (dispatch) => {
     fetch(url)
     .then( response => {
@@ -19,7 +19,7 @@ export const clusterFetchData = function(url) {
     })
     .then(response => response.json())
     .then(listOfNodes => {
-      dispatch(clusterFetchDataSuccess(listOfNodes));
+      dispatch(nodesFetchDataSuccess(listOfNodes));
     }) 
   }
 }
