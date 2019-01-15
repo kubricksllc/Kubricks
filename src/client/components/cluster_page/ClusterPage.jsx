@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import WorkerNode from "./WorkerNode";
 import InfoWindow from "./InfoWindow";
-import Chart from "./Chart";
+import HexGraph from "./HexGraph";
 import { clusterFetchData } from "../redux/actions/clusterActions.js";
 import styled from "styled-components";
 
