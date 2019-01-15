@@ -22,7 +22,7 @@ class InfoWindow extends Component {
   render() {
     var windowStyle = {
       top: this.props.mouseInfo.y - 100,
-      left: this.props.mouseInfo.x + 20
+      left: this.props.mouseInfo.x + 40
     };
 
     return (

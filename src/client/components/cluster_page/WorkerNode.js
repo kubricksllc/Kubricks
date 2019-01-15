@@ -47,7 +47,10 @@ class WorkerNode extends Component {
   }
 
   handleMouseLeave(e) {
-    this.props.toggleInfoWindow(e.target.getAttribute("nodeIndex"));
+    this.props.toggleInfoWindow(e.target.getAttribute("nodeIndex"), {
+      x: e.clientX,
+      y: e.clientY
+    });
     this.setState({ scaling: false, descaling: true });
   }
 
