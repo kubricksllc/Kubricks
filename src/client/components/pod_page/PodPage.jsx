@@ -7,19 +7,20 @@ import Plot from './Plot.jsx';
 
 const data = {
     nodes: [{ id: 'Harry' }, { id: 'Sally' }, { id: 'Alice' }],
-    links: [{ source: 'Harry', target: 'Sally' }, { source: 'Harry', target: 'Alice' }]
+    links: []
 };
 
 class PodPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listOfPods: []
+            listOfContainers: []
         };
     }
 
     componentDidMount() {
-        
+        console.log(this.props);
+        // let tmp = this.props.list
     }
 
     render() {
@@ -32,7 +33,7 @@ class PodPage extends Component {
                     nodeAutoColorBy="group"
                     nodeCanvasObject={(node, ctx, globalScale) => {
                         const label = node.id;
-                        const fontSize = 12/globalScale;
+                        const fontSize = 12 / globalScale;
                         ctx.font = `${fontSize}px Sans-Serif`;
                         const textWidth = ctx.measureText(label).width;
                         const bckgDimensions = [textWidth, fontSize].map(n => n + fontSize * 0.2); // some padding
@@ -49,23 +50,13 @@ class PodPage extends Component {
     }
 }
 
-// const mapStateToProps = state => {
-//     return {
-//       listOfContainers: state.nodesReducer.listOfNodes,
-//       nodeInfoOpen: state.windowReducer.nodeInfoOpen
-//     };
-//   };
-  
-//   const mapDispatchToProps = dispatch => {
-//     return {
-//       fetchData: url => dispatch(nodesFetchData(url))
-//     };
-//   };
-  
-//   export default connect(
-//     mapStateToProps,
-//     mapDispatchToProps
-//   )(ClusterPage);
-// )
+const mapStateToProps = state => {
+    return {
+        listOfPods: state.podsReducer.listOfPods,
+        currentPod: state.podsReducer.currentPod
+    };
+};
 
-export default PodPage;
+export default connect(
+    mapStateToProps
+)(PodPage);
