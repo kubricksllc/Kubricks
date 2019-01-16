@@ -11,3 +11,5 @@ kubeConfig.loadFromDefault();
 const kube = kubeConfig.makeApiClient(k8Api.Core_v1Api);
 
 module.exports = kube;
+
+// kube.listNamespacedServiceAccount('default').then(res => console.log(res.body.items))

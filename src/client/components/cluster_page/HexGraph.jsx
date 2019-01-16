@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import InfoWindow from "../../layout/InfoWindow";
-import NodePlot from "./NodePlot";
+import NodePlot from "./NodePlot.jsx";
 import * as d3 from "d3";
 
 const random = d3.randomNormal(5, 1);
@@ -11,9 +10,10 @@ const Box = styled.div`
   border-width: 1px;
   height: 500x;
   width: 1000px;
+  background-color: #e1fcf8;
 `;
 
-class HexGraph extends React.Component {
+class HexGraph extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -58,7 +58,7 @@ class HexGraph extends React.Component {
             width={width / 2}
             height={height}
             zoomTransform={zoomTransform}
-            zoomType="detail"
+            zoomType="scale"
           />
         </svg>
       </Box>

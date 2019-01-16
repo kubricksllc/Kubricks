@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as d3 from "d3";
-import WorkerNode from "./WorkerNode";
+import WorkerNode from "./WorkerNode.jsx";
 
 class NodePlot extends Component {
   constructor(props) {

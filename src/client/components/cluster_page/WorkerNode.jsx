@@ -10,14 +10,8 @@ class WorkerNode extends Component {
     super(props);
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
-<<<<<<< Updated upstream:src/client/components/cluster_page/WorkerNode.js
-=======
     this.handleOnClick = this.handleOnClick.bind(this);
-<<<<<<< Updated upstream:src/client/components/cluster_page/WorkerNode.js
->>>>>>> Stashed changes:src/client/components/cluster_page/WorkerNode.jsx
-=======
->>>>>>> Stashed changes:src/client/components/cluster_page/WorkerNode.jsx
-    this.state = { intialSize: 10, size: 10, scaling: false, descaling: false };
+    this.state = { intialSize: 15, size: 15, scaling: false, descaling: false };
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -50,8 +44,8 @@ class WorkerNode extends Component {
 
   handleMouseEnter(e) {
     this.props.displayNodeInfo(e.target.getAttribute("nodeIndex"), {
-      x: this.props.scaleX + 50,
-      y: this.props.scaleY - 270
+      x: e.clientX + 50, 
+      y: e.clientY - 100 
     });
     this.setState({ scaling: true, descaling: false });
   }
@@ -61,23 +55,29 @@ class WorkerNode extends Component {
     this.setState({ scaling: false, descaling: true });
   }
 
+  handleOnClick(e) {}
+
   render() {
     const dist = this.state.size;
     const offsetX = 1.5;
     const offsetY = 1.6;
     const scaleX = this.props.scaleX;
     const scaleY = this.props.scaleY;
+
     return (
       <polygon
         points={`${scaleX}, ${scaleY - dist * 3.3}
-               ${scaleX + dist * 2.7}, ${scaleY - dist * 1.5} 
-               ${scaleX + dist * 2.7}, ${scaleY + dist * 1.5}
+               ${scaleX + dist * 2.7}, ${scaleY - dist * 1.6} 
+               ${scaleX + dist * 2.7}, ${scaleY + dist * 1.6}
                ${scaleX}, ${scaleY + dist * 3.3}
-               ${scaleX - dist * 2.7}, ${scaleY + dist * 1.5}
-               ${scaleX - dist * 2.7}, ${scaleY - dist * 1.5}
+               ${scaleX - dist * 2.7}, ${scaleY + dist * 1.6}
+               ${scaleX - dist * 2.7}, ${scaleY - dist * 1.6}
              `}
-        fill="#003366"
+        fill="white"
+        stroke="#326DE6"
+        stroke-width="2"
         nodeIndex={this.props.nodeIndex}
+        onClick={this.handleOnClick}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       />
