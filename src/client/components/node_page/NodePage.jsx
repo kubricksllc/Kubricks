@@ -3,18 +3,13 @@ import { connect } from "react-redux";
 import Tree from "react-d3-tree";
 import buildTreeData from "./TreeData.jsx";
 import styled from "styled-components";
-import infoWindow from "../../layout/InfoWindow.jsx";
-import ServicesWindow from "../services_window/ServicesWindow.jsx";
+import InfoWindow from "../../layout/InfoWindow.jsx";
 
 const TreeWrapper = styled.div`
   name: treeWrapper;
   width: 1000px;
   height: 200px;
-  background-color: white;  
-`;
-
-const PageContainer = styled.div`
-  display: flex;
+  background-color: white;
 `;
 
 class NodePage extends Component {
@@ -30,11 +25,8 @@ class NodePage extends Component {
     );
 
     return (
-      <PageContainer>
-        <ServicesWindow />
-        {this.props.listOfServices.length !== 0 && (
-          <TreeWrapper id="treeWrapper">
-            {/* <Tree
+      <TreeWrapper id="treeWrapper">
+        {/* <Tree
             data={buildTreeData(
               this.props.listOfServices,
               this.props.listOfPods,
@@ -42,10 +34,8 @@ class NodePage extends Component {
             )}
             separation={{ siblings: 2, nonSiblings: 2 }}
           /> */}
-            {arr}
-          </TreeWrapper>
-        )}
-      </PageContainer>
+        {arr}
+      </TreeWrapper>
     );
   }
 }

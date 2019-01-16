@@ -34,7 +34,11 @@ class ServicesWindow extends Component {
 
   renderServiceTypes() {
     return this.props.serviceTypes.map(serviceType => (
-      <ServiceType key={serviceType} type={serviceType} />
+      <ServiceType
+        key={serviceType}
+        type={serviceType}
+        activeServiceTypes={this.props.activeServiceTypes}
+      />
     ));
   }
 
@@ -59,7 +63,7 @@ const mapStateToProps = state => {
   return {
     listOfServices: state.servicesReducer.listOfServices,
     filteredServices: state.servicesReducer.filteredServices,
-    activeServices: state.servicesReducer.activeServices,
+    activeServiceTypes: state.servicesReducer.activeServiceTypes,
     serviceTypes: state.servicesReducer.serviceTypes
   };
 };
