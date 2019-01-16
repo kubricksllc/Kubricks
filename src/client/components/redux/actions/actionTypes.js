@@ -3,11 +3,15 @@ const DISPLAY_NODE_INFO = 'DISPLAY_NODE_INFO,';
 const HIDE_NODE_INFO = 'HIDE_NODE_INFO';
 const SERVICES_FETCH = 'bananas';
 const PODS_FETCH = 'apples';
+const UPDATE_CURRENT_POD = 'banana hammock';
+const UPDATE_CURRENT_SERVICE = 'princess consuella';
 
 export {
     NODES_FETCH_DATA_SUCCESS,
     DISPLAY_NODE_INFO,
     HIDE_NODE_INFO,
     SERVICES_FETCH,
-    PODS_FETCH
+    PODS_FETCH,
+    UPDATE_CURRENT_POD,
+    UPDATE_CURRENT_SERVICE
 };

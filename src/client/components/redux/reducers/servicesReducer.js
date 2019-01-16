@@ -5,7 +5,7 @@ const initialState = {
   serviceTypes: ['NodePort', 'ClusterIP', 'LoadBalancer', 'Ingress'],
   activeServiceTypes: ['NodePort', 'ClusterIP', 'LoadBalancer', 'Ingress'],
   filteredServices: [],
-  activeServices: [],
+  activeServices: [1, 0],
   currentService: null
 }
 

@@ -1,15 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Tree from "react-d3-tree";
 import buildTreeData from "./TreeData.jsx";
 import styled from "styled-components";
+import {updateCurrentPod} from '../redux/actions/podsActions';
 import InfoWindow from "../../layout/InfoWindow.jsx";
 
-const TreeWrapper = styled.div`
+
+//TODO: fix the width and height after hex viewport is implemented!!!!!!!!!!!!!!!!
+
+const TreeContainer = styled.div`
   name: treeWrapper;
-  width: 1000px;
-  height: 200px;
-  background-color: white;
+  width: 97%;
+  height: 97%;
+  background-color: skyblue;
+  display: flex;
+  flex-direction: column;
 `;
 
 class NodePage extends Component {
@@ -18,35 +23,34 @@ class NodePage extends Component {
   }
 
   render() {
-    const arr = buildTreeData(
+    const arr = buildTreeData(this.props.activeServices,
       this.props.listOfServices,
       this.props.listOfPods,
-      "gke-kubricks-default-pool-b055752b-wb5z"
+      this.props.currentNode,
+      this.props.updateCurrentPod,
+      this.props.updateCurrentService
     );
 
-    return (
-      <TreeWrapper id="treeWrapper">
-        {/* <Tree
-            data={buildTreeData(
-              this.props.listOfServices,
-              this.props.listOfPods,
-              "gke-kubricks-default-pool-b055752b-wb5z"
-            )}
-            separation={{ siblings: 2, nonSiblings: 2 }}
-          /> */}
-        {arr}
-      </TreeWrapper>
-    );
+    return <TreeContainer id="treeContainer">{arr}</TreeContainer>;
   }
 }
 
 const mapStateToProps = state => {
-  console.log(state);
+  // console.log(state);
   return {
     listOfServices: state.servicesReducer.listOfServices,
+    activeServices: state.servicesReducer.activeServices,
     listOfPods: state.podsReducer.listOfPods,
-    infoWindowOpen: state.windowReducer.infoWindowOpen
+    infoWindowOpen: state.windowReducer.infoWindowOpen,
+    currentNode: state.nodesReducer.currentNode
   };
 };
 
-export default connect(mapStateToProps)(NodePage);
+const mapDispatchToProps = dispatch => {
+  return {
+    updateCurrentPod: podIdx => dispatch(updateCurrentPod(podIdx)),
+    updateCurrentService: serviceIdx => dispatch(updateCurrentService(serviceIdx))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NodePage);

@@ -1,4 +1,4 @@
-import {PODS_FETCH} from '../actions/actionTypes.js';
+import {PODS_FETCH, UPDATE_CURRENT_POD} from '../actions/actionTypes.js';
 
 const initialState = {
   listOfPods: [],
@@ -11,6 +11,12 @@ export function podsReducer (state = initialState, action) {
       return {
         ...state,
         listOfPods: action.payload
+      }
+    }
+    case UPDATE_CURRENT_POD: {
+      return {
+        ...state,
+        currentPod: action.payload
       }
     }
     default: 
