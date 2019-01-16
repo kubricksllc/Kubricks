@@ -1,6 +1,8 @@
 import Builder from './Constructors.jsx';
 import Tree from "react-d3-tree";
 import React from 'react';
+import styled from "styled-components";
+
 
 // function buildTree(listOfServices, listOfPodsInStore, nodeName) {
 //   if(listOfServices.length === 0) return [];
@@ -21,6 +23,13 @@ import React from 'react';
 //   return nodeTree;
 // }
 
+const TreeWrapper = styled.div`
+  name: treeWrapper;
+  width: 1000px;
+  height: 1000px;
+  background-color: white;
+`;
+
 function buildTree(listOfServices, listOfPodsInStore, nodeName) {
   if(listOfServices.length === 0) return [];
 
@@ -30,7 +39,9 @@ function buildTree(listOfServices, listOfPodsInStore, nodeName) {
     if(listOfServices[i].type === 'LoadBalancer' || listOfServices[i].type === 'Ingress') {
       continue;
     } else {
-      const item = <Tree data={buildSingleTree(listOfServices[i], listOfPodsInStore, nodeName)} />
+      const item = <TreeWrapper id='treeWrapper'> 
+      <Tree data={buildSingleTree(listOfServices[i], listOfPodsInStore, nodeName)} />
+      </TreeWrapper>
       array.push(item);
     }
   }
