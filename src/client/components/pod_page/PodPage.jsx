@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Graph } from 'react-d3-graph';
+import { ForceGraph2D } from 'react-force-graph';
 import Plot from './Plot.jsx';
 
 const data = {
@@ -31,61 +32,27 @@ export default class PodPage extends Component {
         
     }
 
-    onClickGraph() {
-        window.alert(`Clicked the graph background...`);
-    }
-
-    onClickNode(nodeId) {
-        window.alert(`Clicked node ${nodeId}`);
-    }
-
-    onRightClickNode(event, nodeId) {
-        window.alert(`Right clicked node ${nodeId}`);
-    }
-
-    onMouseOverNode(nodeId) {
-        window.alert(`Mouse over node ${nodeId}`);
-    }
-
-    onMouseOutNode(nodeId) {
-        window.alert(`Mouse out node ${nodeId}`);
-    }
-
-    onClickLink(source, target) {
-        window.alert(`Clicked link between ${source} and ${target}`);
-    }
-
-    onRightClickLink(event, source, target) {
-        window.alert(`Right clicked link between ${source} and ${target}`);
-    }
-
-    onMouseOverLink(source, target) {
-        window.alert(`Mouse over in link between ${source} and ${target}`);
-    }
-
-    onMouseOutLink(source, target) {
-        window.alert(`Mouse out link between ${source} and ${target}`);
-    }
-
     render() {
-        console.log(this.props);
         return (
             <div>
                 <h1>I am on pod page</h1>
-                {/* <Plot width={1000} height={500} /> */}
-                <Graph
-                    id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
-                    data={data}
-                    config={myConfig}
-                    onClickNode={this.onClickNode}
-                    onRightClickNode={this.onRightClickNode}
-                    onClickGraph={this.onClickGraph}
-                    onClickLink={this.onClickLink}
-                    onRightClickLink={this.onRightClickLink}
-                    onMouseOverNode={this.onMouseOverNode}
-                    onMouseOutNode={this.onMouseOutNode}
-                    onMouseOverLink={this.onMouseOverLink}
-                    onMouseOutLink={this.onMouseOutLink}
+                {/* <Plot width={1000} height={500} />  */}
+                <ForceGraph2D
+                    graphData={data}
+                    nodeAutoColorBy="group"
+                    nodeCanvasObject={(node, ctx, globalScale) => {
+                        const label = node.id;
+                        const fontSize = 12/globalScale;
+                        ctx.font = `${fontSize}px Sans-Serif`;
+                        const textWidth = ctx.measureText(label).width;
+                        const bckgDimensions = [textWidth, fontSize].map(n => n + fontSize * 0.2); // some padding
+                        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                        ctx.fillRect(node.x - bckgDimensions[0] / 2, node.y - bckgDimensions[1] / 2, ...bckgDimensions);
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillStyle = node.color;
+                        ctx.fillText(label, node.x, node.y);
+                    }}
                 />
             </div>
         );
