@@ -32,7 +32,7 @@ export default class PodPage extends Component {
     }
 
     onClickGraph() {
-        window.alert(`Clicked the graph background`);
+        window.alert(`Clicked the graph background...`);
     }
 
     onClickNode(nodeId) {

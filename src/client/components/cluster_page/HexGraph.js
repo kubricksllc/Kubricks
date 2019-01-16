@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import InfoWindow from "./InfoWindow";
+import InfoWindow from "../../layout/InfoWindow";
 import NodePlot from "./NodePlot";
 import * as d3 from "d3";
 
@@ -13,17 +13,14 @@ const Box = styled.div`
   width: 1000px;
 `;
 
-class Chart extends React.Component {
+class HexGraph extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       zoomTransform: null,
       slider: 7,
       x: 0,
-      y: 0,
-      radius: 300,
-      windowOpen: false,
-      target: null
+      y: 0
     };
 
     this.zoom = d3
@@ -31,9 +28,6 @@ class Chart extends React.Component {
       .scaleExtent([-5, 5])
       .extent([[-100, -100], [props.width + 100, props.height + 100]])
       .on("zoom", this.zoomed.bind(this));
-
-    this.showNodeInfo = this.showNodeInfo.bind(this);
-    this.hideNodeInfo = this.hideNodeInfo.bind(this);
   }
 
   componentDidMount() {
@@ -48,14 +42,6 @@ class Chart extends React.Component {
     this.setState({
       zoomTransform: d3.event.transform
     });
-  }
-
-  showNodeInfo(node) {
-    this.props.showNodeInfo(node);
-  }
-
-  hideNodeInfo() {
-    this.props.hideNodeInfo();
   }
 
   render() {
@@ -73,8 +59,6 @@ class Chart extends React.Component {
             height={height}
             zoomTransform={zoomTransform}
             zoomType="detail"
-            showNodeInfo={this.showNodeInfo.bind(this)}
-            hideNodeInfo={this.hideNodeInfo.bind(this)}
           />
         </svg>
       </Box>
@@ -82,4 +66,4 @@ class Chart extends React.Component {
   }
 }
 
-export default Chart;
+export default HexGraph;
