@@ -13,6 +13,9 @@ class WorkerNode extends Component {
 <<<<<<< Updated upstream:src/client/components/cluster_page/WorkerNode.js
 =======
     this.handleOnClick = this.handleOnClick.bind(this);
+<<<<<<< Updated upstream:src/client/components/cluster_page/WorkerNode.js
+>>>>>>> Stashed changes:src/client/components/cluster_page/WorkerNode.jsx
+=======
 >>>>>>> Stashed changes:src/client/components/cluster_page/WorkerNode.jsx
     this.state = { intialSize: 10, size: 10, scaling: false, descaling: false };
   }
