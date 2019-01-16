@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Graph } from 'react-d3-graph';
 import { ForceGraph2D } from 'react-force-graph';
+import { connect } from "react-redux";
+// import { podsFetch} from '../redux/actions/servicesAndPodsActions.js';
 import Plot from './Plot.jsx';
 
 const data = {
@@ -8,19 +10,7 @@ const data = {
     links: [{ source: 'Harry', target: 'Sally' }, { source: 'Harry', target: 'Alice' }]
 };
 
-const myConfig = {
-    nodeHighlightBehavior: true,
-    node: {
-        color: 'lightgreen',
-        size: 120,
-        highlightStrokeColor: 'blue'
-    },
-    link: {
-        highlightColor: 'lightblue'
-    }
-};
-
-export default class PodPage extends Component {
+class PodPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -58,3 +48,24 @@ export default class PodPage extends Component {
         );
     }
 }
+
+// const mapStateToProps = state => {
+//     return {
+//       listOfContainers: state.nodesReducer.listOfNodes,
+//       nodeInfoOpen: state.windowReducer.nodeInfoOpen
+//     };
+//   };
+  
+//   const mapDispatchToProps = dispatch => {
+//     return {
+//       fetchData: url => dispatch(nodesFetchData(url))
+//     };
+//   };
+  
+//   export default connect(
+//     mapStateToProps,
+//     mapDispatchToProps
+//   )(ClusterPage);
+// )
+
+export default PodPage;

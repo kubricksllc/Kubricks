@@ -33,16 +33,17 @@
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14",
     "webpack-stream": "^5.2.1",
-    "gulp": "3.9.1"
+    "gulp": "3.9.1",
+    "vinyl-named": "^1.1.0"
   },
   "dependencies": {
     "@kubernetes/client-node": "^0.7.2",
     "d3": "^5.7.0",
     "express": "^4.16.4",
     "gulp": "3.9.1",
-    "react-d3-graph": "^2.0.0-rc2",
     "moment": "^2.23.0",
     "react": "^16.7.0",
+    "react-d3-graph": "^2.0.0-rc2",
     "react-d3-tree": "^1.12.2",
     "react-dom": "^16.7.0",
     "react-force-graph": "^1.17.6",
