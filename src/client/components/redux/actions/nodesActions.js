@@ -2,7 +2,6 @@ import { NODES_FETCH_DATA_SUCCESS } from "./actionTypes";
 
 // Action creators
 export function nodesFetchDataSuccess(listOfNodes) {
-  console.log("lol", listOfNodes);
   return {
     type: NODES_FETCH_DATA_SUCCESS,
     listOfNodes
