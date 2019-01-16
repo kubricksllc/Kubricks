@@ -31,11 +31,14 @@ class ClusterPage extends Component {
     //IF THEW NODE LIST CHANGES UPDATE IT
 
     if (this.props.listOfNodes !== prevProps.listOfNodes) {
-      this.setState({ data: this.getNodes(this.props.listOfNodes) });
+      this.setState({ data: this.getNodes(this.props.listOfNodes, 500) });
     }
   }
 
-  getNodes(listOfNodes, radius = 200) {
+  getNodes(listOfNodes, radius) {
+    for(let i = 0;i< 25;i++) {
+      listOfNodes.push({});
+    }
     var nodes = [],
       width = radius * 2 + 50,
       height = radius * 2 + 50,
