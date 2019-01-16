@@ -57,7 +57,7 @@ class ClusterPage extends Component {
         const fillNode = {};
         fillNode.name = copyData.name;
         fillNode.status = copyData.status;
-        fillNode.createdAt = copyData.createdAt;
+        fillNode.age = copyData.age;
         fillNode.version = copyData.version;
         fillNode.x = x;
         fillNode.y = y;
