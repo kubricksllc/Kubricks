@@ -2,6 +2,8 @@ import {SERVICES_FETCH} from '../actions/actionTypes.js';
 
 const initialState = {
   listOfServices: [],
+  serviceTypes: ['NodePort', 'ClusterIP', 'LoadBalancer', 'Ingress'],
+  activeServiceTypes: ['NodePort', 'ClusterIP', 'LoadBalancer', 'Ingress'],
   filteredServices: [],
   activeServices: [],
   currentService: null
