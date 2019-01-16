@@ -15,11 +15,11 @@ class NodePlot extends Component {
     const { data, width, height, zoomTransform, zoomType } = props;
     (this.xScale = d3
       .scaleLinear()
-      .domain([0, d3.max(data, (node) => node.x)])
+      .domain([0, d3.max(data, node => node.x)])
       .range([0, width])),
       (this.yScale = d3
         .scaleLinear()
-        .domain([0, d3.max(data, (node) => node.y)])
+        .domain([0, d3.max(data, node => node.y)])
         .range([0, height]));
 
     if (zoomTransform && zoomType === "detail") {
@@ -52,9 +52,7 @@ class NodePlot extends Component {
               key={i++}
               scaleX={this.xScale(node.x)}
               scaleY={this.yScale(node.y)}
-              info={node}
-              showNodeInfo={this.props.showNodeInfo}
-              hideNodeInfo={this.props.hideNodeInfo}
+              nodeIndex={node.index}
             />
           );
         })}
