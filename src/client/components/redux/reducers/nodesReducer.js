@@ -1,24 +1,43 @@
-import { NODES_FETCH_DATA_SUCCESS } from "../actions/actionTypes";
-import { TOGGLE_INFO_WINDOW } from "../actions/actionTypes";
+import {
+  NODES_FETCH_DATA_SUCCESS,
+  DISPLAY_NODE_INFO,
+  HIDE_NODE_INFO
+} from "../actions/actionTypes";
+
+import moment from "moment";
 
 const initalState = {
   listOfNodes: [],
   currentNode: null
 };
 
+function getAge(datetime) {
+  var time = new Date() - new Date(datetime);
+  var hours = moment.duration(time).hours();
+  var days = moment.duration(time).days();
+  return `${days}d${hours}h`;
+}
+
 export function nodesReducer(state = initalState, action) {
   switch (action.type) {
     case NODES_FETCH_DATA_SUCCESS:
+      for (let node of action.listOfNodes) {
+        node.age = getAge(node.createdAt);
+      }
       let tmpListofNodes = action.listOfNodes;
       return {
         ...state,
         listOfNodes: tmpListofNodes
       };
-    case TOGGLE_INFO_WINDOW:
-      const currentNode = state.listOfNodes[action.payload.nodeIndex];
+    case DISPLAY_NODE_INFO:
       return {
         ...state,
-        currentNode
+        currentNode: state.listOfNodes[action.payload.nodeIndex]
+      };
+    case HIDE_NODE_INFO:
+      return {
+        ...state,
+        currentNode: null
       };
     default:
       return state;

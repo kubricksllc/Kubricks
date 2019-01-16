@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import InfoWindow from "../../layout/InfoWindow";
-import HexGraph from "./HexGraph";
+import InfoWindow from "../../layout/InfoWindow.jsx";
+import HexGraph from "./HexGraph.jsx";
 import { nodesFetchData } from "../redux/actions/nodesActions.js";
 import styled from "styled-components";
 
@@ -57,7 +57,7 @@ class ClusterPage extends Component {
         const fillNode = {};
         fillNode.name = copyData.name;
         fillNode.status = copyData.status;
-        fillNode.createdAt = copyData.createdAt;
+        fillNode.age = copyData.age;
         fillNode.version = copyData.version;
         fillNode.x = x;
         fillNode.y = y;
@@ -89,13 +89,9 @@ class ClusterPage extends Component {
       return (
         <div>
           <div onMouseMove={this.handleMouseMove}>
-            <HexGraph
-              data={this.state.data}
-              width={1000}
-              height={500}
-            />
+            <HexGraph data={this.state.data} width={1000} height={500} />
           </div>
-          {this.props.infoWindowOpen && <InfoWindow />}
+          {this.props.nodeInfoOpen && <InfoWindow />}
         </div>
       );
     }
@@ -106,7 +102,7 @@ class ClusterPage extends Component {
 const mapStateToProps = state => {
   return {
     listOfNodes: state.nodesReducer.listOfNodes,
-    infoWindowOpen: state.windowReducer.infoWindowOpen
+    nodeInfoOpen: state.windowReducer.nodeInfoOpen
   };
 };
 

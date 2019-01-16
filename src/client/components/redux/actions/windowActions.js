@@ -1,9 +1,17 @@
-import { TOGGLE_INFO_WINDOW } from "./actionTypes";
+import { DISPLAY_NODE_INFO } from "./actionTypes";
+import { HIDE_NODE_INFO } from "./actionTypes";
 
 // Action creators
-export function toggleInfoWindow(nodeIndex, mouseInfo) {
+export function displayNodeInfo(nodeIndex, mouseInfo) {
   return {
-    type: TOGGLE_INFO_WINDOW,
+    type: DISPLAY_NODE_INFO,
+    payload: { nodeIndex, mouseInfo }
+  };
+}
+
+export function hideNodeInfo(nodeIndex, mouseInfo) {
+  return {
+    type: HIDE_NODE_INFO,
     payload: { nodeIndex, mouseInfo }
   };
 }

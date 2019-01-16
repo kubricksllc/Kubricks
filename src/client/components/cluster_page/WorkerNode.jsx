@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import { toggleInfoWindow } from "../redux/actions/windowActions.js";
+import {
+  displayNodeInfo,
+  hideNodeInfo
+} from "../redux/actions/windowActions.js";
 import { connect } from "react-redux";
 
 class WorkerNode extends Component {
@@ -39,18 +42,15 @@ class WorkerNode extends Component {
   }
 
   handleMouseEnter(e) {
-    this.props.toggleInfoWindow(e.target.getAttribute("nodeIndex"), {
-      x: e.clientX,
-      y: e.clientY
+    this.props.displayNodeInfo(e.target.getAttribute("nodeIndex"), {
+      x: this.props.scaleX + 50,
+      y: this.props.scaleY - 270
     });
     this.setState({ scaling: true, descaling: false });
   }
 
   handleMouseLeave(e) {
-    this.props.toggleInfoWindow(e.target.getAttribute("nodeIndex"), {
-      x: e.clientX,
-      y: e.clientY
-    });
+    this.props.hideNodeInfo(e.target.getAttribute("nodeIndex"));
     this.setState({ scaling: false, descaling: true });
   }
 
@@ -80,8 +80,10 @@ class WorkerNode extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleInfoWindow: (nodeIndex, mouseInfo) =>
-      dispatch(toggleInfoWindow(nodeIndex, mouseInfo))
+    displayNodeInfo: (nodeIndex, mouseInfo) =>
+      dispatch(displayNodeInfo(nodeIndex, mouseInfo)),
+    hideNodeInfo: (nodeIndex, mouseInfo) =>
+      dispatch(hideNodeInfo(nodeIndex, mouseInfo))
   };
 };
 

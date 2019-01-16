@@ -3,15 +3,16 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 
 const Window = styled.div`
-  position: fixed;
-  border: solid;
-  border-width: 2px;
-  color: white;
-  border-color: black;
   background-color: black;
-  width: 200px;
-  height: 200px;
-  z-index: 1;
+  border-radius: 3px;
+  position: fixed;
+  zindex: 1;
+  max-width: 250px;
+  word-break: break-word;
+  width: 100%;
+  color: white;
+  padding-left: 10px;
+  font-family: Lucida Console,Lucida Sans Typewriter,monaco,Bitstream Vera Sans Mono,monospace;
 `;
 
 class InfoWindow extends Component {
@@ -21,18 +22,18 @@ class InfoWindow extends Component {
 
   render() {
     var windowStyle = {
-      top: this.props.mouseInfo.y - 100,
-      left: this.props.mouseInfo.x + 40
+      left: this.props.mouseInfo.x,
+      top: this.props.mouseInfo.y
     };
 
     return (
       <Window style={windowStyle}>
         {this.props.currentNode !== null && (
           <div>
-            <p>Name: {this.props.currentNode.name}</p>
-            <p>Status: {this.props.currentNode.status}</p>
-            <p>CreatedAt: {this.props.currentNode.createdAt}</p>
-            <p>Version: {this.props.currentNode.version}</p>
+            <p>NAME: {this.props.currentNode.name}</p>
+            <p>STATUS: {this.props.currentNode.status}</p>
+            <p>AGE: {this.props.currentNode.age}</p>
+            <p>VERSION: {this.props.currentNode.version}</p>
           </div>
         )}
       </Window>
