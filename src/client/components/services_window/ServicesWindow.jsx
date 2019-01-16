@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import servicesAndPodsFetchData from "../redux/actions/servicesAndPodsActions.js";
+import { servicesAndPodsFetchData } from "../redux/actions/servicesAndPodsActions.js";
 import ServiceType from "./ServiceType.jsx";
+import ServiceItem from "./ServiceItem.jsx";
 
 const Box = styled.div`
   border: solid;
@@ -18,6 +19,10 @@ const Title = styled.h1`
 `;
 
 const ServiceTypes = styled.div`
+  text-align: center;
+`;
+
+const Services = styled.div`
   text-align: center;
 `;
 
@@ -42,12 +47,26 @@ class ServicesWindow extends Component {
     ));
   }
 
+  renderServiceList() {
+    let i = 0;
+    return this.props.listOfServices.map(service => (
+      <ServiceItem
+        key={service.name}
+        name={service.name}
+        index = {i++}
+        activeServices={this.props.activeServices}
+      />
+    ));
+  }
+
   render() {
     return (
       <Box>
         <Title>Services</Title>
         Service Types
         <ServiceTypes>{this.renderServiceTypes()}</ServiceTypes>
+        Services
+        <Services>{this.renderServiceList()}</Services>
       </Box>
     );
   }
@@ -62,7 +81,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     listOfServices: state.servicesReducer.listOfServices,
-    filteredServices: state.servicesReducer.filteredServices,
+    activeServices: state.servicesReducer.activeServices,
     activeServiceTypes: state.servicesReducer.activeServiceTypes,
     serviceTypes: state.servicesReducer.serviceTypes
   };

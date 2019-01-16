@@ -1,4 +1,5 @@
-import { SERVICES_FETCH, PODS_FETCH } from "./actionTypes.js";
+import { SERVICES_FETCH, PODS_FETCH, TOGGLE_SERVICE } from "./actionTypes.js";
+import { TOGGLE_SERVICE_TYPE } from "./actionTypes.js";
 
 function servicesFetch(listOfServices) {
   return {
@@ -14,12 +15,21 @@ function podsFetch(listOfPods) {
   };
 }
 
-function toggleServiceType(serviceType) {
-  console.log(serviceType);
-  return {};
-};
+export function toggleServiceType(serviceType) {
+  return {
+    type: TOGGLE_SERVICE_TYPE,
+    payload: serviceType
+  };
+}
 
-const servicesAndPodsFetchData = function(url) {
+export function toggleService(serviceIndex) {
+  return {
+    type: TOGGLE_SERVICE,
+    payload: serviceIndex
+  };
+}
+
+export function servicesAndPodsFetchData(url) {
   return dispatch => {
     fetch(url)
       .then(res => {
@@ -35,6 +45,4 @@ const servicesAndPodsFetchData = function(url) {
       })
       .catch(err => console.log(err));
   };
-};
-
-export default servicesAndPodsFetchData;
+}
