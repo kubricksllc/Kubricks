@@ -14,6 +14,11 @@ function podsFetch(listOfPods) {
   };
 }
 
+function toggleServiceType(serviceType) {
+  console.log(serviceType);
+  return {};
+};
+
 const servicesAndPodsFetchData = function(url) {
   return dispatch => {
     fetch(url)

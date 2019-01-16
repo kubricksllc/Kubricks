@@ -1,72 +1,54 @@
-import Builder from './Constructors.jsx';
+import { buildSingleTree } from "./BuildSingleTree.jsx";
 import Tree from "react-d3-tree";
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
-
-
-// function buildTree(listOfServices, listOfPodsInStore, nodeName) {
-//   if(listOfServices.length === 0) return [];
-//   const nodeTree = [];
-//   const children = [];
-
-//   listOfServices.forEach(service => {
-//     if(service.type === 'LoadBalancer' || service.type === 'Ingress' ) {
-//       const serviceNode = new Builder.ServiceNode(service.name, service.type, null, service.ports)
-//       nodeTree.push(serviceNode);
-//     } else {
-//       children.push(buildSingleTree(service, listOfPodsInStore, nodeName))
-//     }
-//   });
-//   // console.log(nodeTree);
-//   nodeTree[0].children = children;
-  
-//   return nodeTree;
-// }
 
 const TreeWrapper = styled.div`
   name: treeWrapper;
-  width: 1000px;
-  height: 1000px;
-  background-color: white;
+  width: 100%;
+  height: 100%;
+  background-color: #e1fcf8;
 `;
 
-function buildTree(listOfServices, listOfPodsInStore, nodeName) {
-  if(listOfServices.length === 0) return [];
-
-  const array = [];
-
-  for (let i = 0; i < listOfServices.length; i++) {
-    if(listOfServices[i].type === 'LoadBalancer' || listOfServices[i].type === 'Ingress') {
-      continue;
-    } else {
-      const item = <TreeWrapper id='treeWrapper'> 
-      <Tree data={buildSingleTree(listOfServices[i], listOfPodsInStore, nodeName)} />
-      </TreeWrapper>
-      array.push(item);
-    }
+function checkNodeType (node, e, updateCurrentPod, updateCurrentService) {
+  // console.log(node)
+  if(node.otherAttr.podIdx) {
+    // console.log(updateCurrentPod);
+    // console.log(node)
+    updateCurrentPod(node.otherAttr.podIdx)
+  } else {
+    console.log(node)
   }
-  return array;
 }
 
-function buildSingleTree(service, listOfPodsInStore, nodeName) {
-  const serviceNode = new Builder.ServiceNode(service.name, service.type, service.selector, service.ports)
+function buildTree(
+  listOfActiveServices,
+  listOfServices,
+  listOfPodsInStore,
+  nodeName,
+  updateCurrentPod,
+  updateCurrentService
+) {
+  if (listOfServices.length === 0) return [];
+  console.log(updateCurrentPod, updateCurrentService)
 
-  let key = null;
-  if (service.selector) { 
-    key = Object.keys(service.selector)[0];
-  }
-
-  listOfPodsInStore.forEach(pod => {
-    if (key &&
-      pod.labels[key] === service.selector[key] &&
-      pod.nodeName === nodeName
-    ) {
-      const podNode = new Builder.PodNode(pod.name, pod.labels, pod.containers[0].mappedContainerPort)
-      serviceNode.children.push(podNode);
-    }
-  });
-
-  return serviceNode;
+  return listOfActiveServices.reduce((acc, serviceIdx) => {
+    const temp = (
+      <TreeWrapper class="treewrapper">
+        <Tree
+          data={buildSingleTree(
+            listOfServices[serviceIdx],
+            listOfPodsInStore,
+            nodeName
+          )}
+          onMouseOver={(node, e) => {
+            checkNodeType(node, e, updateCurrentPod, updateCurrentService);
+          }}
+        />
+      </TreeWrapper>
+    );
+    return acc.concat([temp]);
+  }, []);
 }
 
 export default buildTree;

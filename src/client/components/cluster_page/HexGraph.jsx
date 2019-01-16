@@ -10,6 +10,7 @@ const Box = styled.div`
   border-width: 1px;
   height: 500x;
   width: 1000px;
+  background-color: #e1fcf8;
 `;
 
 class HexGraph extends Component {
@@ -57,7 +58,7 @@ class HexGraph extends Component {
             width={width / 2}
             height={height}
             zoomTransform={zoomTransform}
-            zoomType="detail"
+            zoomType="scale"
           />
         </svg>
       </Box>

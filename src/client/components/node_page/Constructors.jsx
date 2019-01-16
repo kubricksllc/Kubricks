@@ -15,10 +15,14 @@ function ServiceNode(name, type, selector, ports) {
       fill: 'blue'
     }
   };
+  this.otherAttr = {
+
+  };
+  
   this.children = []
 }
 
-function PodNode(name, labels, ports) {
+function PodNode(name, labels, ports, podIdx) {
   this.name = name;
   this.attributes = {
     labels: JSON.stringify(labels),
@@ -34,6 +38,9 @@ function PodNode(name, labels, ports) {
       fill: 'green'
     }
   };
+  this.otherAttr = {
+    podIdx,
+  }
 }
 
 export default { ServiceNode, PodNode };
