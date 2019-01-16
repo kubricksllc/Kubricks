@@ -1,15 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import InfoWindow from "../../layout/InfoWindow";
-import HexGraph from "./HexGraph";
+import InfoWindow from "../../layout/InfoWindow.jsx";
+import HexGraph from "./HexGraph.jsx";
 import { nodesFetchData } from "../redux/actions/nodesActions.js";
 import styled from "styled-components";
-
-const Box = styled.div`
-  border: solid;
-  width: 50%;
-  height: 50vh;
-`;
 
 class ClusterPage extends Component {
   constructor() {
@@ -57,7 +51,7 @@ class ClusterPage extends Component {
         const fillNode = {};
         fillNode.name = copyData.name;
         fillNode.status = copyData.status;
-        fillNode.createdAt = copyData.createdAt;
+        fillNode.age = copyData.age;
         fillNode.version = copyData.version;
         fillNode.x = x;
         fillNode.y = y;

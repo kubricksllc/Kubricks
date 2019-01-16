@@ -7,7 +7,7 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '../../dist')));
 app.use('*', (req, res, next) => {
-  console.log('processing request', req.query);
+  console.log('processing request', req.params);
   next();
 });
 
@@ -15,7 +15,7 @@ app.get('/api/nodes', clusterQuery.getCluster, (req, res) => {
   res.end();
 });
 
-app.get('/api/node', nodeQuery.getNode, (req, res) => {
+app.get('/api/node/*', nodeQuery.getNode, (req, res) => {
   res.end();
 });
 

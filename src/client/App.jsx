@@ -6,6 +6,11 @@ import HexTitle from "./layout/HexTitle.jsx";
 import ClusterPage from "./components/cluster_page/ClusterPage.jsx";
 import NodePage from "./components/node_page/NodePage.jsx";
 import PodPage from "./components/pod_page/PodPage.jsx";
+import ServicesWindow from "./components/services_window/ServicesWindow.jsx";
+
+const PageContainer = styled.div`
+  display: flex;
+`;
 
 const ColoredTitle = styled.h1`
   font-size: 1.5em;
@@ -36,6 +41,8 @@ class App extends Component {
               <header className="header">
                   <HexTitle title={this.state.title}></HexTitle>
               </header>
+              <PageContainer >
+              <ServicesWindow />
               <section className="content">
                   <Switch>
                       <Route exact path="/" render={() => (<Home title={this.state.title}/>)}/>
@@ -46,6 +53,7 @@ class App extends Component {
                       <Route path="*" component={NotFound} />
                   </Switch>
               </section>
+              </PageContainer>
           </div>
       </Router>
     );
