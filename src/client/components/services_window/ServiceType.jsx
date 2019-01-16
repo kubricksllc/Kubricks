@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import toggleServiceType from "../redux/actions/servicesAndPodsActions.js";
+import { toggleServiceType } from "../redux/actions/servicesAndPodsActions.js";
 
 const ServiceTypeBoxActive = styled.div`
   border: solid;
-  border-width: 1px;
-  width: 98%;
+  border-width: 1px; 
+  min-width: 25vh;
   cursor: pointer;
   background-color: #326DE6
   color: white;
@@ -25,7 +25,7 @@ class ServiceType extends Component {
   }
 
   handleOnClick(e) {
-    this.props.toggleServiceType(this.props.serviceType);
+    this.props.toggleServiceType(this.props.type);
   }
 
   render() {
@@ -46,7 +46,7 @@ class ServiceType extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchData: serviceType => dispatch(toggleServiceType(serviceType))
+    toggleServiceType: serviceType => dispatch(toggleServiceType(serviceType))
   };
 };
 

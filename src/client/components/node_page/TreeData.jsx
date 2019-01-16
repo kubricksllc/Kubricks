@@ -31,7 +31,7 @@ function buildTree(
   updateCurrentService
 ) {
   if (listOfServices.length === 0) return [];
-  // console.log(updateCurrentPod, updateCurrentService)
+  console.log(listOfActiveServices)
 
   return listOfActiveServices.reduce((acc, serviceIdx) => {
     const temp = (
