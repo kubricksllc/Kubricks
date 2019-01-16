@@ -110,6 +110,7 @@ const nodeQuery = {
   getNode: (req, res, next) => {
     getNamespace()
       .then(listOfNamespaces => {
+        console.log('hitting nodeQuery')
         return listOfNamespaces.reduce(
           async (responseBody, element) => {
             const { name } = element.metadata;

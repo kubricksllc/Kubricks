@@ -12,4 +12,4 @@ const kube = kubeConfig.makeApiClient(k8Api.Core_v1Api);
 
 module.exports = kube;
 
-// console.log(kube.listPodForAllNamespaces().then(res => console.log(res. body.items[0])));
+// kube.listNamespacedServiceAccount('default').then(res => console.log(res.body.items))

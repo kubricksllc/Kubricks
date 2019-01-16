@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import WorkerNode from "./WorkerNode";
-import ReactDOM from "react-dom";
-import InfoWindow from "./InfoWindow";
-import Chart from "./Chart";
-
+import { connect } from "react-redux";
+import InfoWindow from "../../layout/InfoWindow";
+import HexGraph from "./HexGraph";
+import { nodesFetchData } from "../redux/actions/nodesActions.js";
 import styled from "styled-components";
 
 const Box = styled.div`
@@ -17,11 +16,7 @@ class ClusterPage extends Component {
     super();
     this.state = {
       title: "Cluster",
-      windowOpen: false,
-      target: null,
-      data: [],
-      mouseX: 0,
-      mouseY: 0
+      data: []
     };
     this.showNodeInfo = this.showNodeInfo.bind(this);
     this.hideNodeInfo = this.hideNodeInfo.bind(this);
@@ -29,23 +24,20 @@ class ClusterPage extends Component {
   }
 
   componentDidMount() {
-    const self = this;
-    const data = [];
-    fetch("http://localhost:8080/api/nodes")
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        console.log("fetch", data);
-        self.setState({ data: this.getNodes(data) });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.props.fetchData("http://localhost:8080/api/nodes");
   }
 
-  getNodes(nodes, radius = 200) {
-    var width = radius * 2 + 50,
+  componentDidUpdate(prevProps, prevState) {
+    //IF THEW NODE LIST CHANGES UPDATE IT
+
+    if (this.props.listOfNodes !== prevProps.listOfNodes) {
+      this.setState({ data: this.getNodes(this.props.listOfNodes) });
+    }
+  }
+
+  getNodes(listOfNodes, radius = 200) {
+    var nodes = [],
+      width = radius * 2 + 50,
       height = radius * 2 + 50,
       angle,
       x,
@@ -54,15 +46,23 @@ class ClusterPage extends Component {
       ring = 1;
 
     const sides = 6;
-    while (j < nodes.length) {
-      for (let i = 0; j < nodes.length && i < ring * sides; i++) {
+    while (j < listOfNodes.length) {
+      for (let i = 0; j < listOfNodes.length && i < ring * sides; i++) {
         angle = (i / ((ring * sides) / 2)) * Math.PI; // Calculate the angle at which the element will be placed.
         // For a semicircle, we would use (i / numNodes) * Math.PI.
         x = ((radius * ring) / 2) * Math.cos(angle) + width / 2; // Calculate the x position of the element.
         y = ((radius * ring) / 2) * Math.sin(angle) + height / 2; // Calculate the y position of the element.
-        nodes[j].x = x;
-        nodes[j].y = y;
-        j++;
+
+        const copyData = listOfNodes[j];
+        const fillNode = {};
+        fillNode.name = copyData.name;
+        fillNode.status = copyData.status;
+        fillNode.createdAt = copyData.createdAt;
+        fillNode.version = copyData.version;
+        fillNode.x = x;
+        fillNode.y = y;
+        fillNode.index = j;
+        nodes[j++] = fillNode;
       }
       ring++;
     }
@@ -85,29 +85,38 @@ class ClusterPage extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <div onMouseMove={this.handleMouseMove}>
-          <Chart
-            data={this.state.data}
-            width={1000}
-            height={500}
-            mouseX={this.state.mouseX}
-            mouseY={this.state.mouseY}
-            showNodeInfo={this.showNodeInfo}
-            hideNodeInfo={this.hideNodeInfo}
-          />
+    if (this.props.listOfNodes !== undefined) {
+      return (
+        <div>
+          <div onMouseMove={this.handleMouseMove}>
+            <HexGraph
+              data={this.state.data}
+              width={1000}
+              height={500}
+            />
+          </div>
+          {this.props.infoWindowOpen && <InfoWindow />}
         </div>
-        {this.state.windowOpen && (
-          <InfoWindow
-            node={this.state.target}
-            mouseX={this.state.mouseX}
-            mouseY={this.state.mouseY}
-          />
-        )}
-      </div>
-    );
+      );
+    }
+    return <div />;
   }
 }
 
-export default ClusterPage;
+const mapStateToProps = state => {
+  return {
+    listOfNodes: state.nodesReducer.listOfNodes,
+    infoWindowOpen: state.windowReducer.infoWindowOpen
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchData: url => dispatch(nodesFetchData(url))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ClusterPage);
