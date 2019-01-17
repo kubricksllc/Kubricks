@@ -42,15 +42,17 @@ export function servicesReducer(state = initialState, action) {
 
       const listOfServiceIndex = [];
 
-      for(let i = 0;i < state.listOfServices.length;i++) {
+      for (let i = 0; i < state.listOfServices.length; i++) {
         listOfServiceIndex.push(i);
       }
-      
+
       return {
         ...state,
         activeServiceTypes,
         activeServices: listOfServiceIndex.filter(serviceIndex => {
-          return activeServiceTypes.includes(state.listOfServices[serviceIndex].type);
+          return activeServiceTypes.includes(
+            state.listOfServices[serviceIndex].type
+          );
         })
       };
 

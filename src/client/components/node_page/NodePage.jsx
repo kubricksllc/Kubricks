@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Tree from "react-d3-tree";
 import { updateCurrentPod } from "../redux/actions/podsActions";
 import InfoWindow from "../../layout/InfoWindow.jsx";
-import * as d3 from 'd3';
+import * as d3 from "d3";
 
 //TODO: fix the width and height after hex viewport is implemented!!!!!!!!!!!!!!!!
 
@@ -13,7 +13,7 @@ const TreeContainer = styled.div`
   name: treeWrapper;
   width: 1000px;
   height: 800px;
-  background-color: skyblue;
+  background-color: #e1fcf8;
 `;
 
 function checkNodeType(node, e, updateCurrentPod, updateCurrentService) {
@@ -32,22 +32,24 @@ class NodePage extends Component {
     super(props);
   }
 
-  componentDidMount(){
-    const nodes = d3.selectAll('.linkBase');
-    console.log(nodes)
+  componentDidMount() {
+    const nodes = d3.selectAll(".linkBase");
+    console.log(nodes);
   }
 
   render() {
     return (
       <TreeContainer id="treeContainer">
         <Tree
-          data={[buildTreeData(
-            this.props.activeServices,
-            this.props.listOfServices,
-            this.props.listOfPods,
-            this.props.currentNode
-          )]}
-          translate={{x: Math.random()*75, y:Math.random()*75}}
+          data={[
+            buildTreeData(
+              this.props.activeServices,
+              this.props.listOfServices,
+              this.props.listOfPods,
+              this.props.currentNode
+            )
+          ]}
+          translate={{ x: Math.random() * 75, y: Math.random() * 75 }}
           onMouseOver={(node, e) => {
             // console.log(e.clientX, e.clientY)
             checkNodeType(node, e, this.props.updateCurrentPod);
