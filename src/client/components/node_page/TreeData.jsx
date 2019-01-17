@@ -2,6 +2,7 @@ import { buildSingleTree } from "./BuildSingleTree.jsx";
 import Tree from "react-d3-tree";
 import React from "react";
 import styled from "styled-components";
+import InfoWindow from "../../layout/InfoWindow.jsx";
 
 const TreeWrapper = styled.div`
   name: treeWrapper;
@@ -30,7 +31,7 @@ function buildTree(
   updateCurrentService
 ) {
   if (listOfServices.length === 0) return [];
-  console.log(updateCurrentPod, updateCurrentService)
+  console.log(listOfActiveServices)
 
   return listOfActiveServices.reduce((acc, serviceIdx) => {
     const temp = (
@@ -42,7 +43,9 @@ function buildTree(
             nodeName
           )}
           onMouseOver={(node, e) => {
+            console.log(e.clientX, e.clientY)
             checkNodeType(node, e, updateCurrentPod, updateCurrentService);
+            <InfoWindow />
           }}
         />
       </TreeWrapper>

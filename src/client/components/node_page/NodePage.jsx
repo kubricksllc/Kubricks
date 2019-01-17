@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import buildTreeData from "./TreeData.jsx";
 import styled from "styled-components";
-import {updateCurrentPod} from '../redux/actions/podsActions';
-import InfoWindow from "../../layout/InfoWindow.jsx";
-
+import { updateCurrentPod } from "../redux/actions/podsActions";
 
 //TODO: fix the width and height after hex viewport is implemented!!!!!!!!!!!!!!!!
 
@@ -23,7 +21,8 @@ class NodePage extends Component {
   }
 
   render() {
-    const arr = buildTreeData(this.props.activeServices,
+    const arr = buildTreeData(
+      this.props.activeServices,
       this.props.listOfServices,
       this.props.listOfPods,
       this.props.currentNode,
@@ -49,8 +48,12 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     updateCurrentPod: podIdx => dispatch(updateCurrentPod(podIdx)),
-    updateCurrentService: serviceIdx => dispatch(updateCurrentService(serviceIdx))
-  }
-}
+    updateCurrentService: serviceIdx =>
+      dispatch(updateCurrentService(serviceIdx))
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(NodePage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NodePage);

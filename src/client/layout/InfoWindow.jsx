@@ -12,7 +12,8 @@ const Window = styled.div`
   width: 100%;
   color: white;
   padding-left: 10px;
-  font-family: Lucida Console,Lucida Sans Typewriter,monaco,Bitstream Vera Sans Mono,monospace;
+  font-family: Lucida Console, Lucida Sans Typewriter, monaco,
+    Bitstream Vera Sans Mono, monospace;
 `;
 
 class InfoWindow extends Component {
@@ -25,26 +26,37 @@ class InfoWindow extends Component {
       left: this.props.mouseInfo.x,
       top: this.props.mouseInfo.y
     };
-
-    return (
-      <Window style={windowStyle}>
-        {this.props.currentNode !== null && (
+    // console.log(this.props.currentPod)
+    if (this.props.currentNode !== null) {
+      return (
+        <Window style={windowStyle}>
           <div>
             <p>NAME: {this.props.currentNode.name}</p>
             <p>STATUS: {this.props.currentNode.status}</p>
             <p>AGE: {this.props.currentNode.age}</p>
             <p>VERSION: {this.props.currentNode.version}</p>
           </div>
-        )}
-      </Window>
-    );
+        </Window>
+      );
+    }
+    if (this.props.currentPod !== null) {
+      console.log('infooooo window')
+      return (
+        <Window style={windowStyle}>
+          <div>
+            <p> INFOOOOO WINDOW FOR POD!!!</p>
+          </div>
+        </Window>
+      );
+    }
   }
 }
 
 const mapStateToProps = state => {
   return {
     currentNode: state.nodesReducer.currentNode,
-    mouseInfo: state.windowReducer.mouseInfo
+    mouseInfo: state.windowReducer.mouseInfo,
+    currentPod: state.podsReducer.currentPod
   };
 };
 

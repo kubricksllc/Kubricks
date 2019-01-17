@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Graph } from 'react-d3-graph';
 import { ForceGraph2D } from 'react-force-graph';
 import { connect } from "react-redux";
-// import { podsFetch} from '../redux/actions/servicesAndPodsActions.js';
+import { servicesAndPodsFetchData } from "../redux/actions/servicesAndPodsActions.js";
 import Plot from './Plot.jsx';
 
 const data = {
@@ -18,18 +18,58 @@ class PodPage extends Component {
         };
     }
 
+    componentWillReceiveProps(reduxProps) {
+        let index = 0;
+        let tmp = [];
+        if(reduxProps.listOfPods.length > 0) {
+            tmp = reduxProps.listOfPods[index].containers.slice();
+            for(let i=0; i<tmp.length; i++) {
+                tmp[i]['id'] = reduxProps.listOfPods[index].name + "_" + i;
+            }
+            console.log(tmp);
+            this.setState({
+                listOfContainers: tmp
+            });
+        }
+    }
+
     componentDidMount() {
-        console.log(this.props);
-        // let tmp = this.props.list
+        const url =
+        "http://localhost:8080/api/node/gke-kubricks-default-pool-b055752b-wb5z"; //TODO: delete after testing
+        this.props.fetchData(url);
+        // let tmp = this.props.listOfPods[0].listOfContainers.slice() || [];
+        // console.log(tmp);
+
+        // this.setState({
+        //     listOfContainers: this.props.listOfPods[0].listOfContainers
+        // });
+        // console.log(this.props);
+        // let index = 0;
+        // let tmp = [];
+        // if(this.props.listOfPods.length > 0) {
+        //     tmp = this.props.listOfPods[index].containers.slice();
+        //     for(let i=0; i<tmp.length; i++) {
+        //         tmp[i]['id'] = this.props.listOfPods[index].name + "_" + i;
+        //     }
+        //     console.log(this.props.listOfPods[index]);
+        // }
+    }
+
+    renderContainers() {
+
     }
 
     render() {
+        const dataPoints = {
+            nodes: this.state.listOfContainers,
+            links: []
+        };
         return (
             <div>
                 <h1>I am on pod page</h1>
                 {/* <Plot width={1000} height={500} />  */}
                 <ForceGraph2D
-                    graphData={data}
+                    graphData={dataPoints}
                     nodeAutoColorBy="group"
                     nodeCanvasObject={(node, ctx, globalScale) => {
                         const label = node.id;
@@ -57,6 +97,13 @@ const mapStateToProps = state => {
     };
 };
 
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchData: url => dispatch(servicesAndPodsFetchData(url))
+    };
+};
+
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(PodPage);
