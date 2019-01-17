@@ -1,5 +1,5 @@
-import { buildSingleTree, buildNoServiceTree } from "./BuildSingleTree.jsx";
-import Builder from "./Constructors.jsx";
+import { buildSingleTree, buildNoServiceTree } from './BuildSingleTree.jsx';
+import Builder from './Constructors.jsx';
 
 function buildTree(
   listOfActiveServices,
@@ -13,7 +13,9 @@ function buildTree(
   const blankMasterNode = new Builder.ServiceNode('Master');
 
   const serviceTree = listOfActiveServices.reduce((acc, serviceIdx) => {
-    return acc.concat([buildSingleTree(listOfServices[serviceIdx], listOfPodsInStore, nodeName)])
+    return acc.concat([
+      buildSingleTree(listOfServices[serviceIdx], listOfPodsInStore, nodeName)
+    ]);
   }, []);
 
   const noServiceTree = buildNoServiceTree(listOfPodsInStore, nodeName);
@@ -26,6 +28,5 @@ function buildTree(
 
   return blankMasterNode;
 }
-
 
 export default buildTree;

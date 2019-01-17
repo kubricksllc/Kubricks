@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Tree from "react-d3-tree";
 import { updateCurrentPod } from "../redux/actions/podsActions";
 import InfoWindow from "../../layout/InfoWindow.jsx";
+import * as d3 from 'd3';
 
 //TODO: fix the width and height after hex viewport is implemented!!!!!!!!!!!!!!!!
 
@@ -31,6 +32,11 @@ class NodePage extends Component {
     super(props);
   }
 
+  componentDidMount(){
+    const nodes = d3.selectAll('.linkBase');
+    console.log(nodes)
+  }
+
   render() {
     return (
       <TreeContainer id="treeContainer">
@@ -41,10 +47,10 @@ class NodePage extends Component {
             this.props.listOfPods,
             this.props.currentNode
           )]}
-          translate={{x: 50, y:50}}
+          translate={{x: Math.random()*75, y:Math.random()*75}}
           onMouseOver={(node, e) => {
             // console.log(e.clientX, e.clientY)
-            checkNodeType(node, e, updateCurrentPod);
+            checkNodeType(node, e, this.props.updateCurrentPod);
           }}
         />
       </TreeContainer>
