@@ -84,6 +84,8 @@ class PodPage extends Component {
                         ctx.fillStyle = node.color;
                         ctx.fillText(label, node.x, node.y);
                     }}
+                    width={500}
+                    height={300}
                 />
             </div>
         );
