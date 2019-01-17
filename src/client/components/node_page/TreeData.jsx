@@ -8,7 +8,6 @@ const TreeWrapper = styled.div`
   name: treeWrapper;
   width: 100%;
   height: 100%;
-  background-color: #e1fcf8;
 `;
 
 function checkNodeType (node, e, updateCurrentPod, updateCurrentService) {

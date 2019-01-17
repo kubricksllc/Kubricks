@@ -26,7 +26,12 @@ class ServiceList extends Component {
   }
 
   handleOnClick(e) {
-    this.props.toggleService(this.props.index);
+    if (
+      this.props.activeServiceTypes.includes(
+        this.props.listOfServices[this.props.index].type
+      )
+    )
+      this.props.toggleService(this.props.index);
   }
 
   render() {
