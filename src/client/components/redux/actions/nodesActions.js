@@ -1,4 +1,4 @@
-import { NODES_FETCH_DATA_SUCCESS } from "./actionTypes";
+import { NODES_FETCH_DATA_SUCCESS, UPDATE_CURRENT_NODE } from "./actionTypes";
 
 // Action creators
 export function nodesFetchDataSuccess(listOfNodes) {
@@ -23,3 +23,10 @@ export const nodesFetchData = function(url) {
       });
   };
 };
+
+export function updateCurrentNode(nodeIdx) {
+  return {
+    type: UPDATE_CURRENT_NODE,
+    payload: nodeIdx
+  }
+}

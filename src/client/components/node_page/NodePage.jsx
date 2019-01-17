@@ -1,19 +1,30 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import buildTreeData from "./TreeData.jsx";
+import buildTreeData from "./BuildTree.jsx";
 import styled from "styled-components";
+import Tree from "react-d3-tree";
 import { updateCurrentPod } from "../redux/actions/podsActions";
+import InfoWindow from "../../layout/InfoWindow.jsx";
 
 //TODO: fix the width and height after hex viewport is implemented!!!!!!!!!!!!!!!!
 
 const TreeContainer = styled.div`
   name: treeWrapper;
-  width: 97%;
-  height: 97%;
+  width: 1000px;
+  height: 800px;
   background-color: skyblue;
-  display: flex;
-  flex-direction: column;
 `;
+
+function checkNodeType(node, e, updateCurrentPod, updateCurrentService) {
+  // console.log(node)
+  if (node.otherAttr.podIdx) {
+    // console.log(updateCurrentPod);
+    // console.log(node)
+    updateCurrentPod(node.otherAttr.podIdx);
+  } else {
+    console.log(node);
+  }
+}
 
 class NodePage extends Component {
   constructor(props) {
@@ -21,16 +32,23 @@ class NodePage extends Component {
   }
 
   render() {
-    const arr = buildTreeData(
-      this.props.activeServices,
-      this.props.listOfServices,
-      this.props.listOfPods,
-      this.props.currentNode,
-      this.props.updateCurrentPod,
-      this.props.updateCurrentService
+    return (
+      <TreeContainer id="treeContainer">
+        <Tree
+          data={[buildTreeData(
+            this.props.activeServices,
+            this.props.listOfServices,
+            this.props.listOfPods,
+            this.props.currentNode
+          )]}
+          translate={{x: 50, y:50}}
+          onMouseOver={(node, e) => {
+            // console.log(e.clientX, e.clientY)
+            checkNodeType(node, e, updateCurrentPod);
+          }}
+        />
+      </TreeContainer>
     );
-
-    return <TreeContainer id="treeContainer">{arr}</TreeContainer>;
   }
 }
 

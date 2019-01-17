@@ -1,10 +1,10 @@
-function ServiceNode(name, type, selector, ports) {
+function ServiceNode(name = null, type = null, selector = null, ports = null) {
   this.name = name;
   this.attributes = {
     type,
     selector: JSON.stringify(selector),
-    targetPort: ports[0].targetPort,
-    listeningPort: ports[0].port,
+    targetPort: ports ? ports[0].targetPort : null,
+    listeningPort: ports ? ports[0].port : null
   };
   this.nodeSvgShape = {
     shape: 'circle',
@@ -16,13 +16,13 @@ function ServiceNode(name, type, selector, ports) {
     }
   };
   this.otherAttr = {
-
+    serviceIdx: null
   };
   
   this.children = []
 }
 
-function PodNode(name, labels, ports, podIdx) {
+function PodNode(name = null, labels = null, ports = null, podIdx = null) {
   this.name = name;
   this.attributes = {
     labels: JSON.stringify(labels),
