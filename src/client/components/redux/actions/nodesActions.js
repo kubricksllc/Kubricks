@@ -5,11 +5,11 @@ export function nodesFetchDataSuccess(listOfNodes) {
   return {
     type: NODES_FETCH_DATA_SUCCESS,
     listOfNodes
-  };
+  }
 }
 
 export const nodesFetchData = function(url) {
-  return dispatch => {
+  return (dispatch) => {
     fetch(url)
       .then(response => {
         if (!response.ok) {
