@@ -56,7 +56,9 @@ class ServicesWindow extends Component {
         key={service.name}
         name={service.name}
         index = {i++}
+        listOfServices={this.props.listOfServices}
         activeServices={this.props.activeServices}
+        activeServiceTypes={this.props.activeServiceTypes}
       />
     ));
   }

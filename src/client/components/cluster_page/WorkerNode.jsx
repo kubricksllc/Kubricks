@@ -11,7 +11,7 @@ class WorkerNode extends Component {
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this);
-    this.state = { intialSize: 15, size: 15, scaling: false, descaling: false };
+    this.state = { intialSize: 12, size: 12, scaling: false, descaling: false };
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -44,8 +44,8 @@ class WorkerNode extends Component {
 
   handleMouseEnter(e) {
     this.props.displayNodeInfo(e.target.getAttribute("nodeIndex"), {
-      x: e.clientX + 50, 
-      y: e.clientY - 100 
+      x: e.clientX + 50,
+      y: e.clientY - 100
     });
     this.setState({ scaling: true, descaling: false });
   }
@@ -55,23 +55,21 @@ class WorkerNode extends Component {
     this.setState({ scaling: false, descaling: true });
   }
 
-  handleOnClick(e) {}
+  handleOnClick(e) {
+    this.props.hideNodeInfo(e.target.getAttribute("nodeIndex"));
+  }
 
   render() {
     const dist = this.state.size;
-    const offsetX = 1.5;
-    const offsetY = 1.6;
-    const scaleX = this.props.scaleX;
-    const scaleY = this.props.scaleY;
-
+    const { xScale, yScale } = this.props;
     return (
       <polygon
-        points={`${scaleX}, ${scaleY - dist * 3.3}
-               ${scaleX + dist * 2.7}, ${scaleY - dist * 1.6} 
-               ${scaleX + dist * 2.7}, ${scaleY + dist * 1.6}
-               ${scaleX}, ${scaleY + dist * 3.3}
-               ${scaleX - dist * 2.7}, ${scaleY + dist * 1.6}
-               ${scaleX - dist * 2.7}, ${scaleY - dist * 1.6}
+        points={`${xScale}, ${yScale - dist * 3.3}
+               ${xScale + dist * 2.7}, ${yScale - dist * 1.6} 
+               ${xScale + dist * 2.7}, ${yScale + dist * 1.6}
+               ${xScale}, ${yScale + dist * 3.3}
+               ${xScale - dist * 2.7}, ${yScale + dist * 1.6}
+               ${xScale - dist * 2.7}, ${yScale - dist * 1.6}
              `}
         fill="white"
         stroke="#326DE6"

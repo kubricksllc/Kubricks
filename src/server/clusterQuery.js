@@ -13,6 +13,8 @@ function parseClusterQuery(nodesArr) {
     temp.status = checkReadiness(node.status.conditions);
     temp.createdAt = node.metadata.creationTimestamp;
     temp.version = node.status.nodeInfo.kubeletVersion;
+    temp.internalIP = node.status.addresses[0].address;
+    temp.externalIP = node.status.addresses[1].address;
     listOfNodes.push(temp);
   });
   return listOfNodes;
