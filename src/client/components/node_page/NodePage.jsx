@@ -11,9 +11,10 @@ import * as d3 from "d3";
 
 const TreeContainer = styled.div`
   name: treeWrapper;
-  width: 1000px;
-  height: 800px;
-  background-color: #e1fcf8;
+  width: 97%;
+  height: 97%;
+  display: flex;
+  flex-direction: column;
 `;
 
 function checkNodeType(node, e, updateCurrentPod, updateCurrentService) {

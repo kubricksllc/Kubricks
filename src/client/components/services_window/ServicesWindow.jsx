@@ -6,12 +6,14 @@ import ServiceType from "./ServiceType.jsx";
 import ServiceItem from "./ServiceItem.jsx";
 
 const Box = styled.div`
-  border: solid;
-  border-width: 1px;
-  width: 30vh;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  box-shadow: 0px 5px 28px 1px #d9d9d9;
+  width: 30vw;
   height: 80vh;
-  padding: 2px;
-  margin-right: 10px;
+  padding: 1em;
+  margin-left: .5em;
+  margin-right: 1em;
 `;
 
 const Title = styled.h1`

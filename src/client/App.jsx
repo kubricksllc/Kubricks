@@ -1,22 +1,30 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import path from 'path';
 import createBrowserHistory from "history/createBrowserHistory";
 import HexTitle from "./layout/HexTitle.jsx";
 import ClusterPage from "./components/cluster_page/ClusterPage.jsx";
 import NodePage from "./components/node_page/NodePage.jsx";
 import PodPage from "./components/pod_page/PodPage.jsx";
 import ServicesWindow from "./components/services_window/ServicesWindow.jsx";
+import InfoBanner from "./layout/InfoBanner.jsx";
 
 const PageContainer = styled.div`
   display: flex;
 `;
 
-const ColoredTitle = styled.h1`
-  font-size: 1.5em;
-  text-align: center;
-  color: red;
-`;
+const ContentWrapper = styled.section`
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+`
+const HexWindow = styled.img`
+  height: 80vh;
+  position: absolute;
+  z-index: -1;
+`
 
 const history = createBrowserHistory();
 
@@ -42,30 +50,23 @@ class App extends Component {
                   <HexTitle title={this.state.title}></HexTitle>
               </header>
               <PageContainer >
-              <ServicesWindow />
-              <section className="content">
-                  <Switch>
-                      <Route exact path="/" render={() => (<Home title={this.state.title}/>)}/>
-                      <Route path="/cluster/:id" render={(props) => (<ClusterPage clusterID={parseInt(props.match.params.id)}/>)} />
-                      <Route path="/node/:id" render={(props) => (<NodePage nodeID={parseInt(props.match.params.id)}/>)} />
-                      <Route path="/pod/:id" render={(props) => (<PodPage podID={parseInt(props.match.params.id)}/>)} />
-                      {/* add route paths here */}
-                      <Route path="*" component={NotFound} />
-                  </Switch>
-              </section>
+                <ServicesWindow />
+                <ContentWrapper>
+                  <HexWindow src={path.resolve(__dirname, "./img/Node.svg")}/>
+                  <InfoBanner />
+                    <Switch>
+                        <Route exact path="/" render={(props) => (<ClusterPage/>)} />
+                        <Route path="/node" render={(props) => (<NodePage/>)} />
+                        <Route path="/pod" render={(props) => (<PodPage/>)} />
+                        <Route path="*" component={NotFound} />
+                    </Switch>
+                </ContentWrapper>
               </PageContainer>
           </div>
       </Router>
     );
   }
 }
-
-// TODO: remove later
-const Home = props => (
-  <div>
-    <ColoredTitle>{props.title}</ColoredTitle>
-  </div>
-);
 
 const NotFound = () => (
   <div className="">

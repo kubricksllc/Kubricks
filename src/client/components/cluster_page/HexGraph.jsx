@@ -6,11 +6,8 @@ const random = d3.randomNormal(5, 1);
 import styled from "styled-components";
 
 const Box = styled.div`
-  border: solid;
-  border-width: 1px;
   height: 500x;
   width: 1000px;
-  background-color: #e1fcf8;
 `;
 
 class HexGraph extends Component {
