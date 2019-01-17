@@ -9,6 +9,7 @@ import NodePage from "./components/node_page/NodePage.jsx";
 import PodPage from "./components/pod_page/PodPage.jsx";
 import ServicesWindow from "./components/services_window/ServicesWindow.jsx";
 import InfoBanner from "./layout/InfoBanner.jsx";
+import Hex from './img/Node.svg';
 
 const PageContainer = styled.div`
   display: flex;
@@ -19,6 +20,12 @@ const ContentWrapper = styled.section`
   height: 80vh;
   display: flex;
   justify-content: center;
+  background: url(${Hex});
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  
 `
 const HexWindow = styled.img`
   height: 80vh;
@@ -52,7 +59,7 @@ class App extends Component {
               <PageContainer >
                 <ServicesWindow />
                 <ContentWrapper>
-                  <HexWindow src={path.resolve(__dirname, "./img/Node.svg")}/>
+                  {/* <HexWindow src={Hex}/> */}
                   <InfoBanner />
                     <Switch>
                         <Route exact path="/" render={() => (<Home title={this.state.title}/>)}/>
