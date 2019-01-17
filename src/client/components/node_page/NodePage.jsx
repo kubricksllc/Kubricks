@@ -10,7 +10,6 @@ const TreeContainer = styled.div`
   name: treeWrapper;
   width: 97%;
   height: 97%;
-  background-color: skyblue;
   display: flex;
   flex-direction: column;
 `;

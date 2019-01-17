@@ -4,19 +4,18 @@ import { connect } from "react-redux";
 import { toggleService } from "../redux/actions/servicesAndPodsActions.js";
 
 const ServiceBoxActive = styled.div`
-  border: solid;
-  border-width: 1px; 
+  border: 1px solid;
+  border-radius: 5px;
   min-width: 25vh;
-  max-width: 30vh;
   cursor: pointer;
-  background-color: #326DE6
+  background-color: #326DE6;
   color: white;
 `;
 
 const ServiceBoxInActive = styled.div`
-  border: solid;
-  border-width: 1px;
-  width: 98%;
+  border: 1px solid;
+  border-radius: 5px;
+  min-width: 25vh;
   cursor: pointer;
 `;
 
