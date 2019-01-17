@@ -1,27 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import WorkerNode from "./WorkerNode";
-import InfoWindow from "./InfoWindow";
-import HexGraph from "./HexGraph";
-import { clusterFetchData } from "../redux/actions/clusterActions.js";
+import InfoWindow from "../../layout/InfoWindow.jsx";
+import HexGraph from "./HexGraph.jsx";
+import { nodesFetchData } from "../redux/actions/nodesActions.js";
 import styled from "styled-components";
-
-const Box = styled.div`
-  border: solid;
-  width: 50%;
-  height: 50vh;
-`;
 
 class ClusterPage extends Component {
   constructor() {
     super();
     this.state = {
       title: "Cluster",
-      windowOpen: false,
-      target: null,
-      data: [],
-      mouseX: 0,
-      mouseY: 0
+      data: []
     };
     this.showNodeInfo = this.showNodeInfo.bind(this);
     this.hideNodeInfo = this.hideNodeInfo.bind(this);
@@ -36,12 +25,13 @@ class ClusterPage extends Component {
     //IF THEW NODE LIST CHANGES UPDATE IT
 
     if (this.props.listOfNodes !== prevProps.listOfNodes) {
-      this.setState({ data: this.getNodes(this.props.listOfNodes) });
+      this.setState({ data: this.getNodes(this.props.listOfNodes, 500) });
     }
   }
 
-  getNodes(nodes, radius = 200) {
-    var width = radius * 2 + 50,
+  getNodes(listOfNodes, radius) {
+    var nodes = [],
+      width = radius * 2 + 50,
       height = radius * 2 + 50,
       angle,
       x,
@@ -50,15 +40,23 @@ class ClusterPage extends Component {
       ring = 1;
 
     const sides = 6;
-    while (j < nodes.length) {
-      for (let i = 0; j < nodes.length && i < ring * sides; i++) {
+    while (j < listOfNodes.length) {
+      for (let i = 0; j < listOfNodes.length && i < ring * sides; i++) {
         angle = (i / ((ring * sides) / 2)) * Math.PI; // Calculate the angle at which the element will be placed.
         // For a semicircle, we would use (i / numNodes) * Math.PI.
         x = ((radius * ring) / 2) * Math.cos(angle) + width / 2; // Calculate the x position of the element.
         y = ((radius * ring) / 2) * Math.sin(angle) + height / 2; // Calculate the y position of the element.
-        nodes[j].x = x;
-        nodes[j].y = y;
-        j++;
+
+        const copyData = listOfNodes[j];
+        const fillNode = {};
+        fillNode.name = copyData.name;
+        fillNode.status = copyData.status;
+        fillNode.age = copyData.age;
+        fillNode.version = copyData.version;
+        fillNode.x = x;
+        fillNode.y = y;
+        fillNode.index = j;
+        nodes[j++] = fillNode;
       }
       ring++;
     }
@@ -85,23 +83,9 @@ class ClusterPage extends Component {
       return (
         <div>
           <div onMouseMove={this.handleMouseMove}>
-            <HexGraph
-              data={this.state.data}
-              width={1000}
-              height={500}
-              mouseX={this.state.mouseX}
-              mouseY={this.state.mouseY}
-              showNodeInfo={this.showNodeInfo}
-              hideNodeInfo={this.hideNodeInfo}
-            />
+            <HexGraph data={this.state.data} width={1000} height={800} />
           </div>
-          {this.state.windowOpen && (
-            <InfoWindow
-              node={this.state.target}
-              mouseX={this.state.mouseX}
-              mouseY={this.state.mouseY}
-            />
-          )}
+          {this.props.nodeInfoOpen && <InfoWindow />}
         </div>
       );
     }
@@ -111,13 +95,14 @@ class ClusterPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    listOfNodes: state.nodesReducer.listOfNodes
+    listOfNodes: state.nodesReducer.listOfNodes,
+    nodeInfoOpen: state.windowReducer.nodeInfoOpen
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchData: url => dispatch(clusterFetchData(url))
+    fetchData: url => dispatch(nodesFetchData(url))
   };
 };
 

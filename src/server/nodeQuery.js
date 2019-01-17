@@ -95,6 +95,7 @@ function getPods(namespace) {
         const temp = {};
         const { metadata, spec, status } = pod;
         temp.name = metadata.name;
+        temp.labels = metadata.labels;
         temp.containers = parseContainers(spec.containers);
         temp.listOfVolumes = spec.volumes.map(volume => volume.name);
         temp.createdAt = metadata.creationTimestamp;
@@ -109,6 +110,7 @@ const nodeQuery = {
   getNode: (req, res, next) => {
     getNamespace()
       .then(listOfNamespaces => {
+        console.log('hitting nodeQuery')
         return listOfNamespaces.reduce(
           async (responseBody, element) => {
             const { name } = element.metadata;

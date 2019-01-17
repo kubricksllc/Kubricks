@@ -3,14 +3,12 @@ const webpack = require("webpack");
 const webpackStream = require("webpack-stream");
 const webpackConfig = require("./webpack.config.js");
 const nodemon = require("nodemon");
+const named = require('vinyl-named');
 
 gulp.task("js", () => {
   gulp
     .src("./src/index.js")
-    .pipe(
-      webpackStream(webpackConfig),
-      webpack
-    )
+    .pipe(webpackStream(webpackConfig, webpack))
     .pipe(gulp.dest("./dist/"));
 });
 
@@ -28,3 +26,4 @@ gulp.task("watch", function() {
 });
 
 gulp.task("default", ["js", "serve", "watch"]);
+
