@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import path from 'path';
 import createBrowserHistory from "history/createBrowserHistory";
 import HexTitle from "./layout/HexTitle.jsx";
 import ClusterPage from "./components/cluster_page/ClusterPage.jsx";
@@ -24,13 +23,6 @@ const ContentWrapper = styled.section`
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-
-  
-`
-const HexWindow = styled.img`
-  height: 80vh;
-  position: absolute;
-  z-index: -1;
 `
 
 const history = createBrowserHistory();
@@ -59,7 +51,6 @@ class App extends Component {
               <PageContainer >
                 <ServicesWindow />
                 <ContentWrapper>
-                  {/* <HexWindow src={Hex}/> */}
                   <InfoBanner />
                     <Switch>
                         <Route exact path="/" render={() => (<Home title={this.state.title}/>)}/>
