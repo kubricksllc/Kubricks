@@ -8,7 +8,7 @@ import NodePage from "./components/node_page/NodePage.jsx";
 import PodPage from "./components/pod_page/PodPage.jsx";
 import ServicesWindow from "./components/services_window/ServicesWindow.jsx";
 import InfoBanner from "./layout/InfoBanner.jsx";
-import node from './img/Node.svg';
+import Hex from './img/Node.svg';
 
 const PageContainer = styled.div`
   display: flex;
@@ -19,15 +19,11 @@ const ContentWrapper = styled.section`
   height: 80vh;
   display: flex;
   justify-content: center;
-`;
-
-const img_src = './img/Node.svg';
-
-const HexWindow = styled.div`
-  height: 80vh;
-  position: absolute;
-  z-index: -1;
-`;
+  background: url(${Hex});
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+`
 
 const history = createBrowserHistory();
 
@@ -54,7 +50,6 @@ class App extends Component {
               <PageContainer >
                 <ServicesWindow />
                 <ContentWrapper>
-                  <HexWindow />
                   <InfoBanner />
                     <Switch>
                         <Route exact path="/" render={(props) => (<ClusterPage/>)} />

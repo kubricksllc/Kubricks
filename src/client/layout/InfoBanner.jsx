@@ -28,10 +28,10 @@ class InfoBanner extends Component {
   render() {
     return (
       <Banner>
-        <Title>Minikube</Title>
+        <Title>gke-kubricks-b055752b-7nsz</Title>
         <InfoBox>
-          <Details>Port: 30008</Details>
-          <Details>IP: 192.168.1.2</Details>
+          <Details>Port: 1338</Details>
+          <Details>IP: 10.24.1.8</Details>
         </InfoBox>
       </Banner>
     )
