@@ -30,7 +30,7 @@ class ClusterPage extends Component {
   }
 
   getNodes(listOfNodes, radius) {
-    for(let i = 0;i< 25;i++) {
+    for(let i = 0;i< 3;i++) {
       listOfNodes.push({});
     }
     var nodes = [],

@@ -37,7 +37,7 @@ export function nodesReducer(state = initalState, action) {
     case HIDE_NODE_INFO:
       return {
         ...state,
-        currentNode: null
+        currentNode: state.listOfNodes[action.payload.nodeIndex]
       };
     default:
       return state;
