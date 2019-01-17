@@ -7,6 +7,9 @@ const TOGGLE_SERVICE_TYPE = 'TOGGLE_SERVICE_TYPE'
 const TOGGLE_SERVICE = 'TOGGLE_SERVICE';
 const UPDATE_CURRENT_POD = 'banana hammock';
 const UPDATE_CURRENT_SERVICE = 'princess consuella';
+const DISPLAY_POD_INFO = 'Eugene please don\'t change this';
+const HIDE_POD_INFO = 'please dont change meeeeeee'; 
+const UPDATE_CURRENT_NODE = 'bailamos'
 
 export {
     NODES_FETCH_DATA_SUCCESS,
@@ -17,5 +20,8 @@ export {
     TOGGLE_SERVICE_TYPE,
     TOGGLE_SERVICE,
     UPDATE_CURRENT_POD,
-    UPDATE_CURRENT_SERVICE
+    UPDATE_CURRENT_SERVICE,
+    DISPLAY_POD_INFO,
+    HIDE_POD_INFO,
+    UPDATE_CURRENT_NODE
 };

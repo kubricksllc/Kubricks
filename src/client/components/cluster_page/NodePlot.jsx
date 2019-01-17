@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as d3 from "d3";
 import WorkerNode from "./WorkerNode.jsx";
+import MasterNode from "./MasterNode.jsx";
 
 class NodePlot extends Component {
   constructor(props) {
@@ -43,15 +44,19 @@ class NodePlot extends Component {
 
   render() {
     const { data } = this.props;
+    const firstX = data[0] !== undefined ? data[0].x : 0;
+    const firstY = data[0] !== undefined ? data[0].y : 0;
+
     let i = 0;
     return (
       <g transform={this.transform} ref="scatterplot">
+        <MasterNode xScale={this.xScale(firstX - 250)} yScale={this.yScale(firstY)} />
         {data.map(node => {
           return (
             <WorkerNode
               key={i++}
-              scaleX={this.xScale(node.x)}
-              scaleY={this.yScale(node.y)}
+              xScale={this.xScale(node.x)}
+              yScale={this.yScale(node.y)}
               nodeIndex={node.index}
             />
           );
