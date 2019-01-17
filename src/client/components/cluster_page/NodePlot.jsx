@@ -58,6 +58,7 @@ class NodePlot extends Component {
               xScale={this.xScale(node.x)}
               yScale={this.yScale(node.y)}
               nodeIndex={node.index}
+              nodeName={node.name}
             />
           );
         })}

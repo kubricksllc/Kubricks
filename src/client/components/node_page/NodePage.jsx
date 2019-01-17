@@ -6,6 +6,7 @@ import Tree from "react-d3-tree";
 import { updateCurrentPod } from "../redux/actions/podsActions";
 import InfoWindow from "../../layout/InfoWindow.jsx";
 import * as d3 from "d3";
+import { withRouter } from 'react-router-dom';
 
 //TODO: fix the width and height after hex viewport is implemented!!!!!!!!!!!!!!!!
 
@@ -17,17 +18,6 @@ const TreeContainer = styled.div`
   flex-direction: column;
 `;
 
-function checkNodeType(node, e, updateCurrentPod, updateCurrentService) {
-  // console.log(node)
-  if (node.otherAttr.podIdx) {
-    // console.log(updateCurrentPod);
-    // console.log(node)
-    updateCurrentPod(node.otherAttr.podIdx);
-  } else {
-    console.log(node);
-  }
-}
-
 class NodePage extends Component {
   constructor(props) {
     super(props);
@@ -36,6 +26,18 @@ class NodePage extends Component {
   componentDidMount() {
     const nodes = d3.selectAll(".linkBase");
     console.log(nodes);
+  }
+
+  checkNodeType(node, e, updateCurrentPod, updateCurrentService) {
+    // console.log(node)
+    if (node.otherAttr.podIdx) {
+      // console.log(updateCurrentPod);
+      // console.log(node)
+      updateCurrentPod(node.otherAttr.podIdx);
+      this.props.history.push('/pod');
+    } else {
+      console.log(node);
+    }
   }
 
   render() {
@@ -47,13 +49,13 @@ class NodePage extends Component {
               this.props.activeServices,
               this.props.listOfServices,
               this.props.listOfPods,
-              this.props.currentNode
+              this.props.currentNode.name
             )
           ]}
           translate={{ x: Math.random() * 75, y: Math.random() * 75 }}
-          onMouseOver={(node, e) => {
+          onClick={(node, e) => {
             // console.log(e.clientX, e.clientY)
-            checkNodeType(node, e, this.props.updateCurrentPod);
+            this.checkNodeType(node, e, this.props.updateCurrentPod);
           }}
         />
       </TreeContainer>
@@ -80,7 +82,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(NodePage);
+)(NodePage));

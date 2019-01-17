@@ -8,9 +8,11 @@ module.exports = {
     filename: 'index_bundle.js',
     publicPath: '/'
   },
+  optimization: {
+    minimize: false
+  },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
@@ -22,6 +24,12 @@ module.exports = {
         use: {
           loader: 'html-loader'
         }
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader'
+        ]
       }
     ]
   },

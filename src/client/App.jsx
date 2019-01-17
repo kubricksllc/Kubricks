@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import path from 'path';
 import createBrowserHistory from "history/createBrowserHistory";
 import HexTitle from "./layout/HexTitle.jsx";
 import ClusterPage from "./components/cluster_page/ClusterPage.jsx";
@@ -9,6 +8,7 @@ import NodePage from "./components/node_page/NodePage.jsx";
 import PodPage from "./components/pod_page/PodPage.jsx";
 import ServicesWindow from "./components/services_window/ServicesWindow.jsx";
 import InfoBanner from "./layout/InfoBanner.jsx";
+import node from './img/Node.svg';
 
 const PageContainer = styled.div`
   display: flex;
@@ -19,12 +19,15 @@ const ContentWrapper = styled.section`
   height: 80vh;
   display: flex;
   justify-content: center;
-`
-const HexWindow = styled.img`
+`;
+
+const img_src = './img/Node.svg';
+
+const HexWindow = styled.div`
   height: 80vh;
   position: absolute;
   z-index: -1;
-`
+`;
 
 const history = createBrowserHistory();
 
@@ -37,9 +40,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // fetch('http://localhost:3000/posts')
-    // .then(response => response.json())
-    // .then(json => console.log(json));
+
   }
 
   render() {
@@ -48,11 +49,12 @@ class App extends Component {
           <div>
               <header className="header">
                   <HexTitle title={this.state.title}></HexTitle>
+                
               </header>
               <PageContainer >
                 <ServicesWindow />
                 <ContentWrapper>
-                  <HexWindow src={path.resolve(__dirname, "./img/Node.svg")}/>
+                  <HexWindow />
                   <InfoBanner />
                     <Switch>
                         <Route exact path="/" render={(props) => (<ClusterPage/>)} />
@@ -62,6 +64,7 @@ class App extends Component {
                     </Switch>
                 </ContentWrapper>
               </PageContainer>
+              <Link to="/pod">back</Link>
           </div>
       </Router>
     );
