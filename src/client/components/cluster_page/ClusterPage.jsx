@@ -1,15 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import InfoWindow from "../../layout/InfoWindow";
-import HexGraph from "./HexGraph";
+import InfoWindow from "../../layout/InfoWindow.jsx";
+import HexGraph from "./HexGraph.jsx";
 import { nodesFetchData } from "../redux/actions/nodesActions.js";
 import styled from "styled-components";
-
-const Box = styled.div`
-  border: solid;
-  width: 50%;
-  height: 50vh;
-`;
 
 class ClusterPage extends Component {
   constructor() {
@@ -31,11 +25,11 @@ class ClusterPage extends Component {
     //IF THEW NODE LIST CHANGES UPDATE IT
 
     if (this.props.listOfNodes !== prevProps.listOfNodes) {
-      this.setState({ data: this.getNodes(this.props.listOfNodes) });
+      this.setState({ data: this.getNodes(this.props.listOfNodes, 500) });
     }
   }
 
-  getNodes(listOfNodes, radius = 200) {
+  getNodes(listOfNodes, radius) {
     var nodes = [],
       width = radius * 2 + 50,
       height = radius * 2 + 50,
@@ -57,7 +51,7 @@ class ClusterPage extends Component {
         const fillNode = {};
         fillNode.name = copyData.name;
         fillNode.status = copyData.status;
-        fillNode.createdAt = copyData.createdAt;
+        fillNode.age = copyData.age;
         fillNode.version = copyData.version;
         fillNode.x = x;
         fillNode.y = y;
@@ -89,13 +83,9 @@ class ClusterPage extends Component {
       return (
         <div>
           <div onMouseMove={this.handleMouseMove}>
-            <HexGraph
-              data={this.state.data}
-              width={1000}
-              height={500}
-            />
+            <HexGraph data={this.state.data} width={1000} height={800} />
           </div>
-          {this.props.infoWindowOpen && <InfoWindow />}
+          {this.props.nodeInfoOpen && <InfoWindow />}
         </div>
       );
     }
@@ -106,7 +96,7 @@ class ClusterPage extends Component {
 const mapStateToProps = state => {
   return {
     listOfNodes: state.nodesReducer.listOfNodes,
-    infoWindowOpen: state.windowReducer.infoWindowOpen
+    nodeInfoOpen: state.windowReducer.nodeInfoOpen
   };
 };
 

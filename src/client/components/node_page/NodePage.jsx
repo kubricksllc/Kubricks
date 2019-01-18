@@ -1,34 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Tree from "react-d3-tree";
-import buildTreeData from "./TreeData.jsx";
+import buildTreeData from "./BuildTree.jsx";
 import styled from "styled-components";
-import infoWindow from "../../layout/InfoWindow.js";
-import servicesAndPodsFetchData from "../redux/actions/servicesAndPodsActions.js";
+import Tree from "react-d3-tree";
+import { updateCurrentPod } from "../redux/actions/podsActions";
+import InfoWindow from "../../layout/InfoWindow.jsx";
+import * as d3 from "d3";
+import { withRouter } from 'react-router-dom';
 
-const url =
-  "http://localhost:8080/api/node/gke-kubricks-default-pool-b055752b-wb5z"; //TODO: delete after testing
+//TODO: fix the width and height after hex viewport is implemented!!!!!!!!!!!!!!!!
 
-const TreeWrapper = styled.div`
+const TreeContainer = styled.div`
   name: treeWrapper;
-  width: 1000px;
-  height: 1000px;
-  background-color: white;
+  width: 97%;
+  height: 97%;
+  display: flex;
+  flex-direction: column;
 `;
-
-const mapStateToProps = state => {
-  return {
-    listOfServices: state.servicesReducer.listOfServices,
-    listOfPods: state.podsReducer.listOfPods,
-    infoWindowOpen: state.windowReducer.infoWindowOpen
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchData: url => dispatch(servicesAndPodsFetchData(url))
-  };
-};
 
 class NodePage extends Component {
   constructor(props) {
@@ -36,37 +24,65 @@ class NodePage extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchData(url);
+    const nodes = d3.selectAll(".linkBase");
+    console.log(nodes);
+  }
+
+  checkNodeType(node, e, updateCurrentPod, updateCurrentService) {
+    // console.log(node)
+    if (node.otherAttr.podIdx) {
+      // console.log(updateCurrentPod);
+      // console.log(node)
+      updateCurrentPod(node.otherAttr.podIdx);
+      this.props.history.push('/pod');
+    } else {
+      console.log(node);
+    }
   }
 
   render() {
-    const arr = buildTreeData(
-      this.props.listOfServices,
-      this.props.listOfPods,
-      "gke-kubricks-default-pool-b055752b-wb5z"
-    );
-
-    if (this.props.listOfServices.length === 0) {
-      return <div> waiting to be updated </div>;
-    } else {
-      return (
-        <TreeWrapper id="treeWrapper">
-          {/* <Tree
-            data={buildTreeData(
+    return (
+      <TreeContainer id="treeContainer">
+        <Tree
+          data={[
+            buildTreeData(
+              this.props.activeServices,
               this.props.listOfServices,
               this.props.listOfPods,
-              "gke-kubricks-default-pool-b055752b-wb5z"
-            )}
-            separation={{ siblings: 2, nonSiblings: 2 }}
-          /> */}a
-          {arr}
-        </TreeWrapper>
-      );
-    }
+              this.props.currentNode.name
+            )
+          ]}
+          translate={{ x: Math.random() * 75, y: Math.random() * 75 }}
+          onClick={(node, e) => {
+            // console.log(e.clientX, e.clientY)
+            this.checkNodeType(node, e, this.props.updateCurrentPod);
+          }}
+        />
+      </TreeContainer>
+    );
   }
 }
 
-export default connect(
+const mapStateToProps = state => {
+  // console.log(state);
+  return {
+    listOfServices: state.servicesReducer.listOfServices,
+    activeServices: state.servicesReducer.activeServices,
+    listOfPods: state.podsReducer.listOfPods,
+    infoWindowOpen: state.windowReducer.infoWindowOpen,
+    currentNode: state.nodesReducer.currentNode
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    updateCurrentPod: podIdx => dispatch(updateCurrentPod(podIdx)),
+    updateCurrentService: serviceIdx =>
+      dispatch(updateCurrentService(serviceIdx))
+  };
+};
+
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(NodePage);
+)(NodePage));
