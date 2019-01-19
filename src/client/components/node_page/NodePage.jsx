@@ -13,10 +13,9 @@ import { withRouter } from 'react-router-dom';
 const TreeContainer = styled.div`
   name: treeWrapper;
   width: 97%;
-  height: 70vh;
+  height: 97%;
   display: flex;
   flex-direction: column;
-  border: 1px solid;
 `;
 
 class NodePage extends Component {
