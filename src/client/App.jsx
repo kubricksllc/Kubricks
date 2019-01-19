@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { HashRouter as Router, Route, Switch, Link } from "react-router-dom";
 import createBrowserHistory from "history/createBrowserHistory";
 import HexTitle from "./layout/HexTitle.jsx";
 import ClusterPage from "./components/cluster_page/ClusterPage.jsx";

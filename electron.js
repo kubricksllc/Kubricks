@@ -1,36 +1,90 @@
 const { app, BrowserWindow } = require("electron");
+const path = require("path");
+const url = require("url");
+const fetch = require("node-fetch");
+let appWin = null;
+let loadingWin = null;
+const PACKAGE_APP = true;
 
-let win = null;
+//Use this module for electron-package
+// const { serverProcess } = require("./process/serverProcess");
 
-function createWindow() {
+//Otherwise set serverProcess to null if you're using gulp
+let serverProcess;
+
+function createLoadingWindow() {
   // Initialize the window to our specified dimensions
-  win = new BrowserWindow({ width: 1000, height: 600 });
+  loadingWin = new BrowserWindow({
+    width: 400,
+    height: 400,
+    show: true,
+    frame: false
+  });
 
   // Specify entry point
-  win.loadURL("http://localhost:8080");
+  loadingWin.loadURL(
+    url.format({
+      pathname: path.resolve(
+        __dirname,
+        "./src/loading.html"
+      ) /* Attention here: origin is path.join(__dirname, 'index.html') */,
+      protocol: "file",
+      slashes: true
+    })
+  );
+
+  // Remove window once app is closed
+  loadingWin.on("closed", function() {
+    loadingWin = null;
+  });
+
+  const ping = setInterval(() => {
+    fetch("http://localhost:8080")
+      .then(response => {
+        if (response.status === 200) {
+          createAppWindow();
+          clearInterval(ping);
+        }
+      })
+      .catch(err => {});
+  }, 200);
+}
+
+function createAppWindow() {
+  // Initialize the window to our specified dimensions
+  appWin = new BrowserWindow({ width: 1000, height: 600, show: true });
+
+  // Specify entry point
+  appWin.loadURL("http://localhost:8080");
 
   // Show dev tools
   // Remove this line before distributing
-  win.webContents.openDevTools();
+  // appWin.webContents.openDevTools();
 
   // Remove window once app is closed
-  win.on("closed", function() {
-    win = null;
+  appWin.on("closed", function() {
+    appWin = null;
   });
+
+  loadingWin.close();
 }
 
 app.on("ready", function() {
-  createWindow();
+  createLoadingWindow();
 });
 
 app.on("activate", () => {
-  if (win === null) {
-    createWindow();
+  if (appWin === null) {
+    createLoadingWindow();
   }
 });
 
 app.on("window-all-closed", function() {
   if (process.platform != "darwin") {
     app.quit();
+
+    if (serverProcess) {
+      serverProcess.kill("SIGINT");
+    }
   }
 });
