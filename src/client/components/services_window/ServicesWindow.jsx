@@ -10,9 +10,10 @@ const Box = styled.div`
   border-radius: 5px;
   box-shadow: 0px 5px 28px 1px #d9d9d9;
   width: 30vw;
-  height: 80vh;
+  min-width: 30vh;
+  height: 70vh;
   padding: 1em;
-  margin-left: .5em;
+  margin-left: 0.5em;
   margin-right: 1em;
 `;
 
@@ -55,7 +56,7 @@ class ServicesWindow extends Component {
       <ServiceItem
         key={service.name}
         name={service.name}
-        index = {i++}
+        index={i++}
         listOfServices={this.props.listOfServices}
         activeServices={this.props.activeServices}
         activeServiceTypes={this.props.activeServiceTypes}

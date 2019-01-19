@@ -8,7 +8,7 @@ import NodePage from "./components/node_page/NodePage.jsx";
 import PodPage from "./components/pod_page/PodPage.jsx";
 import ServicesWindow from "./components/services_window/ServicesWindow.jsx";
 import InfoBanner from "./layout/InfoBanner.jsx";
-import Hex from './img/Node.svg';
+import Hex from "./img/Node.svg";
 
 const PageContainer = styled.div`
   display: flex;
@@ -23,7 +23,7 @@ const ContentWrapper = styled.section`
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-`
+`;
 
 const history = createBrowserHistory();
 
@@ -35,32 +35,23 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
-
-  }
+  componentDidMount() {}
 
   render() {
     return (
       <Router history={history}>
-          <div>
-              <header className="header">
-                  <HexTitle title={this.state.title}></HexTitle>
-                
-              </header>
-              <PageContainer >
-                <ServicesWindow />
-                <ContentWrapper>
-                  <InfoBanner />
-                    <Switch>
-                        <Route exact path="/" render={(props) => (<ClusterPage/>)} />
-                        <Route path="/node" render={(props) => (<NodePage/>)} />
-                        <Route path="/pod" render={(props) => (<PodPage/>)} />
-                        <Route path="*" component={NotFound} />
-                    </Switch>
-                </ContentWrapper>
-              </PageContainer>
-              <Link to="/pod">back</Link>
-          </div>
+        <div>
+          <PageContainer>
+            <ServicesWindow />
+              <Switch>
+                <Route exact path="/" render={props => <ClusterPage />} />
+                <Route path="/node" render={props => <NodePage />} />
+                <Route path="/pod" render={props => <PodPage />} />
+                <Route path="*" component={NotFound} />
+              </Switch>
+          </PageContainer>
+          <Link to="/">back</Link>
+        </div>
       </Router>
     );
   }
