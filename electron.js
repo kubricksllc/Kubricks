@@ -8,7 +8,7 @@ const PACKAGE_APP = true;
 
 //Use this module for electron-package
 // const { serverProcess } = require("./process/serverProcess");
-
+const { portForward } = require("./process/portForward");
 //Otherwise set serverProcess to null if you're using gulp
 let serverProcess;
 
@@ -85,6 +85,10 @@ app.on("window-all-closed", function() {
 
     if (serverProcess) {
       serverProcess.kill("SIGINT");
+    }
+
+    if (portForward) {
+      portForward.kill("SIGINT");
     }
   }
 });
