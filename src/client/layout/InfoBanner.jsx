@@ -17,7 +17,6 @@ const InfoBox = styled.div`
 
 const Title = styled.h3`
   margin-bottom: 0;
-  color: white;
 `
 
 const Details = styled.p`
