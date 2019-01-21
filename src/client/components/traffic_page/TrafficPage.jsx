@@ -1,20 +1,35 @@
 import React, { Component } from "react";
 import SpiderTree from "./SpiderTree.jsx";
-import mockdata from "./mockdata.js";
+import buildTree from './BuildTree.jsx';
+import { withRouter } from 'react-router-dom';
+import { connect } from "react-redux";
 
-class ClusterPage extends Component {
+class TrafficPage extends Component {
   constructor() {
     super();
-    this.state = {
-      title: "Cluster",
-      data: []
-    };
   }
 
   render() {
-    console.log(mockdata);
-    return <SpiderTree data={mockdata} width={1000} height={500} />;
+    return <SpiderTree data={
+      buildTree(
+        this.props.activeServices,
+        this.props.listOfServices,
+        this.props.listOfPods
+      )
+    } width={1000} height={1000} />;
   }
 }
 
-export default ClusterPage;
+const mapStateToProps = state => {
+  // console.log(state);
+  return {
+    listOfServices: state.servicesReducer.listOfServices,
+    activeServices: state.servicesReducer.activeServices,
+    listOfPods: state.podsReducer.listOfPods,
+    infoWindowOpen: state.windowReducer.infoWindowOpen
+  };
+};
+
+export default withRouter(connect(
+  mapStateToProps
+)(TrafficPage));

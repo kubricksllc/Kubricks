@@ -5,10 +5,9 @@ import * as d3 from "d3";
 
 import styled from "styled-components";
 import ReactDOM from "react-dom";
-import mockdata from "./mockdata";
 
 const Box = styled.div`
-  height: 500x;
+  height: 1000x;
   width: 1000px;
   border: 2px solid;
 `;
@@ -36,11 +35,13 @@ class SpiderTree extends Component {
     this.buildTree();
     this.drawTree();
   }
+
   zoomed() {
     this.setState({
       zoomTransform: d3.event.transform
     });
   }
+
   buildTree() {
     const width = this.props.width;
     const height = this.props.height;
@@ -77,6 +78,7 @@ class SpiderTree extends Component {
       .data(root.links())
       .enter()
       .append("path")
+      .attr('class', 'links')
       .attr(
         "d",
         d3
@@ -93,20 +95,21 @@ class SpiderTree extends Component {
       .attr("stroke-linejoin", "round")
       .attr("stroke-width", 3)
       .selectAll("g")
-      .data(root.descendants().reverse())
+      .data(root.descendants())
       .enter()
       .append("g")
+      .attr('class', 'node')
       .attr(
         "transform",
         d => `
         rotate(${(d.x * 180) / Math.PI - 90})
         translate(${d.y},0)
       `
-      );
+      )
 
-    node
-      .append("circle")
-      .attr("fill", d => (d.children ? "#555" : "#999"))
+      node
+      .append('circle')
+      .attr("fill", 'blue')
       .attr("r", 10);
 
     node
@@ -117,7 +120,7 @@ class SpiderTree extends Component {
         d.x < Math.PI === !d.children ? "start" : "end"
       )
       .attr("transform", d => (d.x >= Math.PI ? "rotate(180)" : null))
-      .text(d => d.data.data.name)
+      .text(d=> d.data.data.name)
       .clone(true)
       .lower()
       .attr("stroke", "white");
