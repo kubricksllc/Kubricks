@@ -1,22 +1,21 @@
 import React, { Component } from "react";
 import SpiderTree from "./SpiderTree.jsx";
-import buildTree from './BuildTree.jsx';
-import { withRouter } from 'react-router-dom';
+import buildTreeData from "./BuildTree.jsx";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 class TrafficPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
   }
 
   render() {
-    return <SpiderTree data={
-      buildTree(
-        this.props.activeServices,
-        this.props.listOfServices,
-        this.props.listOfPods
-      )
-    } width={1000} height={1000} />;
+    return <SpiderTree data={buildTreeData(
+      this.props.activeServices,
+      this.props.listOfServices,
+      this.props.listOfPods
+    )} width={1000} height={1000} />;
   }
 }
 
@@ -30,6 +29,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(connect(
-  mapStateToProps
-)(TrafficPage));
+export default withRouter(connect(mapStateToProps)(TrafficPage));

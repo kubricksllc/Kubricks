@@ -1,7 +1,7 @@
 import { buildSingleTree, buildNoServiceTree } from './BuildSingleTree.jsx';
 import Builder from './Constructors.jsx';
 
-function buildTree(
+export default function buildTreeData(
   listOfActiveServices,
   listOfServices,
   listOfPodsInStore
@@ -27,5 +27,3 @@ function buildTree(
 
   return blankMasterNode;
 }
-
-export default buildTree;

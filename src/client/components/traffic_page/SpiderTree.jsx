@@ -1,10 +1,6 @@
 import React, { Component } from "react";
-import { hierarchy, tree } from "d3-hierarchy";
-
 import * as d3 from "d3";
-
 import styled from "styled-components";
-import ReactDOM from "react-dom";
 
 const Box = styled.div`
   height: 1000x;
@@ -70,7 +66,6 @@ class SpiderTree extends Component {
     const link = svg
       .append("g")
       .attr("id", "link_layer")
-      .attr("fill", "none")
       .attr("stroke", "#555")
       .attr("stroke-opacity", 0.4)
       .attr("stroke-width", 1.5)
@@ -78,14 +73,26 @@ class SpiderTree extends Component {
       .data(root.links())
       .enter()
       .append("path")
-      .attr('class', 'links')
+      .attr("class", "links")
       .attr(
         "d",
         d3
           .linkRadial()
           .angle(d => d.x)
           .radius(d => d.y)
-      );
+      )
+      .attr("fill", d => {
+        // console.log(d);
+        if (
+          d.target.depth > 1 &&
+          d.target.data.data.attributes.containerPort !==
+            d.target.data.parent.data.attributes.targetPort
+        ) {
+          return "red";
+        } else {
+          return "none";
+        }
+      });
 
     d3.select("#link_layer").attr("transform", this.state.zoomTransform);
 
@@ -98,18 +105,18 @@ class SpiderTree extends Component {
       .data(root.descendants())
       .enter()
       .append("g")
-      .attr('class', 'node')
+      .attr("class", "node")
       .attr(
         "transform",
         d => `
         rotate(${(d.x * 180) / Math.PI - 90})
         translate(${d.y},0)
       `
-      )
+      );
 
-      node
-      .append('circle')
-      .attr("fill", 'blue')
+    node
+      .append("circle")
+      .attr("fill", d => d.data.data.fill)
       .attr("r", 10);
 
     node
@@ -120,7 +127,7 @@ class SpiderTree extends Component {
         d.x < Math.PI === !d.children ? "start" : "end"
       )
       .attr("transform", d => (d.x >= Math.PI ? "rotate(180)" : null))
-      .text(d=> d.data.data.name)
+      .text(d => d.data.data.name)
       .clone(true)
       .lower()
       .attr("stroke", "white");
