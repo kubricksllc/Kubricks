@@ -30,36 +30,48 @@ class ClusterPage extends Component {
   }
 
   getNodes(listOfNodes, radius) {
-    var nodes = [],
-      width = radius * 2 + 50,
-      height = radius * 2 + 50,
-      angle,
-      x,
-      y,
-      j = 0,
+    for (let i = 0; i < 8; i++) {
+      listOfNodes.push({ lol: i });
+    }
+    //Segment the data set by ring lengths
+    let sides = 6,
+      count = 0,
       ring = 1;
-
-    const sides = 6;
-    while (j < listOfNodes.length) {
-      for (let i = 0; j < listOfNodes.length && i < ring * sides; i++) {
-        angle = (i / ((ring * sides) / 2)) * Math.PI; // Calculate the angle at which the element will be placed.
-        // For a semicircle, we would use (i / numNodes) * Math.PI.
-        x = ((radius * ring) / 2) * Math.cos(angle) + width / 2; // Calculate the x position of the element.
-        y = ((radius * ring) / 2) * Math.sin(angle) + height / 2; // Calculate the y position of the element.
-
-        const copyData = listOfNodes[j];
-        const fillNode = {};
-        fillNode.name = copyData.name;
-        fillNode.status = copyData.status;
-        fillNode.age = copyData.age;
-        fillNode.version = copyData.version;
-        fillNode.x = x;
-        fillNode.y = y;
-        fillNode.index = j;
-        nodes[j++] = fillNode;
+    const segments = [];
+    while (count < listOfNodes.length) {
+      let segment = [];
+      for (let i = 0; i < ring * sides && count < listOfNodes.length; i++) {
+        segment.push(listOfNodes[count++]);
       }
+      segments.push(segment);
       ring++;
     }
+
+    console.log(segments);
+    let nodes = [],
+      width = radius * 2 + 50,
+      height = radius * 2 + 50,
+      index = 0,
+      angle,
+      x,
+      y;
+
+    for (let i = 0; i < segments.length; i++) {
+      for (let j = 0; j < segments[i].length; j++) {
+        angle = (j / (segments[i].length / 2)) * Math.PI; // Calculate the angle at which the element will be placed.
+        // For a semicircle, we would use (i / numNodes) * Math.PI.
+        x = ((radius * (i + 1)) / 2) * Math.cos(angle) + width / 2; // Calculate the x position of the element.
+        y = ((radius * (i + 1)) / 2) * Math.sin(angle) + height / 2; // Calculate the y position of the element.
+
+        let node = segments[i][j];
+        node.x = x;
+        node.y = y;
+        node.index = index;
+        nodes[index++] = node;
+      }
+    }
+
+    console.log(nodes);
     return nodes;
   }
 
@@ -83,7 +95,7 @@ class ClusterPage extends Component {
       return (
         <div>
           <div onMouseMove={this.handleMouseMove}>
-            <HexGraph data={this.state.data} width={1000} height={800} />
+            <HexGraph data={this.state.data} width={1000} height={500} />
           </div>
           {this.props.nodeInfoOpen && <InfoWindow />}
         </div>
