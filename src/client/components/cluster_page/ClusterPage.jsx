@@ -47,7 +47,6 @@ class ClusterPage extends Component {
       ring++;
     }
 
-    console.log(segments);
     let nodes = [],
       width = radius * 2 + 50,
       height = radius * 2 + 50,
@@ -70,8 +69,6 @@ class ClusterPage extends Component {
         nodes[index++] = node;
       }
     }
-
-    console.log(nodes);
     return nodes;
   }
 

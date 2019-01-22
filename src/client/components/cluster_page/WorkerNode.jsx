@@ -77,7 +77,6 @@ class WorkerNode extends Component {
           id={`node#${this.props.nodeIndex}`}
         >
           <g>
-            <title>background</title>
             <rect
               fill="none"
               id="canvas_background"
@@ -106,7 +105,6 @@ class WorkerNode extends Component {
             </g>
           </g>
           <g>
-            <title>Layer 1</title>
             <path
               transform="rotate(90 49.999996185302734,58.00000381469727) "
               stroke="#326de6"
