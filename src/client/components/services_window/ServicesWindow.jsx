@@ -4,23 +4,13 @@ import { connect } from "react-redux";
 import { servicesAndPodsFetchData } from "../redux/actions/servicesAndPodsActions.js";
 import ServiceType from "./ServiceType.jsx";
 import ServiceItem from "./ServiceItem.jsx";
-import { Link } from "react-router-dom";
+import ViewModes from "./ViewModes.jsx";
 
 const Box = styled.div`
   height: 100%;
   margin: 0;
   border: 1px solid #d9d9d9;
   padding: 1em;
-`;
-
-const Button = styled.div`
-  text-align: center;
-  border: 1px solid;
-  border-radius: 5px;
-  min-width: 25vh;
-  cursor: pointer;
-  background-color: #326de6;
-  color: white;
 `;
 
 const Title = styled.h1`
@@ -74,12 +64,7 @@ class ServicesWindow extends Component {
     return (
       <Box>
         <Title>View Mode</Title>
-        <Link to="/">
-          <Button>Cluster</Button>
-        </Link>
-        <Link to="/traffic">
-          <Button>Traffic</Button>
-        </Link>
+        <ViewModes />
         <Title>Services</Title>
         Service Types
         <ServiceTypes>{this.renderServiceTypes()}</ServiceTypes>
@@ -92,7 +77,8 @@ class ServicesWindow extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchData: url => dispatch(servicesAndPodsFetchData(url))
+    fetchData: url => dispatch(servicesAndPodsFetchData(url)),
+    toggleViewMode: url => dispatch(toggleViewMode)
   };
 };
 

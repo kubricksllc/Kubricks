@@ -10,7 +10,7 @@ import PodPage from "./components/pod_page/PodPage.jsx";
 import ServicesWindow from "./components/services_window/ServicesWindow.jsx";
 import InfoBanner from "./layout/InfoBanner.jsx";
 import InfoPane from "./components/info_window/InfoPane.jsx";
-import Hex from './img/Node.svg';
+import Hex from "./img/Node.svg";
 
 const PageContainer = styled.div`
   height: 100%;
@@ -18,8 +18,8 @@ const PageContainer = styled.div`
   grid-template-columns: 20% 80%;
   grid-template-rows: 70% 30%;
   grid-template-areas:
-  'services content'
-  'services info';
+    "services content"
+    "services info";
 `;
 
 const ContentWrapper = styled.section`
@@ -54,31 +54,27 @@ class App extends Component {
 
   toggleServicesWindow() {
     const toggleVal = !this.state.servicesWindowOpen;
-    this.setState({ servicesWindowOpen: toggleVal});
+    this.setState({ servicesWindowOpen: toggleVal });
   }
-
-  componentDidMount() {}
 
   render() {
     return (
       <Router history={history}>
-        <PageContainer >
+        <PageContainer>
           <ServicesWrapper>
-            <ServicesWindow 
-              open={this.state.servicesOpen} 
-            />
-          {/* <button onClick={() => this.toggleServicesWindow()}>Toggle Me</button>
+            <ServicesWindow open={this.state.servicesOpen} />
+            {/* <button onClick={() => this.toggleServicesWindow()}>Toggle Me</button>
           <Link to="/pod">back</Link> */}
           </ServicesWrapper>
           <ContentWrapper>
             <InfoBanner />
-              <Switch>
-                  <Route exact path="/" render={(props) => (<ClusterPage/>)} />
-                  <Route path="/node" render={(props) => (<NodePage/>)} />
-                  <Route path="/traffic" render={(props) => (<TrafficPage/>)} />
-                  <Route path="/pod" render={(props) => (<PodPage/>)} />
-                  <Route path="*" component={NotFound} />
-              </Switch>
+            <Switch>
+              <Route exact path="/" render={props => <ClusterPage />} />
+              <Route path="/node" render={props => <NodePage />} />
+              <Route path="/traffic" render={props => <TrafficPage />} />
+              <Route path="/pod" render={props => <PodPage />} />
+              <Route path="*" component={NotFound} />
+            </Switch>
           </ContentWrapper>
           <InfoWrapper>
             <InfoPane />

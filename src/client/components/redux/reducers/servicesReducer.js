@@ -1,7 +1,9 @@
 import {
   SERVICES_FETCH,
   TOGGLE_SERVICE_TYPE,
-  TOGGLE_SERVICE
+  TOGGLE_SERVICE,
+  DISPLAY_SERVICE_INFO,
+  HIDE_SERVICE_INFO
 } from "../actions/actionTypes.js";
 
 const initialState = {
@@ -69,6 +71,14 @@ export function servicesReducer(state = initialState, action) {
       } else activeServices = activeServices.concat(serviceIndex);
       return { ...state, activeServices };
 
+    case DISPLAY_SERVICE_INFO:
+      return {
+        ...state,
+        currentService: state.listOfServices[action.payload.serviceIndex]
+      };
+
+    case HIDE_SERVICE_INFO:
+      return { ...state, currentService: null };
     default:
       return state;
   }

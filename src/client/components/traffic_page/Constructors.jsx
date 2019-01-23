@@ -1,4 +1,4 @@
-function ServiceNode(name = null, type = null, selector = null, ports = null, color = null) {
+function ServiceNode(name = null, type = null, selector = null, ports = null, color = null, serviceIdx = null) {
   this.name = name;
   this.attributes = {
     type,
@@ -9,7 +9,7 @@ function ServiceNode(name = null, type = null, selector = null, ports = null, co
   this.fill = color || 'blue';
 
   this.otherAttr = {
-    serviceIdx: null
+    serviceIdx: serviceIdx
   };
   
   this.children = []

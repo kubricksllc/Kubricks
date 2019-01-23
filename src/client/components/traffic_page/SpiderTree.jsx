@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
-import { displayPodInfo, hidePodInfo } from "../redux/actions/windowActions.js";
+import {
+  displayPodInfo,
+  hidePodInfo,
+  displayServiceInfo,
+  hideServiceInfo
+} from "../redux/actions/windowActions.js";
 import { connect } from "react-redux";
 import { throws } from "assert";
 
@@ -76,7 +81,7 @@ class SpiderTree extends Component {
       .append("g")
       .attr("id", "link_layer")
       .attr("stroke", "black")
-      .attr("stroke-opacity", .9)
+      .attr("stroke-opacity", 0.9)
       .attr("stroke-width", 3)
       .selectAll("path")
       .data(root.links())
@@ -91,7 +96,6 @@ class SpiderTree extends Component {
           .radius(d => d.y)
       )
       .attr("fill", d => {
-        // console.log(d);
         if (
           d.target.depth > 1 &&
           d.target.data.data.attributes.containerPort !==
@@ -154,7 +158,6 @@ class SpiderTree extends Component {
   }
 
   handleNodeOver(node) {
-    console.log(this.mouseX, this.mouseY);
     if (node.depth === 2) {
       //pod
       this.props.displayPodInfo(node.data.data.otherAttr.podIdx, {
@@ -163,11 +166,14 @@ class SpiderTree extends Component {
       });
     } else if (node.depth === 1) {
       //service
+      this.props.displayServiceInfo(node.data.data.otherAttr.serviceIdx, {
+        x: this.mouseX + 50,
+        y: this.mouseY - 100
+      });
     }
   }
 
   handleNodeOut(node) {
-    console.log("HHHH");
     if (node.depth === 2) {
       //pod
       this.props.hidePodInfo(node.data.data.otherAttr.podIdx, {
@@ -176,6 +182,10 @@ class SpiderTree extends Component {
       });
     } else if (node.depth === 1) {
       //service
+      this.props.hideServiceInfo(node.data.data.otherAttr.serviceIdx, {
+        x: this.mouseX,
+        y: this.mouseY
+      });
     }
   }
 
@@ -193,7 +203,10 @@ const mapDispatchToProps = dispatch => {
   return {
     displayPodInfo: (podIndex, mouseInfo) =>
       dispatch(displayPodInfo(podIndex, mouseInfo)),
-    hidePodInfo: podIndex => dispatch(hidePodInfo(podIndex))
+    hidePodInfo: podIndex => dispatch(hidePodInfo(podIndex)),
+    displayServiceInfo: (serviceIndex, mouseInfo) =>
+      dispatch(displayServiceInfo(serviceIndex, mouseInfo)),
+    hideServiceInfo: serviceIndex => dispatch(hideServiceInfo(serviceIndex))
   };
 };
 

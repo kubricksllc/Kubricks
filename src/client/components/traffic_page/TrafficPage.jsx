@@ -22,6 +22,7 @@ class TrafficPage extends Component {
           width={1000}
           height={500}
         />
+        {this.props.serviceInfoOpen && <InfoWindow />}
         {this.props.podInfoOpen && <InfoWindow />}
       </div>
     );
@@ -29,10 +30,10 @@ class TrafficPage extends Component {
 }
 
 const mapStateToProps = state => {
-  // console.log(state);
   return {
     listOfServices: state.servicesReducer.listOfServices,
     activeServices: state.servicesReducer.activeServices,
+    serviceInfoOpen: state.windowReducer.serviceInfoOpen,
     listOfPods: state.podsReducer.listOfPods,
     podInfoOpen: state.windowReducer.podInfoOpen
   };

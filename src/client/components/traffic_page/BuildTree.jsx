@@ -13,7 +13,7 @@ export default function buildTreeData(
 
   const serviceTree = listOfActiveServices.reduce((acc, serviceIdx) => {
     return acc.concat([
-      buildSingleTree(listOfServices[serviceIdx], listOfPodsInStore)
+      buildSingleTree(listOfServices[serviceIdx], listOfPodsInStore, serviceIdx)
     ]);
   }, []);
 
