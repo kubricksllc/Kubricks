@@ -7,13 +7,18 @@ const Window = styled.div`
   border-radius: 3px;
   position: fixed;
   zindex: 1;
-  max-width: 250px;
+  max-width: 15em;
   word-break: break-word;
   width: 100%;
   color: white;
-  padding-left: 10px;
+  padding: 10px;
   font-family: Lucida Console, Lucida Sans Typewriter, monaco,
     Bitstream Vera Sans Mono, monospace;
+`;
+
+const Title = styled.h1`
+  font-size: 1em;
+  text-align: center;
 `;
 
 class InfoWindow extends Component {
@@ -22,15 +27,17 @@ class InfoWindow extends Component {
   }
 
   render() {
+    console.log("show");
     var windowStyle = {
       left: this.props.mouseInfo.x,
       top: this.props.mouseInfo.y
     };
     // console.log(this.props.currentPod)
-    if (this.props.currentNode !== null) {
+    if (this.props.currentNode !== null && this.props.currentPod === null) {
       return (
         <Window style={windowStyle}>
           <div>
+            <Title>NODE</Title>
             <p>NAME: {this.props.currentNode.name}</p>
             <p>STATUS: {this.props.currentNode.status}</p>
             <p>AGE: {this.props.currentNode.age}</p>
@@ -40,11 +47,16 @@ class InfoWindow extends Component {
       );
     }
     if (this.props.currentPod !== null) {
-      console.log('infooooo window')
+      console.log(this.props.currentPod);
       return (
         <Window style={windowStyle}>
           <div>
-            <p> INFOOOOO WINDOW FOR POD!!!</p>
+            <Title>POD</Title>
+            <p>NAME: {this.props.currentPod.name}</p>
+            <p>STATUS: {this.props.currentPod.status.currentStatus}</p>
+            <p>IP: {this.props.currentPod.status.podIP}</p>
+            <p>LABELS: {JSON.stringify(this.props.currentPod.labels)}</p>
+            <p>AGE: {this.props.currentPod.age}</p>
           </div>
         </Window>
       );
