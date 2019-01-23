@@ -1,4 +1,6 @@
 /node_modules
+/prometheus_server/node_modules
+package-lock.json
 
 *.log
 
