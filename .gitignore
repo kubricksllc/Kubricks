@@ -1,5 +1,5 @@
 /node_modules
-
+/Kubricks-linux-x64
 *.log
 
 package-lock.json
