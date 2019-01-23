@@ -6,14 +6,20 @@ import ServiceType from "./ServiceType.jsx";
 import ServiceItem from "./ServiceItem.jsx";
 
 const Box = styled.div`
+  height: 100%;
+  margin: 0;
   border: 1px solid #d9d9d9;
-  border-radius: 5px;
-  box-shadow: 0px 5px 28px 1px #d9d9d9;
-  width: 30vw;
-  height: 80vh;
   padding: 1em;
-  margin-left: .5em;
-  margin-right: 1em;
+`;
+
+const Button = styled.div`
+  text-align: center;
+  border: 1px solid;
+  border-radius: 5px;
+  min-width: 25vh;
+  cursor: pointer;
+  background-color: #326DE6;
+  color: white;
 `;
 
 const Title = styled.h1`
@@ -66,6 +72,9 @@ class ServicesWindow extends Component {
   render() {
     return (
       <Box>
+        <Title>View Mode</Title>
+          <Button>Cluster</Button>
+          <Button>Traffic</Button>
         <Title>Services</Title>
         Service Types
         <ServiceTypes>{this.renderServiceTypes()}</ServiceTypes>
