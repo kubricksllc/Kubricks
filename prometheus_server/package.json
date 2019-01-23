@@ -1,0 +1,16 @@
+{
+  "name": "prometheus_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cluster": "^0.7.7",
+    "express": "^4.16.4",
+    "prom-client": "^11.2.1"
+  }
+}
