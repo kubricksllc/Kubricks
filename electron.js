@@ -4,13 +4,13 @@ const url = require("url");
 const fetch = require("node-fetch");
 let appWin = null;
 let loadingWin = null;
-const PACKAGE_APP = true;
+const server = require("./src/server/index");
 
 //Use this module for electron-package
 // const { serverProcess } = require("./process/serverProcess");
-const { portForward } = require("./process/portForward");
+// const { portForward } = require("./process/portForward");
 //Otherwise set serverProcess to null if you're using gulp
-let serverProcess;
+// let serverProcess;
 
 function createLoadingWindow() {
   // Initialize the window to our specified dimensions
@@ -83,12 +83,12 @@ app.on("window-all-closed", function() {
   if (process.platform != "darwin") {
     app.quit();
 
-    if (serverProcess) {
-      serverProcess.kill("SIGINT");
-    }
+    // if (serverProcess) {
+    //   // serverProcess.kill("SIGINT");
+    // }
 
-    if (portForward) {
-      portForward.kill("SIGINT");
-    }
+    // if (portForward) {
+    //   // portForward.kill("SIGINT");
+    // }
   }
 });
