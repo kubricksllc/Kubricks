@@ -6,8 +6,8 @@ const Window = styled.div`
   background-color: black;
   border-radius: 3px;
   position: fixed;
-  zindex: 1;
-  max-width: 15em;
+  z-index: 1;
+  max-width: 250px;
   word-break: break-word;
   width: 100%;
   color: white;

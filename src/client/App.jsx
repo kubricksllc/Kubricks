@@ -9,20 +9,36 @@ import TrafficPage from "./components/traffic_page/TrafficPage.jsx";
 import PodPage from "./components/pod_page/PodPage.jsx";
 import ServicesWindow from "./components/services_window/ServicesWindow.jsx";
 import InfoBanner from "./layout/InfoBanner.jsx";
-import Hex from "./img/Node.svg";
+import InfoPane from "./components/info_window/InfoPane.jsx";
+import Hex from './img/Node.svg';
 
 const PageContainer = styled.div`
-  display: flex;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: 70% 30%;
+  grid-template-areas:
+  'services content'
+  'services info';
 `;
 
 const ContentWrapper = styled.section`
-  width: 100%;
-  height: 80vh;
+  grid-area: content;
   display: flex;
   justify-content: center;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+`;
+
+const ServicesWrapper = styled.section`
+  grid-area: services;
+`;
+const InfoWrapper = styled.section`
+  grid-area: info;
+  border-top: 1px solid #d9d9d9;
+  background-color: #262626;
+  color: white;
 `;
 
 const history = createBrowserHistory();
@@ -31,8 +47,14 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      title: "Hello Kubricks!"
+      servicesWindowOpen: true
     };
+    this.toggleServicesWindow = this.toggleServicesWindow.bind(this);
+  }
+
+  toggleServicesWindow() {
+    const toggleVal = !this.state.servicesWindowOpen;
+    this.setState({ servicesWindowOpen: toggleVal});
   }
 
   componentDidMount() {}
@@ -40,25 +62,28 @@ class App extends Component {
   render() {
     return (
       <Router history={history}>
-          <div>
-              <header className="header">
-                  <HexTitle title={this.state.title}></HexTitle>
-              </header>
-              <PageContainer >
-                <ServicesWindow />
-                <ContentWrapper>
-                  <InfoBanner />
-                    <Switch>
-                        <Route exact path="/" render={(props) => (<ClusterPage/>)} />
-                        <Route path="/node" render={(props) => (<NodePage/>)} />
-                        <Route path="/pod" render={(props) => (<PodPage/>)} />
-                        <Route path="/traffic" render={(props) => (<TrafficPage/>)} />
-                        <Route path="*" component={NotFound} />
-                    </Switch>
-                </ContentWrapper>
-              </PageContainer>
-              <Link to="/">back</Link>
-          </div>
+        <PageContainer >
+          <ServicesWrapper>
+            <ServicesWindow 
+              open={this.state.servicesOpen} 
+            />
+          {/* <button onClick={() => this.toggleServicesWindow()}>Toggle Me</button>
+          <Link to="/pod">back</Link> */}
+          </ServicesWrapper>
+          <ContentWrapper>
+            <InfoBanner />
+              <Switch>
+                  <Route exact path="/" render={(props) => (<ClusterPage/>)} />
+                  <Route path="/node" render={(props) => (<NodePage/>)} />
+                  <Route path="/traffic" render={(props) => (<TrafficPage/>)} />
+                  <Route path="/pod" render={(props) => (<PodPage/>)} />
+                  <Route path="*" component={NotFound} />
+              </Switch>
+          </ContentWrapper>
+          <InfoWrapper>
+            <InfoPane />
+          </InfoWrapper>
+        </PageContainer>
       </Router>
     );
   }

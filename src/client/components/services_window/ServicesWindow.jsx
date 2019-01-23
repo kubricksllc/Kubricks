@@ -4,17 +4,23 @@ import { connect } from "react-redux";
 import { servicesAndPodsFetchData } from "../redux/actions/servicesAndPodsActions.js";
 import ServiceType from "./ServiceType.jsx";
 import ServiceItem from "./ServiceItem.jsx";
+import { Link } from "react-router-dom";
 
 const Box = styled.div`
+  height: 100%;
+  margin: 0;
   border: 1px solid #d9d9d9;
-  border-radius: 5px;
-  box-shadow: 0px 5px 28px 1px #d9d9d9;
-  width: 30vw;
-  min-width: 30vh;
-  height: 70vh;
   padding: 1em;
-  margin-left: 0.5em;
-  margin-right: 1em;
+`;
+
+const Button = styled.div`
+  text-align: center;
+  border: 1px solid;
+  border-radius: 5px;
+  min-width: 25vh;
+  cursor: pointer;
+  background-color: #326de6;
+  color: white;
 `;
 
 const Title = styled.h1`
@@ -67,6 +73,13 @@ class ServicesWindow extends Component {
   render() {
     return (
       <Box>
+        <Title>View Mode</Title>
+        <Link to="/">
+          <Button>Cluster</Button>
+        </Link>
+        <Link to="/traffic">
+          <Button>Traffic</Button>
+        </Link>
         <Title>Services</Title>
         Service Types
         <ServiceTypes>{this.renderServiceTypes()}</ServiceTypes>
