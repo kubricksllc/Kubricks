@@ -51,7 +51,7 @@ class HexGraph extends Component {
           <NodePlot
             data={this.props.data}
             x={0}
-            y={(height / 2) * -1}
+            y={0}
             width={width / 2}
             height={height}
             zoomTransform={zoomTransform}

@@ -59,7 +59,7 @@ class SpiderTree extends Component {
   }
 
   drawTree() {
-    const radius = 466;
+    const radius = 1000;
 
     const tree = data =>
       d3
@@ -75,9 +75,9 @@ class SpiderTree extends Component {
     const link = svg
       .append("g")
       .attr("id", "link_layer")
-      .attr("stroke", "#555")
-      .attr("stroke-opacity", 0.4)
-      .attr("stroke-width", 1.5)
+      .attr("stroke", "black")
+      .attr("stroke-opacity", .9)
+      .attr("stroke-width", 3)
       .selectAll("path")
       .data(root.links())
       .enter()
@@ -127,7 +127,7 @@ class SpiderTree extends Component {
     node
       .append("circle")
       .attr("fill", d => d.data.data.fill)
-      .attr("r", 15);
+      .attr("r", 40);
 
     node
       .selectAll("circle")
@@ -136,14 +136,14 @@ class SpiderTree extends Component {
 
     node
       .append("text")
-      .attr("dy", "0.31em")
+      .attr("dy", "2em")
       .attr("x", d => (d.x < Math.PI === !d.children ? 6 : -6))
       .attr("text-anchor", d =>
         d.x < Math.PI === !d.children ? "start" : "end"
       )
       .attr("transform", d => (d.x >= Math.PI ? "rotate(180)" : null))
       .text(d => d.data.data.name)
-      .style("font-size", "16px")
+      .style("font-size", "2em")
       .clone(true)
       .lower()
       .attr("stroke", "white");
