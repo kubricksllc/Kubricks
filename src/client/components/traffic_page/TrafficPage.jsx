@@ -3,19 +3,28 @@ import SpiderTree from "./SpiderTree.jsx";
 import buildTreeData from "./BuildTree.jsx";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import InfoWindow from "../../layout/InfoWindow.jsx";
 
 class TrafficPage extends Component {
   constructor(props) {
     super(props);
-
   }
 
   render() {
-    return <SpiderTree data={buildTreeData(
-      this.props.activeServices,
-      this.props.listOfServices,
-      this.props.listOfPods
-    )} width={1000} height={1000} />;
+    return (
+      <div>
+        <SpiderTree
+          data={buildTreeData(
+            this.props.activeServices,
+            this.props.listOfServices,
+            this.props.listOfPods
+          )}
+          width={1000}
+          height={800}
+        />
+        {this.props.podInfoOpen && <InfoWindow />}
+      </div>
+    );
   }
 }
 
@@ -25,7 +34,7 @@ const mapStateToProps = state => {
     listOfServices: state.servicesReducer.listOfServices,
     activeServices: state.servicesReducer.activeServices,
     listOfPods: state.podsReducer.listOfPods,
-    infoWindowOpen: state.windowReducer.infoWindowOpen
+    podInfoOpen: state.windowReducer.podInfoOpen
   };
 };
 

@@ -16,18 +16,18 @@ export function hideNodeInfo(nodeIndex, mouseInfo) {
   };
 }
 
-export function displayPodInfo(podIdx, mouseInfo) {
+export function displayPodInfo(podIndex, mouseInfo) {
   return {
     type: DISPLAY_POD_INFO,
-    paylod: {podIdx, mouseInfo}
+    payload: {podIndex, mouseInfo}
   }
 }
 
-export function hidePodInfo(podIdx, mouseInfo) {
+export function hidePodInfo(podIndex, mouseInfo) {
   return {
     type: HIDE_POD_INFO,
     payload: {
-      podIdx, mouseInfo
+      podIndex, mouseInfo
     }
   }
 }

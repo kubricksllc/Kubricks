@@ -22,12 +22,13 @@ class InfoWindow extends Component {
   }
 
   render() {
+    console.log("show");
     var windowStyle = {
       left: this.props.mouseInfo.x,
       top: this.props.mouseInfo.y
     };
     // console.log(this.props.currentPod)
-    if (this.props.currentNode !== null) {
+    if (this.props.currentNode !== null && this.props.currentPod === null) {
       return (
         <Window style={windowStyle}>
           <div>
@@ -40,11 +41,15 @@ class InfoWindow extends Component {
       );
     }
     if (this.props.currentPod !== null) {
-      console.log('infooooo window')
+      console.log(this.props.currentPod);
       return (
         <Window style={windowStyle}>
           <div>
-            <p> INFOOOOO WINDOW FOR POD!!!</p>
+            <p>NAME: {this.props.currentPod.name}</p>
+            <p>STATUS: {this.props.currentPod.status.currentStatus}</p>
+            <p>IP: {this.props.currentPod.status.podIP}</p>
+            <p>LABELS: {JSON.stringify(this.props.currentPod.labels)}</p>
+            <p>AGE: {this.props.currentPod.age}</p>
           </div>
         </Window>
       );

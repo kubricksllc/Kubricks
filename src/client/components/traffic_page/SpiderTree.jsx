@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
+import { displayPodInfo, hidePodInfo } from "../redux/actions/windowActions.js";
+import { connect } from "react-redux";
+import { throws } from "assert";
 
 const Box = styled.div`
   height: 1000x;
@@ -12,17 +15,23 @@ class SpiderTree extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      zoomTransform: null
+      zoomTransform: null,
+      loaded: false
     };
     this.zoom = d3.zoom().on("zoom", this.zoomed.bind(this));
+    this.handleNodeOver = this.handleNodeOver.bind(this);
+    this.handleNodeOut = this.handleNodeOut.bind(this);
+    this.handleMouseMove = this.handleMouseMove.bind(this);
+    (this.mouseX = 0), (this.mouseY = 0);
   }
+
   componentDidMount() {
     d3.select(this.refs.svg).call(this.zoom);
     this.buildTree();
     this.drawTree();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     d3.select(this.refs.svg)
       .select("svg")
       .remove();
@@ -96,6 +105,7 @@ class SpiderTree extends Component {
 
     d3.select("#link_layer").attr("transform", this.state.zoomTransform);
 
+    let nodeIndex = -1;
     const node = svg
       .append("g")
       .attr("id", "node_layer")
@@ -117,7 +127,12 @@ class SpiderTree extends Component {
     node
       .append("circle")
       .attr("fill", d => d.data.data.fill)
-      .attr("r", 10);
+      .attr("r", 15);
+
+    node
+      .selectAll("circle")
+      .on("mouseover", this.handleNodeOver)
+      .on("mouseout", this.handleNodeOut);
 
     node
       .append("text")
@@ -128,19 +143,61 @@ class SpiderTree extends Component {
       )
       .attr("transform", d => (d.x >= Math.PI ? "rotate(180)" : null))
       .text(d => d.data.data.name)
+      .style("font-size", "16px")
       .clone(true)
       .lower()
       .attr("stroke", "white");
 
     d3.select("#node_layer").attr("transform", this.state.zoomTransform);
-
     d3.select("#link_layer").style("margin", "auto");
     d3.select("#node_layer").style("margin", "auto");
   }
 
+  handleNodeOver(node) {
+    console.log(this.mouseX, this.mouseY);
+    if (node.depth === 2) {
+      //pod
+      this.props.displayPodInfo(node.data.data.otherAttr.podIdx, {
+        x: this.mouseX + 50,
+        y: this.mouseY - 100
+      });
+    } else if (node.depth === 1) {
+      //service
+    }
+  }
+
+  handleNodeOut(node) {
+    console.log("HHHH");
+    if (node.depth === 2) {
+      //pod
+      this.props.hidePodInfo(node.data.data.otherAttr.podIdx, {
+        x: this.mouseX,
+        y: this.mouseY
+      });
+    } else if (node.depth === 1) {
+      //service
+    }
+  }
+
+  handleMouseMove(e) {
+    this.mouseX = e.clientX;
+    this.mouseY = e.clientY;
+  }
+
   render() {
-    return <Box id="chart" ref="svg" />;
+    return <Box id="chart" onMouseMove={this.handleMouseMove} ref="svg" />;
   }
 }
 
-export default SpiderTree;
+const mapDispatchToProps = dispatch => {
+  return {
+    displayPodInfo: (podIndex, mouseInfo) =>
+      dispatch(displayPodInfo(podIndex, mouseInfo)),
+    hidePodInfo: podIndex => dispatch(hidePodInfo(podIndex))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SpiderTree);

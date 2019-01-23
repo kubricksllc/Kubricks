@@ -43,6 +43,7 @@
     "express": "^4.16.4",
     "moment": "^2.23.0",
     "react": "^16.7.0",
+    "react-d3-graph": "^2.0.0-rc2",
     "react-dom": "^16.7.0",
     "react-force-graph": "^1.17.6",
     "react-redux": "^6.0.0",
