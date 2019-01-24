@@ -36,7 +36,6 @@ class InfoWindow extends Component {
       this.props.currentPod === null &&
       this.props.currentService === null
     ) {
-      console.log(this.props.currentNode);
       return (
         <Window style={windowStyle}>
           <div>
@@ -64,7 +63,6 @@ class InfoWindow extends Component {
           </Window>
         );
       } else if (this.props.currentService) {
-        console.log(this.props.currentService);
         return (
           <Window style={windowStyle}>
             <div>

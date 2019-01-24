@@ -24,10 +24,9 @@ class SpiderTree extends Component {
       loaded: false
     };
     this.zoom = d3.zoom().on("zoom", this.zoomed.bind(this));
-    this.handleNodeOver = this.handleNodeOver.bind(this);
+    this.handleNodeEnter = this.handleNodeEnter.bind(this);
     this.handleNodeOut = this.handleNodeOut.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
-    (this.mouseX = 0), (this.mouseY = 0);
   }
 
   componentDidMount() {
@@ -135,7 +134,7 @@ class SpiderTree extends Component {
 
     node
       .selectAll("circle")
-      .on("mouseover", this.handleNodeOver)
+      .on("mouseenter", this.handleNodeEnter)
       .on("mouseout", this.handleNodeOut);
 
     node
@@ -157,7 +156,8 @@ class SpiderTree extends Component {
     d3.select("#node_layer").style("margin", "auto");
   }
 
-  handleNodeOver(node) {
+  handleNodeEnter(node) {
+    console.log(node);
     if (node.depth === 2) {
       //pod
       this.props.displayPodInfo(node.data.data.otherAttr.podIdx, {

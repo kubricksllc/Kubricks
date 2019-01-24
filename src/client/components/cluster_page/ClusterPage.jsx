@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import InfoWindow from "../../layout/InfoWindow.jsx";
 import HexGraph from "./HexGraph.jsx";
 import { nodesFetchData } from "../redux/actions/nodesActions.js";
-import styled from "styled-components";
 
 class ClusterPage extends Component {
   constructor() {
@@ -89,7 +88,12 @@ class ClusterPage extends Component {
       return (
         <div>
           <div onMouseMove={this.handleMouseMove}>
-            <HexGraph data={this.state.data} width={this.props.width} height={this.props.height} />
+            <HexGraph
+              data={this.state.data}
+              width={this.props.width}
+              height={this.props.height}
+              initialWrapper={this.props.initialWrapper}
+            />
           </div>
           {this.props.nodeInfoOpen && <InfoWindow />}
         </div>

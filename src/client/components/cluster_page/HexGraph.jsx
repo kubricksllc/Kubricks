@@ -40,8 +40,8 @@ class HexGraph extends Component {
 
   render() {
     const { zoomTransform } = this.state,
-      { width, height } = this.props;
-    console.log(this.state);
+      { width, height, initialWrapper } = this.props;
+    console.log(initialWrapper);
     return (
       <Box id="chart">
         <svg width={width} height={height} ref="svg">
@@ -49,8 +49,8 @@ class HexGraph extends Component {
             data={this.props.data}
             x={0}
             y={-this.state.svgWidth / 3}
-            width={this.state.svgWidth /2}
-            height={this.state.svgHeight}
+            width={initialWrapper.width / 2}
+            height={initialWrapper.height}
             zoomTransform={zoomTransform}
             zoomType="scale"
           />

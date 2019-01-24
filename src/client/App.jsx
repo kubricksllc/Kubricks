@@ -43,14 +43,22 @@ const InfoWrapper = styled.section`
 `;
 
 const history = createBrowserHistory();
+history.push("/");
+const widthPercent = 0.8,
+  heightPercent = 0.7;
 
 class App extends Component {
   constructor() {
     super();
+    //The initial dimensions of the Wrapper
+    const initialWrapper = {
+      width: window.screen.width * widthPercent,
+      height: window.screen.height * heightPercent
+    };
     this.state = {
       servicesWindowOpen: true,
-      wrapperWidth: window.screen.width * 0.8,
-      wrapperHeight: window.screen.height * 0.7
+      initialWrapper: initialWrapper,
+      wrapper: initialWrapper
     };
     this.toggleServicesWindow = this.toggleServicesWindow.bind(this);
   }
@@ -58,8 +66,10 @@ class App extends Component {
   updateDimensions(e) {
     const wrapperDOM = ReactDOM.findDOMNode(this.refs.contentWrapper);
     this.setState({
-      wrapperWidth: wrapperDOM.offsetWidth,
-      wrapperHeight: wrapperDOM.offsetHeight
+      wrapper: {
+        width: wrapperDOM.offsetWidth,
+        height: wrapperDOM.offsetHeight
+      }
     });
   }
 
@@ -94,8 +104,9 @@ class App extends Component {
                 path="/"
                 render={props => (
                   <ClusterPage
-                    width={this.state.wrapperWidth}
-                    height={this.state.wrapperHeight}
+                    width={this.state.wrapper.width}
+                    height={this.state.wrapper.height}
+                    initialWrapper={this.state.initialWrapper}
                   />
                 )}
               />
@@ -104,8 +115,8 @@ class App extends Component {
                 path="/traffic"
                 render={props => (
                   <TrafficPage
-                    width={this.state.wrapperWidth}
-                    height={this.state.wrapperHeight}
+                    width={this.state.wrapper.width}
+                    height={this.state.wrapper.height}
                   />
                 )}
               />

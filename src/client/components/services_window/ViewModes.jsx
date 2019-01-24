@@ -27,6 +27,7 @@ const ViewModeBoxInActive = styled.div`
 class ViewModes extends Component {
   constructor(props) {
     super(props);
+    this.handleOnClick = this.handleOnClick.bind(this);
   }
 
   handleOnClick(e) {
@@ -34,36 +35,28 @@ class ViewModes extends Component {
   }
 
   render() {
-    if (this.props.viewMode === "Cluster") {
-      return (
-        <div>
-          <Link to="/">
-            <ViewModeBoxActive onClick={this.handleOnClick.bind(this)}>
-              Cluster
-            </ViewModeBoxActive>
-          </Link>
-          <Link to="/traffic">
-            <ViewModeBoxInActive onClick={this.handleOnClick.bind(this)}>
-              Traffic
-            </ViewModeBoxInActive>
-          </Link>
-        </div>
-      );
-    } else
-      return (
-        <div>
-          <Link to="/">
+    return (
+      <div>
+        <Link to="/">
+          {this.props.viewMode === "Cluster" ? (
+            <ViewModeBoxActive>Cluster</ViewModeBoxActive>
+          ) : (
             <ViewModeBoxInActive onClick={this.handleOnClick.bind(this)}>
               Cluster
             </ViewModeBoxInActive>
-          </Link>
-          <Link to="/traffic">
-            <ViewModeBoxActive onClick={this.handleOnClick.bind(this)}>
+          )}
+        </Link>
+        <Link to="/traffic">
+          {this.props.viewMode === "Traffic" ? (
+            <ViewModeBoxActive>Traffic</ViewModeBoxActive>
+          ) : (
+            <ViewModeBoxInActive onClick={this.handleOnClick.bind(this)}>
               Traffic
-            </ViewModeBoxActive>
-          </Link>
-        </div>
-      );
+            </ViewModeBoxInActive>
+          )}
+        </Link>
+      </div>
+    );
   }
 }
 
