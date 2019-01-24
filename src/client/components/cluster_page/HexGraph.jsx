@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import NodePlot from "./NodePlot.jsx";
 import * as d3 from "d3";
-
-const random = d3.randomNormal(5, 1);
 import styled from "styled-components";
 
 const Box = styled.div`
-  height: 500px;
-  width: 1000px;
+  height: 100%;
+  width: 100%;
   border: solid 1px;
 `;
 
@@ -52,7 +50,7 @@ class HexGraph extends Component {
           <NodePlot
             data={this.props.data}
             x={0}
-            y={0}
+            y={-width / 4}
             width={width / 2}
             height={height}
             zoomTransform={zoomTransform}

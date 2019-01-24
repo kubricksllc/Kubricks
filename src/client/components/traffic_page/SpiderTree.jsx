@@ -11,8 +11,8 @@ import { connect } from "react-redux";
 import { throws } from "assert";
 
 const Box = styled.div`
-  height: 1000x;
-  width: 1000px;
+  height: 100%;
+  width: 100%;
   border: 2px solid;
 `;
 

@@ -89,7 +89,7 @@ class ClusterPage extends Component {
       return (
         <div>
           <div onMouseMove={this.handleMouseMove}>
-            <HexGraph data={this.state.data} width={1000} height={500} />
+            <HexGraph data={this.state.data} width={this.props.width} height={this.props.height} />
           </div>
           {this.props.nodeInfoOpen && <InfoWindow />}
         </div>

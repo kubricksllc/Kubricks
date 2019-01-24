@@ -10,6 +10,7 @@ import PodPage from "./components/pod_page/PodPage.jsx";
 import ServicesWindow from "./components/services_window/ServicesWindow.jsx";
 import InfoBanner from "./layout/InfoBanner.jsx";
 import InfoPane from "./components/info_window/InfoPane.jsx";
+import ReactDOM from "react-dom";
 import Hex from "./img/Node.svg";
 
 const PageContainer = styled.div`
@@ -47,9 +48,28 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      servicesWindowOpen: true
+      servicesWindowOpen: true,
+      wrapperWidth: 0,
+      wrapperHeight: 0
     };
     this.toggleServicesWindow = this.toggleServicesWindow.bind(this);
+  }
+
+  updateDimensions(e) {
+    const wrapperDOM = ReactDOM.findDOMNode(this.refs.contentWrapper);
+    this.setState({
+      wrapperWidth: wrapperDOM.offsetWidth,
+      wrapperHeight: wrapperDOM.offsetHeight
+    });
+  }
+
+  componentDidMount() {
+    this.updateDimensions();
+    window.addEventListener("resize", this.updateDimensions.bind(this));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions.bind(this));
   }
 
   toggleServicesWindow() {
@@ -66,12 +86,29 @@ class App extends Component {
             {/* <button onClick={() => this.toggleServicesWindow()}>Toggle Me</button>
           <Link to="/pod">back</Link> */}
           </ServicesWrapper>
-          <ContentWrapper>
+          <ContentWrapper ref="contentWrapper">
             <InfoBanner />
             <Switch>
-              <Route exact path="/" render={props => <ClusterPage />} />
+              <Route
+                exact
+                path="/"
+                render={props => (
+                  <ClusterPage
+                    width={this.state.wrapperWidth}
+                    height={this.state.wrapperHeight}
+                  />
+                )}
+              />
               <Route path="/node" render={props => <NodePage />} />
-              <Route path="/traffic" render={props => <TrafficPage />} />
+              <Route
+                path="/traffic"
+                render={props => (
+                  <TrafficPage
+                    width={this.state.wrapperWidth}
+                    height={this.state.wrapperHeight}
+                  />
+                )}
+              />
               <Route path="/pod" render={props => <PodPage />} />
               <Route path="*" component={NotFound} />
             </Switch>

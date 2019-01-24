@@ -19,8 +19,8 @@ class TrafficPage extends Component {
             this.props.listOfServices,
             this.props.listOfPods
           )}
-          width={1000}
-          height={500}
+          width={this.props.width}
+          height={this.props.height}
         />
         {this.props.serviceInfoOpen && <InfoWindow />}
         {this.props.podInfoOpen && <InfoWindow />}
