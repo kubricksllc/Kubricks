@@ -16,7 +16,9 @@ class HexGraph extends Component {
       zoomTransform: null,
       slider: 7,
       x: 0,
-      y: 0
+      y: 0,
+      svgWidth: this.props.width,
+      svgHeight: this.props.height
     };
 
     this.zoom = d3
@@ -24,10 +26,6 @@ class HexGraph extends Component {
       .scaleExtent([-5, 5])
       .extent([[-100, -100], [props.width + 100, props.height + 100]])
       .on("zoom", this.zoomed.bind(this));
-  }
-
-  componentDidMount() {
-    d3.select(this.refs.svg).call(this.zoom);
   }
 
   componentDidUpdate() {
@@ -43,16 +41,16 @@ class HexGraph extends Component {
   render() {
     const { zoomTransform } = this.state,
       { width, height } = this.props;
-
+    console.log(this.state);
     return (
       <Box id="chart">
         <svg width={width} height={height} ref="svg">
           <NodePlot
             data={this.props.data}
             x={0}
-            y={-width / 4}
-            width={width / 2}
-            height={height}
+            y={-this.state.svgWidth / 3}
+            width={this.state.svgWidth /2}
+            height={this.state.svgHeight}
             zoomTransform={zoomTransform}
             zoomType="scale"
           />

@@ -49,8 +49,8 @@ class App extends Component {
     super();
     this.state = {
       servicesWindowOpen: true,
-      wrapperWidth: 0,
-      wrapperHeight: 0
+      wrapperWidth: window.screen.width * 0.8,
+      wrapperHeight: window.screen.height * 0.7
     };
     this.toggleServicesWindow = this.toggleServicesWindow.bind(this);
   }
