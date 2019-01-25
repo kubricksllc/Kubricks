@@ -37,7 +37,7 @@ class InfoPane extends Component {
     return (
       <div>
         <InfoTitle>Info Window</InfoTitle>
-        {/* <ReactJson {...rjvConfig}/> */}
+        <ReactJson {...rjvConfig}/>
       </div>
     )
   }
