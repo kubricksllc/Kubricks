@@ -1,7 +1,8 @@
 /node_modules
+/Kubricks-linux-x64
+/process
+/.vscode
 
 *.log
 
 package-lock.json
-
-

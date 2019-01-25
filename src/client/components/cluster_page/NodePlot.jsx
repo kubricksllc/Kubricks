@@ -50,7 +50,10 @@ class NodePlot extends Component {
     let i = 0;
     return (
       <g transform={this.transform} ref="scatterplot">
-        <MasterNode xScale={this.xScale(firstX - 250)} yScale={this.yScale(firstY)} />
+        <MasterNode
+          xScale={this.xScale(firstX - 245)}
+          yScale={this.yScale(firstY + 21)}
+        />
         {data.map(node => {
           return (
             <WorkerNode
