@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { connect } from "react-redux";
 
 const InfoTitle = styled.h1`
   text-decoration: underline;
@@ -10,11 +11,23 @@ class InfoPane extends Component {
     super();
   }
 
-  render() {
+  render() {    
     return (
-      <InfoTitle>Info Window</InfoTitle>
+      <div>
+        <InfoTitle>Info Window</InfoTitle>
+        
+      </div>
     )
   }
 }
 
-export default InfoPane;
+const mapStateToProps = state => {
+  return {
+      currentNode: state.nodesReducer.currentNode,
+      currentService: state.servicesReducer.currentService,
+      currentPod: state.podsReducer.currentPod
+  };
+}
+
+
+export default connect(mapStateToProps)(InfoPane);

@@ -12,8 +12,6 @@ const initalState = {
   nodeInfoOpen: false,
   podInfoOpen: false,
   serviceInfoOpen: false,
-  currentService: null,
-  currentPod: null,
   mouseInfo: { x: 0, y: 0 },
   viewMode: "Cluster"
 };

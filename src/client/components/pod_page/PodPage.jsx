@@ -38,7 +38,6 @@ class PodPage extends Component {
     }
 
     render() {
-        console.log(this.state.listOfContainers);
         const dataPoints = {
             nodes: this.state.listOfContainers,
             links: []
