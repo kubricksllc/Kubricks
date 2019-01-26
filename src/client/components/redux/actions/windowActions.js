@@ -17,29 +17,32 @@ export function toggleViewMode() {
 export function displayNodeInfo(nodeIndex, mouseInfo, contentInfo) {
   return {
     type: DISPLAY_NODE_INFO,
-    payload: { 
-      nodeIndex, 
-      mouseInfo, 
-      contentInfo }
+    payload: {
+      nodeIndex,
+      mouseInfo,
+      contentInfo
+    }
   };
 }
 
 export function hideNodeInfo(nodeIndex, mouseInfo) {
   return {
     type: HIDE_NODE_INFO,
-    payload: { 
-      nodeIndex, 
-      mouseInfo }
+    payload: {
+      nodeIndex,
+      mouseInfo
+    }
   };
 }
 
 export function displayPodInfo(podIndex, mouseInfo, contentInfo) {
   return {
     type: DISPLAY_POD_INFO,
-    payload: { 
-      podIndex, 
-      mouseInfo, 
-      contentInfo }
+    payload: {
+      podIndex,
+      mouseInfo,
+      contentInfo
+    }
   };
 }
 
@@ -56,10 +59,11 @@ export function hidePodInfo(podIndex, mouseInfo) {
 export function displayServiceInfo(serviceIndex, mouseInfo, contentInfo) {
   return {
     type: DISPLAY_SERVICE_INFO,
-    payload: { 
-      serviceIndex, 
-      mouseInfo, 
-      contentInfo }
+    payload: {
+      serviceIndex,
+      mouseInfo,
+      contentInfo
+    }
   };
 }
 

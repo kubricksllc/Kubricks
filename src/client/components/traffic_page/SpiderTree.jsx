@@ -166,26 +166,31 @@ class SpiderTree extends Component {
       });
     } else if (node.depth === 1) {
       //service
-      this.props.displayServiceInfo(node.data.data.otherAttr.serviceIdx, {
-        x: this.mouseX + 50,
-        y: this.mouseY - 100
-      });
+      if(node.data.data.name !== 'No_Service') {
+        this.props.displayServiceInfo(node.data.data.otherAttr.serviceIdx, {
+          x: this.mouseX + 50,
+          y: this.mouseY - 100
+        });
+      }
     }
   }
 
   handleNodeOut(node) {
-    if (node.depth === 2) {
-      //pod
-      this.props.hidePodInfo(node.data.data.otherAttr.podIdx, {
-        x: this.mouseX,
-        y: this.mouseY
-      });
-    } else if (node.depth === 1) {
-      //service
-      this.props.hideServiceInfo(node.data.data.otherAttr.serviceIdx, {
-        x: this.mouseX,
-        y: this.mouseY
-      });
+    
+      if (node.depth === 2) {
+        //pod
+        this.props.hidePodInfo(node.data.data.otherAttr.podIdx, {
+          x: this.mouseX,
+          y: this.mouseY
+        });
+      } else if (node.depth === 1) {
+        //service
+        if(node.data.data.name !== 'No_Service') {
+          this.props.hideServiceInfo(node.data.data.otherAttr.serviceIdx, {
+            x: this.mouseX,
+            y: this.mouseY
+          });
+        }
     }
   }
 
