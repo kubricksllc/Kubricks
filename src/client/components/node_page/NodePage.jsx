@@ -10,7 +10,10 @@ import DraggableComp from './DraggableComp.jsx';
 
 const NodePageContainer = styled.div`
   width: 97%;
-  height: 97%;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
 `;
 
 class NodePage extends Component {

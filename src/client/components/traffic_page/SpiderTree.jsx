@@ -1,10 +1,18 @@
 import React, { Component } from "react";
 import * as d3 from "d3";
 import styled from "styled-components";
+import {
+  displayPodInfo,
+  hidePodInfo,
+  displayServiceInfo,
+  hideServiceInfo
+} from "../redux/actions/windowActions.js";
+import { connect } from "react-redux";
+import { throws } from "assert";
 
 const Box = styled.div`
-  height: 1000x;
-  width: 1000px;
+  height: 100%;
+  width: 100%;
   border: 2px solid;
 `;
 
@@ -12,17 +20,22 @@ class SpiderTree extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      zoomTransform: null
+      zoomTransform: null,
+      loaded: false
     };
     this.zoom = d3.zoom().on("zoom", this.zoomed.bind(this));
+    this.handleNodeEnter = this.handleNodeEnter.bind(this);
+    this.handleNodeOut = this.handleNodeOut.bind(this);
+    this.handleMouseMove = this.handleMouseMove.bind(this);
   }
+
   componentDidMount() {
     d3.select(this.refs.svg).call(this.zoom);
     this.buildTree();
     this.drawTree();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     d3.select(this.refs.svg)
       .select("svg")
       .remove();
@@ -50,7 +63,7 @@ class SpiderTree extends Component {
   }
 
   drawTree() {
-    const radius = 466;
+    const radius = 1000;
 
     const tree = data =>
       d3
@@ -66,9 +79,9 @@ class SpiderTree extends Component {
     const link = svg
       .append("g")
       .attr("id", "link_layer")
-      .attr("stroke", "#555")
-      .attr("stroke-opacity", 0.4)
-      .attr("stroke-width", 1.5)
+      .attr("stroke", "black")
+      .attr("stroke-opacity", 0.9)
+      .attr("stroke-width", 3)
       .selectAll("path")
       .data(root.links())
       .enter()
@@ -82,7 +95,6 @@ class SpiderTree extends Component {
           .radius(d => d.y)
       )
       .attr("fill", d => {
-        // console.log(d);
         if (
           d.target.depth > 1 &&
           d.target.data.data.attributes.containerPort !==
@@ -96,6 +108,7 @@ class SpiderTree extends Component {
 
     d3.select("#link_layer").attr("transform", this.state.zoomTransform);
 
+    let nodeIndex = -1;
     const node = svg
       .append("g")
       .attr("id", "node_layer")
@@ -117,30 +130,92 @@ class SpiderTree extends Component {
     node
       .append("circle")
       .attr("fill", d => d.data.data.fill)
-      .attr("r", 10);
+      .attr("r", 40);
+
+    node
+      .selectAll("circle")
+      .on("mouseenter", this.handleNodeEnter)
+      .on("mouseout", this.handleNodeOut);
 
     node
       .append("text")
-      .attr("dy", "0.31em")
+      .attr("dy", "2em")
       .attr("x", d => (d.x < Math.PI === !d.children ? 6 : -6))
       .attr("text-anchor", d =>
         d.x < Math.PI === !d.children ? "start" : "end"
       )
       .attr("transform", d => (d.x >= Math.PI ? "rotate(180)" : null))
       .text(d => d.data.data.name)
+      .style("font-size", "2em")
       .clone(true)
       .lower()
       .attr("stroke", "white");
 
     d3.select("#node_layer").attr("transform", this.state.zoomTransform);
-
     d3.select("#link_layer").style("margin", "auto");
     d3.select("#node_layer").style("margin", "auto");
   }
 
+  handleNodeEnter(node) {
+    console.log(node);
+    if (node.depth === 2) {
+      //pod
+      this.props.displayPodInfo(node.data.data.otherAttr.podIdx, {
+        x: this.mouseX + 50,
+        y: this.mouseY - 100
+      });
+    } else if (node.depth === 1) {
+      //service
+      if(node.data.data.name !== 'No_Service') {
+        this.props.displayServiceInfo(node.data.data.otherAttr.serviceIdx, {
+          x: this.mouseX + 50,
+          y: this.mouseY - 100
+        });
+      }
+    }
+  }
+
+  handleNodeOut(node) {
+    
+      if (node.depth === 2) {
+        //pod
+        this.props.hidePodInfo(node.data.data.otherAttr.podIdx, {
+          x: this.mouseX,
+          y: this.mouseY
+        });
+      } else if (node.depth === 1) {
+        //service
+        if(node.data.data.name !== 'No_Service') {
+          this.props.hideServiceInfo(node.data.data.otherAttr.serviceIdx, {
+            x: this.mouseX,
+            y: this.mouseY
+          });
+        }
+    }
+  }
+
+  handleMouseMove(e) {
+    this.mouseX = e.clientX;
+    this.mouseY = e.clientY;
+  }
+
   render() {
-    return <Box id="chart" ref="svg" />;
+    return <Box id="chart" onMouseMove={this.handleMouseMove} ref="svg" />;
   }
 }
 
-export default SpiderTree;
+const mapDispatchToProps = dispatch => {
+  return {
+    displayPodInfo: (podIndex, mouseInfo) =>
+      dispatch(displayPodInfo(podIndex, mouseInfo)),
+    hidePodInfo: podIndex => dispatch(hidePodInfo(podIndex)),
+    displayServiceInfo: (serviceIndex, mouseInfo) =>
+      dispatch(displayServiceInfo(serviceIndex, mouseInfo)),
+    hideServiceInfo: serviceIndex => dispatch(hideServiceInfo(serviceIndex))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SpiderTree);

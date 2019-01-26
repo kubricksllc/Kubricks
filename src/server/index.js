@@ -1,14 +1,22 @@
+<<<<<<< HEAD
 const express = require('express');
 const path = require('path');
 const clusterQuery = require('./clusterQuery.js');
 const nodeQuery = require('./nodeQuery.js');
 const pvQuery = require('./pvQuery.js');
 
+=======
+const express = require("express");
+const clusterQuery = require("./clusterQuery.js");
+const nodeQuery = require("./nodeQuery.js");
+const path = require("path");
+const SSE = require("sse");
+>>>>>>> f504e28caaf5ddf91f389b7f12a61c39b0c7e15c
 const app = express();
 
-app.use(express.static(path.join(__dirname, '../../dist')));
-app.use('*', (req, res, next) => {
-  console.log('processing request', req.params);
+app.use(express.static(path.join(__dirname, "../../dist")));
+app.use("*", (req, res, next) => {
+  console.log("processing request", req.params);
   next();
 });
 

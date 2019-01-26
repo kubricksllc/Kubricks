@@ -8,7 +8,7 @@ import moment from "moment";
 
 const initalState = {
   listOfNodes: [],
-  currentNode: "gke-kubricks-default-pool-b055752b-7nsz" //TODO: SET TO NULL FOR PRODUCTION
+  currentNode: null
 };
 
 function getAge(datetime) {
@@ -36,8 +36,7 @@ export function nodesReducer(state = initalState, action) {
       };
     case HIDE_NODE_INFO:
       return {
-        ...state,
-        currentNode: state.listOfNodes[action.payload.nodeIndex]
+        ...state
       };
     default:
       return state;
