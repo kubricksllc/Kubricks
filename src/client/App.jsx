@@ -40,7 +40,6 @@ const InfoWrapper = styled.section`
   border-top: 1px solid #d9d9d9;
   background-color: #262626;
   color: white;
-  max-height: 50%;
 `;
 
 const history = createBrowserHistory();

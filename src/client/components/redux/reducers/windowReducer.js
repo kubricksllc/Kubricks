@@ -12,6 +12,7 @@ const initalState = {
   nodeInfoOpen: false,
   podInfoOpen: false,
   serviceInfoOpen: false,
+  typeContent: {},
   mouseInfo: { x: 0, y: 0 },
   viewMode: "Cluster"
 };
@@ -28,7 +29,8 @@ export function windowReducer(state = initalState, action) {
       return {
         ...state,
         nodeInfoOpen: true,
-        mouseInfo: action.payload.mouseInfo
+        mouseInfo: action.payload.mouseInfo,
+        typeContent: 'node'
       };
     case HIDE_NODE_INFO:
       return {
@@ -40,7 +42,8 @@ export function windowReducer(state = initalState, action) {
       return {
         ...state,
         podInfoOpen: true,
-        mouseInfo: action.payload.mouseInfo
+        mouseInfo: action.payload.mouseInfo,
+        typeContent: 'pod'
       };
     case HIDE_POD_INFO:
       return {
@@ -52,7 +55,8 @@ export function windowReducer(state = initalState, action) {
       return {
         ...state,
         serviceInfoOpen: true,
-        mouseInfo: action.payload.mouseInfo
+        mouseInfo: action.payload.mouseInfo,
+        typeContent: 'service'
       };
     case HIDE_SERVICE_INFO:
       return {

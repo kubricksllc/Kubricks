@@ -39,8 +39,7 @@ export function podsReducer(state = initialState, action) {
       };
     case HIDE_POD_INFO:
       return {
-        ...state,
-        currentPod: null
+        ...state
       };
     case UPDATE_CURRENT_POD: {
       return {

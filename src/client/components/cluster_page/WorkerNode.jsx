@@ -53,7 +53,7 @@ class WorkerNode extends Component {
 
   handleMouseLeave(e) {
     this.props.hideNodeInfo(this.props.nodeIndex);
-    this.setState({ transform: "scale(1)" });
+    this.setState({ transform: "scale(1)" }); //TODO: does not work yet
   }
 
   handleOnClick(e) {
