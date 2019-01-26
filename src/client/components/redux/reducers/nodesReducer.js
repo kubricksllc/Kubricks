@@ -8,7 +8,7 @@ import moment from "moment";
 
 const initalState = {
   listOfNodes: [],
-  currentNode: "gke-kubricks-default-pool-b055752b-wb5z"
+  currentNode: "gke-kubricks-default-pool-b055752b-7nsz" //TODO: SET TO NULL FOR PRODUCTION
 };
 
 function getAge(datetime) {

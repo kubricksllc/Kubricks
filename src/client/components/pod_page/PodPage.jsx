@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Graph } from 'react-d3-graph';
-import { ForceGraph2D } from 'react-force-graph';
 import { connect } from "react-redux";
 import { servicesAndPodsFetchData } from "../redux/actions/servicesAndPodsActions.js";
 

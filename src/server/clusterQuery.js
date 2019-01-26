@@ -1,45 +1,16 @@
-const kube = require('./kubeApi.js');
-
-function checkReadiness(conditionsArr) {
-  const ready = conditionsArr[conditionsArr.length - 1].status;
-  return ready ? 'Ready' : 'Not Ready';
-}
-
-function parseClusterQuery(nodesArr) {
-  const listOfNodes = [];
-  nodesArr.forEach(node => {
-    const temp = {};
-    temp.name = node.metadata.name;
-    temp.status = checkReadiness(node.status.conditions);
-    temp.createdAt = node.metadata.creationTimestamp;
-    temp.version = node.status.nodeInfo.kubeletVersion;
-    temp.internalIP = node.status.addresses[0].address;
-    temp.externalIP = node.status.addresses[1].address;
-    listOfNodes.push(temp);
-  });
-  return listOfNodes;
-}
+const Constructor = require('./Constructors.js');
+const api = require('./apiQuery');
 
 const clusterQuery = {
   getCluster: (req, res, next) => {
-    console.log('hitting the cluster query')
-    kube
-      .listNode(
-        true,
-        undefined,
-        undefined,
-        true,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
+    api
+      .getListOfNodes()
+      .then(result =>
+        result.body.items.reduce((body, node) => {
+          const temp = new Constructor.ClusterQueryBody(node);
+          return body.concat([temp]);
+        }, [])
       )
-      .then(result => {
-        console.log('query came back')
-        const body = parseClusterQuery(result.body.items);
-        return body;
-      })
       .then(body => {
         res.set({
           'Content-Type': 'application/json'
@@ -48,12 +19,13 @@ const clusterQuery = {
         next();
       })
       .catch(err => {
-        console.log('cluster query error', err);
+        console.log('error with query', err);
         res.status(400);
-        res.write(JSON.stringify(`failed to query Kubernetes API, possible reasons: 
+        res.write(
+          JSON.stringify(`failed to query Kubernetes API, possible reasons: 
           unauthorized access, please refresh your token with your cloud provider
-          if you are using minikube, please run minikube start`
-          ));
+          if you are using minikube, please run minikube start`)
+        );
         next();
       });
   }
