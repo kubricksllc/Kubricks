@@ -6,7 +6,6 @@ import HexTitle from "./layout/HexTitle.jsx";
 import ClusterPage from "./components/cluster_page/ClusterPage.jsx";
 import NodePage from "./components/node_page/NodePage.jsx";
 import TrafficPage from "./components/traffic_page/TrafficPage.jsx";
-import PodPage from "./components/pod_page/PodPage.jsx";
 import ServicesWindow from "./components/services_window/ServicesWindow.jsx";
 import InfoBanner from "./layout/InfoBanner.jsx";
 import InfoPane from "./components/info_window/InfoPane.jsx";
