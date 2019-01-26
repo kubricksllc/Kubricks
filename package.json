@@ -53,6 +53,7 @@
     "react-json-view": "^1.19.1",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
+    "react-scroll-box": "^0.3.5",
     "react-sidebar": "^3.0.2",
     "react-transition-group": "^2.5.2",
     "redux": "^4.0.1",

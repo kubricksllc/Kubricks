@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
 import ReactJson from 'react-json-view';
+import { ScrollBox, ScrollAxes } from 'react-scroll-box';
 
 const InfoTitle = styled.h1`
   text-decoration: underline;
@@ -12,10 +13,6 @@ class InfoPane extends Component {
     super();
   }
 
-  renderPropsObject() {
-
-  }
-
   render() { 
     let rjvConfig = {
       src: {},
@@ -23,8 +20,12 @@ class InfoPane extends Component {
       theme: "monokai",
       enableClipboard: false,
       displayObjectSize: false,
-      displayDataTypes: false
+      displayDataTypes: false,
     }; 
+
+    let scrollBoxConfig = {
+      
+    };
 
     if(this.props.currentNode) {
       rjvConfig.src = this.props.currentNode;
@@ -35,10 +36,12 @@ class InfoPane extends Component {
     }
 
     return (
-      <div>
-        <InfoTitle>Info Window</InfoTitle>
-        <ReactJson {...rjvConfig}/>
-      </div>
+      <ScrollBox>
+        <div>
+          <InfoTitle>Info Window</InfoTitle>
+          <ReactJson {...rjvConfig}/>
+        </div>
+      </ScrollBox>
     )
   }
 }
