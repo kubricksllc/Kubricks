@@ -2,9 +2,9 @@ import {
   NODES_FETCH_DATA_SUCCESS,
   DISPLAY_NODE_INFO,
   HIDE_NODE_INFO
-} from "../actions/actionTypes";
+} from '../actions/actionTypes';
 
-import moment from "moment";
+import moment from 'moment';
 
 const initalState = {
   listOfNodes: [],

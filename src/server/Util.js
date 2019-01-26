@@ -1,3 +1,9 @@
+// helper function sanitize
+
+// function sanitize(input) {
+//
+// }
+
 // helper functions in nodeQuery
 function parseContainers(containerArr) {
   return containerArr.reduce((listOfContainers, container) => {
@@ -19,23 +25,23 @@ function parseStatus(statusObj) {
       return acc;
     }, {}),
     podStartTime: statusObj.startTime,
-    containerStatus: statusObj.containerStatuses.reduce((acc, container) => {
-      const temp = {};
-      temp.containerName = container.name;
-      temp.ready = container.ready;
-      temp.restartCount = container.restartCount;
-      return acc.concat([temp]);
-    }, [])
+    containerStatus: statusObj.containerStatuses
+      ? statusObj.containerStatuses.reduce((acc, container) => {
+          const temp = {};
+          temp.containerName = container.name;
+          temp.ready = container.ready;
+          temp.restartCount = container.restartCount;
+          return acc.concat([temp]);
+        }, [])
+      : null
   };
 }
 
 //  helper functions in clusterQuery
 
 function checkReadiness(conditionsArr) {
-  const ready = conditionsArr[conditionsArr.length - 1].status;
+  const ready = conditionsArr[conditionsArr.length - 1].status || null;
   return ready ? 'Ready' : 'Not Ready';
 }
-
-// helper functions in podQuery
 
 module.exports = { parseContainers, parseStatus, checkReadiness };

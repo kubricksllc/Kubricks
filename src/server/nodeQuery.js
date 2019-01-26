@@ -3,6 +3,7 @@ const api = require('./apiQuery');
 
 const nodeQuery = {
   getServicesAndPods: (req, res, next) => {
+    console.log(res);
     Promise.all([api.getAllServices(), api.getAllPods()])
       .then(result => {
         const services = result[0].body.items.reduce(
@@ -17,7 +18,7 @@ const nodeQuery = {
         return { services, pods };
       })
       .then(result => {
-        // console.log(result);
+        // console.log(result, res);
         res.set({
           'Content-Type': 'application/json'
         });
@@ -37,6 +38,6 @@ const nodeQuery = {
   }
 };
 
-nodeQuery.getServicesAndPods();
+// nodeQuery.getServicesAndPods();
 
 module.exports = nodeQuery;
