@@ -41,7 +41,7 @@ class HexGraph extends Component {
   render() {
     const { zoomTransform } = this.state,
       { width, height, initialWrapper } = this.props;
-    console.log(initialWrapper);
+    // console.log(initialWrapper);
     return (
       <Box id="chart">
         <svg width={width} height={height} ref="svg">

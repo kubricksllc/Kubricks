@@ -58,7 +58,7 @@ class ClusterPage extends Component {
         x = ((radius * (i + 1)) / 2) * Math.cos(angle) + width / 2; // Calculate the x position of the element.
         y = ((radius * (i + 1)) / 2) * Math.sin(angle) + height / 2; // Calculate the y position of the element.
 
-        let node = segments[i][j];
+        let node = Object.assign({}, segments[i][j]);
         node.x = x;
         node.y = y;
         node.index = index;
@@ -95,7 +95,7 @@ class ClusterPage extends Component {
               initialWrapper={this.props.initialWrapper}
             />
           </div>
-          {this.props.nodeInfoOpen && <InfoWindow />}
+          {/* {this.props.nodeInfoOpen && <InfoWindow />} */}
         </div>
       );
     }

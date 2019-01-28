@@ -13,6 +13,7 @@ const HIDE_POD_INFO = "please dont change meeeeeee";
 const DISPLAY_SERVICE_INFO = "DISPLAY_SERVICE_INFO";
 const HIDE_SERVICE_INFO = "HIDE_SERVICE_INFO";
 const UPDATE_CURRENT_POD = "banana hammock";
+const PVS_FETCH = 'turn down for what';
 
 export {
   NODES_FETCH_DATA_SUCCESS,
@@ -29,5 +30,6 @@ export {
   UPDATE_CURRENT_SERVICE,
   UPDATE_CURRENT_POD,
   DISPLAY_POD_INFO,
-  HIDE_POD_INFO
+  HIDE_POD_INFO,
+  PVS_FETCH
 };

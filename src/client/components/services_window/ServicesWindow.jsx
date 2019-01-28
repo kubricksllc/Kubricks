@@ -32,7 +32,7 @@ class ServicesWindow extends Component {
 
   componentDidMount() {
     const url =
-      "http://localhost:8080/api/node/gke-kubricks-default-pool-b055752b-wb5z"; //TODO: delete after testing
+      "api/renderall";
     this.props.fetchData(url);
   }
 

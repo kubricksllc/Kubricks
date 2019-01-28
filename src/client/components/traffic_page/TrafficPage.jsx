@@ -22,8 +22,8 @@ class TrafficPage extends Component {
           width={this.props.width}
           height={this.props.height}
         />
-        {this.props.serviceInfoOpen && <InfoWindow />}
-        {this.props.podInfoOpen && <InfoWindow />}
+        {/* {this.props.serviceInfoOpen && <InfoWindow />} */}
+        {/* {this.props.podInfoOpen && <InfoWindow />} */}
       </div>
     );
   }

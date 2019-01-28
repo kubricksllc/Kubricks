@@ -78,7 +78,9 @@ export function servicesReducer(state = initialState, action) {
       };
 
     case HIDE_SERVICE_INFO:
-      return { ...state, currentService: null };
+      return { 
+        ...state
+      };
     default:
       return state;
   }

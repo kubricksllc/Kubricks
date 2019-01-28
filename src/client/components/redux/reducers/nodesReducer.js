@@ -2,13 +2,13 @@ import {
   NODES_FETCH_DATA_SUCCESS,
   DISPLAY_NODE_INFO,
   HIDE_NODE_INFO
-} from "../actions/actionTypes";
+} from '../actions/actionTypes';
 
-import moment from "moment";
+import moment from 'moment';
 
 const initalState = {
   listOfNodes: [],
-  currentNode: "gke-kubricks-default-pool-b055752b-wb5z"
+  currentNode: null
 };
 
 function getAge(datetime) {
@@ -36,8 +36,7 @@ export function nodesReducer(state = initalState, action) {
       };
     case HIDE_NODE_INFO:
       return {
-        ...state,
-        currentNode: state.listOfNodes[action.payload.nodeIndex]
+        ...state
       };
     default:
       return state;

@@ -1,13 +1,14 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import styled from "styled-components";
-import { updateCurrentPod } from "../redux/actions/podsActions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
+import { updateCurrentPod } from '../redux/actions/podsActions.js';
 import { withRouter } from 'react-router-dom';
+import { pvFetchData } from '../redux/actions/pvsActions.js';
+import DraggableComp from './DraggableComp.jsx';
 
 //TODO: fix the width and height after hex viewport is implemented!!!!!!!!!!!!!!!!
 
-const TreeContainer = styled.div`
-  name: treeWrapper;
+const NodePageContainer = styled.div`
   width: 97%;
   height: 70vh;
   display: flex;
@@ -21,15 +22,27 @@ class NodePage extends Component {
   }
 
   componentDidMount() {
-
+    const url = '/api/pv/';
+    this.props.fetchPVs(url);
   }
 
+  display(listOfPods) {
+    return listOfPods.reduce((display, pod) => {
+      console.log(pod);
+      if (pod.nodeName === this.props.currentNode) {
+        display.push(<DraggableComp name={pod.name} />);
+      }
+      console.log(display);
+      return display;
+    }, []);
+  }
 
-
+  // console.log(arr)
   render() {
     return (
-      <TreeContainer id="treeContainer">
-      </TreeContainer>
+      <NodePageContainer>
+        {this.display(this.props.listOfPods)}
+      </NodePageContainer>
     );
   }
 }
@@ -37,11 +50,9 @@ class NodePage extends Component {
 const mapStateToProps = state => {
   // console.log(state);
   return {
-    listOfServices: state.servicesReducer.listOfServices,
-    activeServices: state.servicesReducer.activeServices,
     listOfPods: state.podsReducer.listOfPods,
-    infoWindowOpen: state.windowReducer.infoWindowOpen,
-    currentNode: state.nodesReducer.currentNode
+    currentNode: state.nodesReducer.currentNode,
+    listOfPVs: state.pvsReducer.listOfPVs
   };
 };
 
@@ -49,11 +60,14 @@ const mapDispatchToProps = dispatch => {
   return {
     updateCurrentPod: podIdx => dispatch(updateCurrentPod(podIdx)),
     updateCurrentService: serviceIdx =>
-      dispatch(updateCurrentService(serviceIdx))
+      dispatch(updateCurrentService(serviceIdx)),
+    fetchPVs: url => dispatch(pvFetchData(url))
   };
 };
 
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NodePage));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(NodePage)
+);
