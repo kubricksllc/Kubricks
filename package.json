@@ -20,6 +20,7 @@
   "homepage": "https://github.com/th9061/Kubricks#readme",
   "devDependencies": {
     "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
@@ -42,7 +43,7 @@
     "prettier": "^1.16.1",
     "redux-devtools-extension": "^2.13.7",
     "vinyl-named": "^1.1.0",
-    "webpack": "^4.28.4",
+    "webpack": "4.28.4",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14",
     "webpack-stream": "^5.2.1"

@@ -3,6 +3,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
+  mode: 'development',
   entry: "./src/client/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -10,8 +11,12 @@ module.exports = {
     publicPath: "/"
   },
   optimization: {
+    splitChunks: {
+      chunks: 'all'
+    },
     minimize: false
   },
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -32,10 +37,6 @@ module.exports = {
         use: ["file-loader"]
       }
     ]
-  },
-  devServer: {
-    historyApiFallback: true,
-    port: 3000
   },
   plugins: [
     new HtmlWebPackPlugin({

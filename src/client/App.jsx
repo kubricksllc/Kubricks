@@ -1,16 +1,18 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import styled from "styled-components";
 import { HashRouter as Router, Route, Switch, Link } from "react-router-dom";
 import createBrowserHistory from "history/createBrowserHistory";
-import HexTitle from "./layout/HexTitle.jsx";
 import ClusterPage from "./components/cluster_page/ClusterPage.jsx";
 import NodePage from "./components/node_page/NodePage.jsx";
-import TrafficPage from "./components/traffic_page/TrafficPage.jsx";
 import ServicesWindow from "./components/services_window/ServicesWindow.jsx";
 import InfoBanner from "./layout/InfoBanner.jsx";
 import InfoPane from "./components/info_window/InfoPane.jsx";
-import ReactDOM from "react-dom";
-import Hex from "./img/Node.svg";
+import asyncComponent from './AsyncComponent';
+
+const AsyncTrafficPage = asyncComponent(() => {
+  return import('./components/traffic_page/TrafficPage.jsx');
+});
 
 const PageContainer = styled.div`
   height: 100%;
@@ -113,7 +115,7 @@ class App extends Component {
               <Route
                 path="/traffic"
                 render={props => (
-                  <TrafficPage
+                  <AsyncTrafficPage
                     width={this.state.wrapper.width}
                     height={this.state.wrapper.height}
                   />
