@@ -95,7 +95,7 @@ class ClusterPage extends Component {
               initialWrapper={this.props.initialWrapper}
             />
           </div>
-          {this.props.nodeInfoOpen && <InfoWindow />}
+          {/* {this.props.nodeInfoOpen && <InfoWindow />} */}
         </div>
       );
     }

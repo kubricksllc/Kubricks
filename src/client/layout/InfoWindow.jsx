@@ -86,7 +86,8 @@ const mapStateToProps = state => {
     currentNode: state.nodesReducer.currentNode,
     currentPod: state.podsReducer.currentPod,
     currentService: state.servicesReducer.currentService,
-    mouseInfo: state.windowReducer.mouseInfo
+    mouseInfo: state.windowReducer.mouseInfo,
+    typeContent: state.windowReducer.typeContent
   };
 };
 
