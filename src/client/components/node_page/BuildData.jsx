@@ -1,5 +1,5 @@
-import { checkPodStatus } from '../traffic_page/Util';
-import Builder from './Constructors';
+import { checkPodStatus } from '../traffic_page/Util.jsx';
+import Builder from './Constructors.jsx';
 
 function buildPod(pod, listOfPVs, podIdx) {
   const podNode = new Builder.Pod(
