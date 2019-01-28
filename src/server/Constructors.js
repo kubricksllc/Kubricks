@@ -1,4 +1,4 @@
-const { checkReadiness, parseContainers, parseStatus } = require('./Util.js');
+const { checkReadiness, parseContainers, parseStatus, parsePV } = require('./Util.js');
 
 function ClusterQueryBody({ metadata, status }) {
   this.name = metadata.name;
@@ -25,7 +25,7 @@ function PodQueryBody({ metadata, spec, status }) {
     }, {});
   })();
   this.containers = parseContainers(spec.containers);
-  this.listOfVolumes = spec.volumes.map(volume => volume.name);
+  this.persistentVolume = parsePV(spec.volumes);
   this.createdAt = metadata.creationTimestamp;
   this.nodeName = spec.nodeName;
   this.status = parseStatus(status);

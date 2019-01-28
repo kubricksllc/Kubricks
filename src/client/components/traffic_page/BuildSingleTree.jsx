@@ -1,7 +1,7 @@
-import Builder from "./Constructors.jsx";
-import { checkPodStatus, checkPortMapping } from "./Util.jsx";
+import Builder from './Constructors.jsx';
+import { checkPodStatus, checkPortMapping } from './Util.jsx';
 
-const podIdxUsed = [];
+const podIdxUsed = {};
 
 export function buildSingleTree(service, listOfPodsInStore, serviceIdx) {
   const serviceNode = new Builder.ServiceNode(
@@ -9,7 +9,7 @@ export function buildSingleTree(service, listOfPodsInStore, serviceIdx) {
     service.type,
     service.selector,
     service.ports,
-    "blue",
+    'blue',
     serviceIdx
   );
   let key = null;
@@ -38,11 +38,11 @@ export function buildSingleTree(service, listOfPodsInStore, serviceIdx) {
 export function buildNoServiceTree(listOfPodsInStore) {
   // console.log(service);
   const serviceNode = new Builder.ServiceNode(
-    "No_Service",
+    'No_Service',
     null,
     null,
     null,
-    "red"
+    'red'
   );
   listOfPodsInStore.forEach((pod, idx) => {
     if (!podIdxUsed[idx]) {
@@ -51,7 +51,7 @@ export function buildNoServiceTree(listOfPodsInStore) {
         pod.labels,
         pod.containers[0].mappedContainerPort,
         idx,
-        "red"
+        'red'
       );
       serviceNode.children.push(podNode);
     }

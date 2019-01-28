@@ -4,16 +4,12 @@ import styled from 'styled-components';
 import { updateCurrentPod } from '../redux/actions/podsActions.js';
 import { withRouter } from 'react-router-dom';
 import { pvFetchData } from '../redux/actions/pvsActions.js';
-import DraggableComp from './DraggableComp.jsx';
-
-//TODO: fix the width and height after hex viewport is implemented!!!!!!!!!!!!!!!!
+import buildData from './BuildData.jsx';
+import Tree from 'react-d3-tree';
 
 const NodePageContainer = styled.div`
   width: 97%;
-  height: 70vh;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid;
+  height: 97%;
 `;
 
 class NodePage extends Component {
@@ -26,22 +22,21 @@ class NodePage extends Component {
     this.props.fetchPVs(url);
   }
 
-  display(listOfPods) {
-    return listOfPods.reduce((display, pod) => {
-      console.log(pod);
-      if (pod.nodeName === this.props.currentNode) {
-        display.push(<DraggableComp name={pod.name} />);
-      }
-      console.log(display);
-      return display;
-    }, []);
-  }
-
   // console.log(arr)
   render() {
     return (
       <NodePageContainer>
-        {this.display(this.props.listOfPods)}
+        <Tree
+          data={buildData(
+            this.props.listOfPods,
+            this.props.listOfPVs,
+            this.props.activeServices,
+            this.props.listOfServices,
+            this.props.currentNode.name
+          )}
+          separation={{ siblings: 1, nonSiblings: 5 }}
+          translate={{x: 50, y: 50}}
+        />
       </NodePageContainer>
     );
   }
@@ -52,7 +47,9 @@ const mapStateToProps = state => {
   return {
     listOfPods: state.podsReducer.listOfPods,
     currentNode: state.nodesReducer.currentNode,
-    listOfPVs: state.pvsReducer.listOfPVs
+    listOfPVs: state.pvsReducer.listOfPVs,
+    activeServices: state.servicesReducer.activeServices,
+    listOfServices: state.servicesReducer.listOfServices
   };
 };
 

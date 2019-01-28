@@ -1,4 +1,4 @@
-const kube = require('./kubeApi.js');
+const { kube } = require('./kubeApi.js');
 
 const api = {
   getListOfNodes: () =>
@@ -20,7 +20,7 @@ const api = {
       'metadata.namespace!=kube-system', // field selector does not support regex
       true,
       undefined,
-      50,
+      500,
       'true',
       undefined,
       undefined,
@@ -33,7 +33,7 @@ const api = {
       'metadata.namespace!=kube-system', // field selector does not support regex
       true,
       undefined,
-      50,
+      500,
       'true',
       undefined,
       undefined,
@@ -41,21 +41,8 @@ const api = {
     ),
 
   getPV: () =>
-    kube.listPersistentVolume('true', null, null, true, null, 50, null),
+    kube.listPersistentVolume('true', null, null, true, null, 50, null)
 
-  getOneNode: (namespace, nodeName) =>
-    kube.listNamespacedPod(
-      namespace,
-      'true',
-      undefined,
-      `metadata.nodeName=${nodeName}`,
-      true,
-      undefined,
-      50,
-      undefined,
-      undefined,
-      undefined
-    )
 };
 
 module.exports = api;
