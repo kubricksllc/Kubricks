@@ -5,7 +5,7 @@ const path = require("path");
 const SSE = require("sse");
 const app = express();
 
-app.use(express.static(path.join(__dirname, "../../dist")));
+app.use(express.static(path.join(__dirname, "../../main")));
 app.use("*", (req, res, next) => {
   console.log("processing request", req.params);
   next();
@@ -20,7 +20,7 @@ app.get("/api/node/*", nodeQuery.getNode, (req, res) => {
 });
 
 app.get("/*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../../dist/index.html"));
+  res.sendFile(path.resolve(__dirname, "../../main/index.html"));
 });
 
 app.listen(process.env.PORT || 8080, err => {
