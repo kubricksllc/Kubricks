@@ -42,6 +42,6 @@ module.exports = {
       template: "./src/index.html",
       filename: "./index.html"
     }),
-    new CleanWebpackPlugin(["main", "build"])
+    new CleanWebpackPlugin(["main"])
   ]
 };
