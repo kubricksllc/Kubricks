@@ -2,14 +2,16 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { toggleServiceType } from "../redux/actions/servicesAndPodsActions.js";
+import ServiceItem from "./ServiceItem.jsx";
 
 const ServiceTypeBoxActive = styled.div`
   border: 1px solid;
   border-radius: 5px;
   min-width: 25vh;
   cursor: pointer;
-  background-color: #326DE6;
+  background-color: #326de6;
   color: white;
+  margin-top: 1vh;
 `;
 
 const ServiceTypeBoxInActive = styled.div`
@@ -17,7 +19,10 @@ const ServiceTypeBoxInActive = styled.div`
   border-radius: 5px;
   min-width: 25vh;
   cursor: pointer;
+  margin-top: 1vh;
 `;
+
+const ServiceList = styled.div``;
 
 class ServiceType extends Component {
   constructor(props) {
@@ -28,12 +33,30 @@ class ServiceType extends Component {
     this.props.toggleServiceType(this.props.type);
   }
 
+  renderServiceList() {
+    return this.props.listOfServices.map(service => {
+      if (this.props.type === service.type)
+        return (
+          <ServiceItem
+            key={service.name}
+            service={service}
+            listOfServices={this.props.listOfServices}
+            activeServices={this.props.activeServices}
+            activeServiceTypes={this.props.activeServiceTypes}
+          />
+        );
+    });
+  }
+
   render() {
     if (this.props.activeServiceTypes.includes(this.props.type)) {
       return (
-        <ServiceTypeBoxActive onClick={this.handleOnClick.bind(this)}>
-          {this.props.type}
-        </ServiceTypeBoxActive>
+        <ServiceList>
+          <ServiceTypeBoxActive onClick={this.handleOnClick.bind(this)}>
+            {this.props.type}
+          </ServiceTypeBoxActive>
+          {this.renderServiceList()}
+        </ServiceList>
       );
     } else
       return (

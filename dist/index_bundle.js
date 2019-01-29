@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 174);
+/******/ 	return __webpack_require__(__webpack_require__.s = 173);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -92,7 +92,7 @@
 
 
 if (true) {
-  module.exports = __webpack_require__(154);
+  module.exports = __webpack_require__(153);
 } else {}
 
 
@@ -1934,7 +1934,7 @@ if (true) {
             try {
                 oldLocale = globalLocale._abbr;
                 var aliasedRequire = require;
-                __webpack_require__(173)("./" + name);
+                __webpack_require__(172)("./" + name);
                 getSetGlobalLocale(oldLocale);
             } catch (e) {}
         }
@@ -4611,7 +4611,7 @@ if (true) {
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(172)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(171)(module)))
 
 /***/ }),
 /* 2 */
@@ -4627,7 +4627,7 @@ if (true) {
 if (false) { var throwOnDirectAccess, isValidElement, REACT_ELEMENT_TYPE; } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(161)();
+  module.exports = __webpack_require__(160)();
 }
 
 
@@ -4661,7 +4661,7 @@ if (false) { var throwOnDirectAccess, isValidElement, REACT_ELEMENT_TYPE; } else
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(8);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _emotion_is_prop_valid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(153);
+/* harmony import */ var _emotion_is_prop_valid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(152);
 
 
 
@@ -7912,7 +7912,7 @@ if (true) {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(155);
+  module.exports = __webpack_require__(154);
 } else {}
 
 
@@ -7924,7 +7924,7 @@ if (true) {
 
 
 if (true) {
-  module.exports = __webpack_require__(163);
+  module.exports = __webpack_require__(162);
 } else {}
 
 
@@ -8195,7 +8195,7 @@ if (typeof self !== 'undefined') {
 var result = Object(_ponyfill_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(root);
 /* harmony default export */ __webpack_exports__["a"] = (result);
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(11), __webpack_require__(164)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(11), __webpack_require__(163)(module)))
 
 /***/ }),
 /* 16 */
@@ -20468,15 +20468,15 @@ var _invariant = __webpack_require__(4);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _LocationUtils = __webpack_require__(158);
+var _LocationUtils = __webpack_require__(157);
 
 var _PathUtils = __webpack_require__(19);
 
-var _createTransitionManager = __webpack_require__(159);
+var _createTransitionManager = __webpack_require__(158);
 
 var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
-var _DOMUtils = __webpack_require__(160);
+var _DOMUtils = __webpack_require__(159);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20974,7 +20974,7 @@ module.exports = hoistNonReactStatics;
 /* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isarray = __webpack_require__(165)
+var isarray = __webpack_require__(164)
 
 /**
  * Expose `pathToRegexp`.
@@ -21410,75 +21410,6 @@ function pathToRegexp (path, keys, options) {
 
 /***/ }),
 /* 152 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-/**
- * Similar to invariant but only logs a warning if the condition is not met.
- * This can be used to log issues in development environments in critical
- * paths. Removing the logging code for production environments will keep the
- * same logic and follow the same code paths.
- */
-
-var __DEV__ = "production" !== 'production';
-
-var warning = function() {};
-
-if (__DEV__) {
-  var printWarning = function printWarning(format, args) {
-    var len = arguments.length;
-    args = new Array(len > 2 ? len - 2 : 0);
-    for (var key = 2; key < len; key++) {
-      args[key - 2] = arguments[key];
-    }
-    var argIndex = 0;
-    var message = 'Warning: ' +
-      format.replace(/%s/g, function() {
-        return args[argIndex++];
-      });
-    if (typeof console !== 'undefined') {
-      console.error(message);
-    }
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  }
-
-  warning = function(condition, format, args) {
-    var len = arguments.length;
-    args = new Array(len > 2 ? len - 2 : 0);
-    for (var key = 2; key < len; key++) {
-      args[key - 2] = arguments[key];
-    }
-    if (format === undefined) {
-      throw new Error(
-          '`warning(condition, format, ...args)` requires a warning ' +
-          'message argument'
-      );
-    }
-    if (!condition) {
-      printWarning.apply(null, [format].concat(args));
-    }
-  };
-}
-
-module.exports = warning;
-
-
-/***/ }),
-/* 153 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21513,7 +21444,7 @@ var index = memoize_browser_esm(function (prop) {
 
 
 /***/ }),
-/* 154 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21544,7 +21475,7 @@ unstable_ConcurrentMode:x,unstable_Profiler:u,__SECRET_INTERNALS_DO_NOT_USE_OR_Y
 
 
 /***/ }),
-/* 155 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21560,7 +21491,7 @@ unstable_ConcurrentMode:x,unstable_Profiler:u,__SECRET_INTERNALS_DO_NOT_USE_OR_Y
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(0),n=__webpack_require__(18),ba=__webpack_require__(156);function ca(a,b,c,d,e,f,g,h){if(!a){a=void 0;if(void 0===b)a=Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings.");else{var k=[c,d,e,f,g,h],l=0;a=Error(b.replace(/%s/g,function(){return k[l++]}));a.name="Invariant Violation"}a.framesToPop=1;throw a;}}
+var aa=__webpack_require__(0),n=__webpack_require__(18),ba=__webpack_require__(155);function ca(a,b,c,d,e,f,g,h){if(!a){a=void 0;if(void 0===b)a=Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings.");else{var k=[c,d,e,f,g,h],l=0;a=Error(b.replace(/%s/g,function(){return k[l++]}));a.name="Invariant Violation"}a.framesToPop=1;throw a;}}
 function t(a){for(var b=arguments.length-1,c="https://reactjs.org/docs/error-decoder.html?invariant="+a,d=0;d<b;d++)c+="&args[]="+encodeURIComponent(arguments[d+1]);ca(!1,"Minified React error #"+a+"; visit %s for the full message or use the non-minified dev environment for full errors and additional helpful warnings. ",c)}aa?void 0:t("227");function da(a,b,c,d,e,f,g,h,k){var l=Array.prototype.slice.call(arguments,3);try{b.apply(c,l)}catch(m){this.onError(m)}}
 var ea=!1,fa=null,ha=!1,ia=null,ja={onError:function(a){ea=!0;fa=a}};function ka(a,b,c,d,e,f,g,h,k){ea=!1;fa=null;da.apply(ja,arguments)}function la(a,b,c,d,e,f,g,h,k){ka.apply(this,arguments);if(ea){if(ea){var l=fa;ea=!1;fa=null}else t("198"),l=void 0;ha||(ha=!0,ia=l)}}var ma=null,na={};
 function oa(){if(ma)for(var a in na){var b=na[a],c=ma.indexOf(a);-1<c?void 0:t("96",a);if(!pa[c]){b.extractEvents?void 0:t("97",a);pa[c]=b;c=b.eventTypes;for(var d in c){var e=void 0;var f=c[d],g=b,h=d;qa.hasOwnProperty(h)?t("99",h):void 0;qa[h]=f;var k=f.phasedRegistrationNames;if(k){for(e in k)k.hasOwnProperty(e)&&ra(k[e],g,h);e=!0}else f.registrationName?(ra(f.registrationName,g,h),e=!0):e=!1;e?void 0:t("98",d,a)}}}}
@@ -21800,19 +21731,19 @@ var li={default:ki},mi=li&&ki||li;module.exports=mi.default||mi;
 
 
 /***/ }),
-/* 156 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 if (true) {
-  module.exports = __webpack_require__(157);
+  module.exports = __webpack_require__(156);
 } else {}
 
 
 /***/ }),
-/* 157 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21841,7 +21772,7 @@ exports.unstable_shouldYield=function(){return!f&&(null!==c&&c.expirationTime<l|
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(11)))
 
 /***/ }),
-/* 158 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21925,7 +21856,7 @@ var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a
 };
 
 /***/ }),
-/* 159 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22016,7 +21947,7 @@ var createTransitionManager = function createTransitionManager() {
 exports.default = createTransitionManager;
 
 /***/ }),
-/* 160 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22077,7 +22008,7 @@ var isExtraneousPopstateEvent = exports.isExtraneousPopstateEvent = function isE
 };
 
 /***/ }),
-/* 161 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22090,7 +22021,7 @@ var isExtraneousPopstateEvent = exports.isExtraneousPopstateEvent = function isE
 
 
 
-var ReactPropTypesSecret = __webpack_require__(162);
+var ReactPropTypesSecret = __webpack_require__(161);
 
 function emptyFunction() {}
 
@@ -22143,7 +22074,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 162 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22162,7 +22093,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 163 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22184,7 +22115,7 @@ exports.isSuspense=function(a){return t(a)===p};
 
 
 /***/ }),
-/* 164 */
+/* 163 */
 /***/ (function(module, exports) {
 
 module.exports = function(originalModule) {
@@ -22214,7 +22145,7 @@ module.exports = function(originalModule) {
 
 
 /***/ }),
-/* 165 */
+/* 164 */
 /***/ (function(module, exports) {
 
 module.exports = Array.isArray || function (arr) {
@@ -22223,7 +22154,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 166 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22295,7 +22226,7 @@ function isBuffer(b) {
 // ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-var util = __webpack_require__(167);
+var util = __webpack_require__(166);
 var hasOwn = Object.prototype.hasOwnProperty;
 var pSlice = Array.prototype.slice;
 var functionsHaveNames = (function () {
@@ -22721,10 +22652,10 @@ var objectKeys = Object.keys || function (obj) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(11)))
 
 /***/ }),
-/* 167 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
+/* WEBPACK VAR INJECTION */(function(global, process) {// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -22744,16 +22675,6 @@ var objectKeys = Object.keys || function (obj) {
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-var getOwnPropertyDescriptors = Object.getOwnPropertyDescriptors ||
-  function getOwnPropertyDescriptors(obj) {
-    var keys = Object.keys(obj);
-    var descriptors = {};
-    for (var i = 0; i < keys.length; i++) {
-      descriptors[keys[i]] = Object.getOwnPropertyDescriptor(obj, keys[i]);
-    }
-    return descriptors;
-  };
 
 var formatRegExp = /%[sdj%]/g;
 exports.format = function(f) {
@@ -22799,15 +22720,15 @@ exports.format = function(f) {
 // Returns a modified function which warns once by default.
 // If --no-deprecation is set, then it is a no-op.
 exports.deprecate = function(fn, msg) {
-  if (typeof process !== 'undefined' && process.noDeprecation === true) {
-    return fn;
-  }
-
   // Allow for deprecating things in the process of starting up.
-  if (typeof process === 'undefined') {
+  if (isUndefined(global.process)) {
     return function() {
       return exports.deprecate(fn, msg).apply(this, arguments);
     };
+  }
+
+  if (process.noDeprecation === true) {
+    return fn;
   }
 
   var warned = false;
@@ -23259,7 +23180,7 @@ function isPrimitive(arg) {
 }
 exports.isPrimitive = isPrimitive;
 
-exports.isBuffer = __webpack_require__(168);
+exports.isBuffer = __webpack_require__(167);
 
 function objectToString(o) {
   return Object.prototype.toString.call(o);
@@ -23303,7 +23224,7 @@ exports.log = function() {
  *     prototype.
  * @param {function} superCtor Constructor function to inherit prototype from.
  */
-exports.inherits = __webpack_require__(169);
+exports.inherits = __webpack_require__(168);
 
 exports._extend = function(origin, add) {
   // Don't do anything if add isn't an object
@@ -23321,117 +23242,10 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-var kCustomPromisifiedSymbol = typeof Symbol !== 'undefined' ? Symbol('util.promisify.custom') : undefined;
-
-exports.promisify = function promisify(original) {
-  if (typeof original !== 'function')
-    throw new TypeError('The "original" argument must be of type Function');
-
-  if (kCustomPromisifiedSymbol && original[kCustomPromisifiedSymbol]) {
-    var fn = original[kCustomPromisifiedSymbol];
-    if (typeof fn !== 'function') {
-      throw new TypeError('The "util.promisify.custom" argument must be of type Function');
-    }
-    Object.defineProperty(fn, kCustomPromisifiedSymbol, {
-      value: fn, enumerable: false, writable: false, configurable: true
-    });
-    return fn;
-  }
-
-  function fn() {
-    var promiseResolve, promiseReject;
-    var promise = new Promise(function (resolve, reject) {
-      promiseResolve = resolve;
-      promiseReject = reject;
-    });
-
-    var args = [];
-    for (var i = 0; i < arguments.length; i++) {
-      args.push(arguments[i]);
-    }
-    args.push(function (err, value) {
-      if (err) {
-        promiseReject(err);
-      } else {
-        promiseResolve(value);
-      }
-    });
-
-    try {
-      original.apply(this, args);
-    } catch (err) {
-      promiseReject(err);
-    }
-
-    return promise;
-  }
-
-  Object.setPrototypeOf(fn, Object.getPrototypeOf(original));
-
-  if (kCustomPromisifiedSymbol) Object.defineProperty(fn, kCustomPromisifiedSymbol, {
-    value: fn, enumerable: false, writable: false, configurable: true
-  });
-  return Object.defineProperties(
-    fn,
-    getOwnPropertyDescriptors(original)
-  );
-}
-
-exports.promisify.custom = kCustomPromisifiedSymbol
-
-function callbackifyOnRejected(reason, cb) {
-  // `!reason` guard inspired by bluebird (Ref: https://goo.gl/t5IS6M).
-  // Because `null` is a special error value in callbacks which means "no error
-  // occurred", we error-wrap so the callback consumer can distinguish between
-  // "the promise rejected with null" or "the promise fulfilled with undefined".
-  if (!reason) {
-    var newReason = new Error('Promise was rejected with a falsy value');
-    newReason.reason = reason;
-    reason = newReason;
-  }
-  return cb(reason);
-}
-
-function callbackify(original) {
-  if (typeof original !== 'function') {
-    throw new TypeError('The "original" argument must be of type Function');
-  }
-
-  // We DO NOT return the promise as it gives the user a false sense that
-  // the promise is actually somehow related to the callback's execution
-  // and that the callback throwing will reject the promise.
-  function callbackified() {
-    var args = [];
-    for (var i = 0; i < arguments.length; i++) {
-      args.push(arguments[i]);
-    }
-
-    var maybeCb = args.pop();
-    if (typeof maybeCb !== 'function') {
-      throw new TypeError('The last argument must be of type Function');
-    }
-    var self = this;
-    var cb = function() {
-      return maybeCb.apply(self, arguments);
-    };
-    // In true node style we process the callback on `nextTick` with all the
-    // implications (stack, `uncaughtException`, `async_hooks`)
-    original.apply(this, args)
-      .then(function(ret) { process.nextTick(cb, null, ret) },
-            function(rej) { process.nextTick(callbackifyOnRejected, rej, cb) });
-  }
-
-  Object.setPrototypeOf(callbackified, Object.getPrototypeOf(original));
-  Object.defineProperties(callbackified,
-                          getOwnPropertyDescriptors(original));
-  return callbackified;
-}
-exports.callbackify = callbackify;
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(20)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(11), __webpack_require__(20)))
 
 /***/ }),
-/* 168 */
+/* 167 */
 /***/ (function(module, exports) {
 
 module.exports = function isBuffer(arg) {
@@ -23442,7 +23256,7 @@ module.exports = function isBuffer(arg) {
 }
 
 /***/ }),
-/* 169 */
+/* 168 */
 /***/ (function(module, exports) {
 
 if (typeof Object.create === 'function') {
@@ -23471,13 +23285,13 @@ if (typeof Object.create === 'function') {
 
 
 /***/ }),
-/* 170 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "6c2493ea3928328f251409f5c12b0e11.svg";
 
 /***/ }),
-/* 171 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23504,7 +23318,7 @@ exports.devToolsEnhancer = (
 
 
 /***/ }),
-/* 172 */
+/* 171 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -23532,7 +23346,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 173 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -23805,10 +23619,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 173;
+webpackContext.id = 172;
 
 /***/ }),
-/* 174 */
+/* 173 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23825,15 +23639,15 @@ var react_dom_default = /*#__PURE__*/__webpack_require__.n(react_dom);
 // EXTERNAL MODULE: ./node_modules/styled-components/dist/styled-components.browser.esm.js
 var styled_components_browser_esm = __webpack_require__(3);
 
-// EXTERNAL MODULE: ./node_modules/react-router-dom/node_modules/warning/warning.js
-var warning = __webpack_require__(152);
+// EXTERNAL MODULE: ./node_modules/warning/warning.js
+var warning = __webpack_require__(6);
 var warning_default = /*#__PURE__*/__webpack_require__.n(warning);
 
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
 var prop_types = __webpack_require__(2);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 
-// EXTERNAL MODULE: ./node_modules/warning/browser.js
+// EXTERNAL MODULE: ./node_modules/history/node_modules/warning/browser.js
 var browser = __webpack_require__(5);
 var browser_default = /*#__PURE__*/__webpack_require__.n(browser);
 
@@ -24870,10 +24684,6 @@ var createMemoryHistory_createMemoryHistory = function createMemoryHistory() {
 
 
 
-// EXTERNAL MODULE: ./node_modules/react-router/node_modules/warning/warning.js
-var warning_warning = __webpack_require__(6);
-var warning_warning_default = /*#__PURE__*/__webpack_require__.n(warning_warning);
-
 // CONCATENATED MODULE: ./node_modules/react-router/es/Router.js
 var Router_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -24951,7 +24761,7 @@ var Router_Router = function (_React$Component) {
   };
 
   Router.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
-    warning_warning_default()(this.props.history === nextProps.history, "You cannot change <Router history>");
+    warning_default()(this.props.history === nextProps.history, "You cannot change <Router history>");
   };
 
   Router.prototype.componentWillUnmount = function componentWillUnmount() {
@@ -25145,9 +24955,9 @@ var Switch_Switch = function (_React$Component) {
   };
 
   Switch.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
-    warning_warning_default()(!(nextProps.location && !this.props.location), '<Switch> elements should not change from uncontrolled to controlled (or vice versa). You initially used no "location" prop and then provided one on a subsequent render.');
+    warning_default()(!(nextProps.location && !this.props.location), '<Switch> elements should not change from uncontrolled to controlled (or vice versa). You initially used no "location" prop and then provided one on a subsequent render.');
 
-    warning_warning_default()(!(!nextProps.location && this.props.location), '<Switch> elements should not change from controlled to uncontrolled (or vice versa). You provided a "location" prop initially but omitted it on a subsequent render.');
+    warning_default()(!(!nextProps.location && this.props.location), '<Switch> elements should not change from controlled to uncontrolled (or vice versa). You provided a "location" prop initially but omitted it on a subsequent render.');
   };
 
   Switch.prototype.render = function render() {
@@ -25268,17 +25078,17 @@ var Route_Route = function (_React$Component) {
   };
 
   Route.prototype.componentWillMount = function componentWillMount() {
-    warning_warning_default()(!(this.props.component && this.props.render), "You should not use <Route component> and <Route render> in the same route; <Route render> will be ignored");
+    warning_default()(!(this.props.component && this.props.render), "You should not use <Route component> and <Route render> in the same route; <Route render> will be ignored");
 
-    warning_warning_default()(!(this.props.component && this.props.children && !Route_isEmptyChildren(this.props.children)), "You should not use <Route component> and <Route children> in the same route; <Route children> will be ignored");
+    warning_default()(!(this.props.component && this.props.children && !Route_isEmptyChildren(this.props.children)), "You should not use <Route component> and <Route children> in the same route; <Route children> will be ignored");
 
-    warning_warning_default()(!(this.props.render && this.props.children && !Route_isEmptyChildren(this.props.children)), "You should not use <Route render> and <Route children> in the same route; <Route children> will be ignored");
+    warning_default()(!(this.props.render && this.props.children && !Route_isEmptyChildren(this.props.children)), "You should not use <Route render> and <Route children> in the same route; <Route children> will be ignored");
   };
 
   Route.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps, nextContext) {
-    warning_warning_default()(!(nextProps.location && !this.props.location), '<Route> elements should not change from uncontrolled to controlled (or vice versa). You initially used no "location" prop and then provided one on a subsequent render.');
+    warning_default()(!(nextProps.location && !this.props.location), '<Route> elements should not change from uncontrolled to controlled (or vice versa). You initially used no "location" prop and then provided one on a subsequent render.');
 
-    warning_warning_default()(!(!nextProps.location && this.props.location), '<Route> elements should not change from controlled to uncontrolled (or vice versa). You provided a "location" prop initially but omitted it on a subsequent render.');
+    warning_default()(!(!nextProps.location && this.props.location), '<Route> elements should not change from controlled to uncontrolled (or vice versa). You provided a "location" prop initially but omitted it on a subsequent render.');
 
     this.setState({
       match: this.computeMatch(nextProps, nextContext.router)
@@ -25499,7 +25309,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
   return target;
 }
-// EXTERNAL MODULE: ./node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js
+// EXTERNAL MODULE: ./node_modules/react-redux/node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js
 var hoist_non_react_statics_cjs = __webpack_require__(14);
 var hoist_non_react_statics_cjs_default = /*#__PURE__*/__webpack_require__.n(hoist_non_react_statics_cjs);
 
@@ -25749,7 +25559,7 @@ function isPlainObject(obj) {
  * @param {String} message The warning message.
  * @returns {void}
  */
-function utils_warning_warning(message) {
+function warning_warning(message) {
   /* eslint-disable no-console */
   if (typeof console !== 'undefined' && typeof console.error === 'function') {
     console.error(message);
@@ -25772,7 +25582,7 @@ function utils_warning_warning(message) {
 
 function verifyPlainObject(value, displayName, methodName) {
   if (!isPlainObject(value)) {
-    utils_warning_warning(methodName + "() in " + displayName + " must return a plain object. Instead received " + value + ".");
+    warning_warning(methodName + "() in " + displayName + " must return a plain object. Instead received " + value + ".");
   }
 }
 // CONCATENATED MODULE: ./node_modules/react-redux/es/connect/wrapMapToProps.js
@@ -25915,7 +25725,7 @@ function verify(selector, methodName, displayName) {
     throw new Error("Unexpected value for " + methodName + " in " + displayName + ".");
   } else if (methodName === 'mapStateToProps' || methodName === 'mapDispatchToProps') {
     if (!selector.hasOwnProperty('dependsOnOwnProps')) {
-      utils_warning_warning("The selector for " + methodName + " of " + displayName + " did not specify a value for dependsOnOwnProps.");
+      warning_warning("The selector for " + methodName + " of " + displayName + " did not specify a value for dependsOnOwnProps.");
     }
   }
 }
@@ -46466,7 +46276,7 @@ function podsActions_updateCurrentPod(podIdx) {
     payload: podIdx
   };
 }
-// EXTERNAL MODULE: ./node_modules/react-router/node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js
+// EXTERNAL MODULE: ./node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js
 var dist_hoist_non_react_statics_cjs = __webpack_require__(149);
 var dist_hoist_non_react_statics_cjs_default = /*#__PURE__*/__webpack_require__.n(dist_hoist_non_react_statics_cjs);
 
@@ -46602,7 +46412,7 @@ var NodePage_mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /* harmony default export */ var node_page_NodePage = (react_router_dom_es_withRouter(connect_connect(NodePage_mapStateToProps, NodePage_mapDispatchToProps)(NodePage_NodePage)));
 // EXTERNAL MODULE: ./node_modules/assert/assert.js
-var assert = __webpack_require__(166);
+var assert = __webpack_require__(165);
 
 // CONCATENATED MODULE: ./src/client/components/traffic_page/SpiderTree.jsx
 function SpiderTree_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { SpiderTree_typeof = function _typeof(obj) { return typeof obj; }; } else { SpiderTree_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return SpiderTree_typeof(obj); }
@@ -47048,79 +46858,6 @@ function servicesAndPodsFetchData(url) {
     });
   };
 }
-// CONCATENATED MODULE: ./src/client/components/services_window/ServiceType.jsx
-function ServiceType_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { ServiceType_typeof = function _typeof(obj) { return typeof obj; }; } else { ServiceType_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return ServiceType_typeof(obj); }
-
-function ServiceType_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function ServiceType_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function ServiceType_createClass(Constructor, protoProps, staticProps) { if (protoProps) ServiceType_defineProperties(Constructor.prototype, protoProps); if (staticProps) ServiceType_defineProperties(Constructor, staticProps); return Constructor; }
-
-function ServiceType_possibleConstructorReturn(self, call) { if (call && (ServiceType_typeof(call) === "object" || typeof call === "function")) { return call; } return ServiceType_assertThisInitialized(self); }
-
-function ServiceType_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function ServiceType_getPrototypeOf(o) { ServiceType_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return ServiceType_getPrototypeOf(o); }
-
-function ServiceType_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) ServiceType_setPrototypeOf(subClass, superClass); }
-
-function ServiceType_setPrototypeOf(o, p) { ServiceType_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return ServiceType_setPrototypeOf(o, p); }
-
-
-
-
-
-var ServiceTypeBoxActive = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "ServiceType__ServiceTypeBoxActive",
-  componentId: "sc-148n5kj-0"
-})(["border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;background-color:#326DE6;color:white;"]);
-var ServiceTypeBoxInActive = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "ServiceType__ServiceTypeBoxInActive",
-  componentId: "sc-148n5kj-1"
-})(["border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;"]);
-
-var ServiceType_ServiceType =
-/*#__PURE__*/
-function (_Component) {
-  ServiceType_inherits(ServiceType, _Component);
-
-  function ServiceType(props) {
-    ServiceType_classCallCheck(this, ServiceType);
-
-    return ServiceType_possibleConstructorReturn(this, ServiceType_getPrototypeOf(ServiceType).call(this, props));
-  }
-
-  ServiceType_createClass(ServiceType, [{
-    key: "handleOnClick",
-    value: function handleOnClick(e) {
-      this.props.toggleServiceType(this.props.type);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      if (this.props.activeServiceTypes.includes(this.props.type)) {
-        return react_default.a.createElement(ServiceTypeBoxActive, {
-          onClick: this.handleOnClick.bind(this)
-        }, this.props.type);
-      } else return react_default.a.createElement(ServiceTypeBoxInActive, {
-        onClick: this.handleOnClick.bind(this)
-      }, this.props.type);
-    }
-  }]);
-
-  return ServiceType;
-}(react["Component"]);
-
-var ServiceType_mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    toggleServiceType: function toggleServiceType(serviceType) {
-      return dispatch(servicesAndPodsActions_toggleServiceType(serviceType));
-    }
-  };
-};
-
-/* harmony default export */ var services_window_ServiceType = (connect_connect(null, ServiceType_mapDispatchToProps)(ServiceType_ServiceType));
 // CONCATENATED MODULE: ./src/client/components/services_window/ServiceItem.jsx
 function ServiceItem_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { ServiceItem_typeof = function _typeof(obj) { return typeof obj; }; } else { ServiceItem_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return ServiceItem_typeof(obj); }
 
@@ -47147,42 +46884,42 @@ function ServiceItem_setPrototypeOf(o, p) { ServiceItem_setPrototypeOf = Object.
 var ServiceBoxActive = styled_components_browser_esm["a" /* default */].div.withConfig({
   displayName: "ServiceItem__ServiceBoxActive",
   componentId: "sc-1d5cuzt-0"
-})(["border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;background-color:#326DE6;color:white;"]);
+})(["border:1px solid;border-radius:5px;min-width:28vh;cursor:pointer;background-color:#003366;margin-left:2vh;color:white;"]);
 var ServiceBoxInActive = styled_components_browser_esm["a" /* default */].div.withConfig({
   displayName: "ServiceItem__ServiceBoxInActive",
   componentId: "sc-1d5cuzt-1"
-})(["border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;"]);
+})(["border:1px solid;border-radius:5px;min-width:28vh;margin-left:2vh;cursor:pointer;"]);
 
-var ServiceItem_ServiceList =
+var ServiceItem_ServiceItem =
 /*#__PURE__*/
 function (_Component) {
-  ServiceItem_inherits(ServiceList, _Component);
+  ServiceItem_inherits(ServiceItem, _Component);
 
-  function ServiceList(props) {
-    ServiceItem_classCallCheck(this, ServiceList);
+  function ServiceItem(props) {
+    ServiceItem_classCallCheck(this, ServiceItem);
 
-    return ServiceItem_possibleConstructorReturn(this, ServiceItem_getPrototypeOf(ServiceList).call(this, props));
+    return ServiceItem_possibleConstructorReturn(this, ServiceItem_getPrototypeOf(ServiceItem).call(this, props));
   }
 
-  ServiceItem_createClass(ServiceList, [{
+  ServiceItem_createClass(ServiceItem, [{
     key: "handleOnClick",
     value: function handleOnClick(e) {
-      if (this.props.activeServiceTypes.includes(this.props.listOfServices[this.props.index].type)) this.props.toggleService(this.props.index);
+      if (this.props.activeServiceTypes.includes(this.props.listOfServices[this.props.service.index].type)) this.props.toggleService(this.props.service.index);
     }
   }, {
     key: "render",
     value: function render() {
-      if (this.props.activeServices.includes(this.props.index)) {
+      if (this.props.activeServices.includes(this.props.service.index)) {
         return react_default.a.createElement(ServiceBoxActive, {
           onClick: this.handleOnClick.bind(this)
-        }, this.props.name);
+        }, this.props.service.name);
       } else return react_default.a.createElement(ServiceBoxInActive, {
         onClick: this.handleOnClick.bind(this)
-      }, this.props.name);
+      }, this.props.service.name);
     }
   }]);
 
-  return ServiceList;
+  return ServiceItem;
 }(react["Component"]);
 
 var ServiceItem_mapDispatchToProps = function mapDispatchToProps(dispatch) {
@@ -47193,7 +46930,100 @@ var ServiceItem_mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ var ServiceItem = (connect_connect(null, ServiceItem_mapDispatchToProps)(ServiceItem_ServiceList));
+/* harmony default export */ var services_window_ServiceItem = (connect_connect(null, ServiceItem_mapDispatchToProps)(ServiceItem_ServiceItem));
+// CONCATENATED MODULE: ./src/client/components/services_window/ServiceType.jsx
+function ServiceType_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { ServiceType_typeof = function _typeof(obj) { return typeof obj; }; } else { ServiceType_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return ServiceType_typeof(obj); }
+
+function ServiceType_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function ServiceType_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function ServiceType_createClass(Constructor, protoProps, staticProps) { if (protoProps) ServiceType_defineProperties(Constructor.prototype, protoProps); if (staticProps) ServiceType_defineProperties(Constructor, staticProps); return Constructor; }
+
+function ServiceType_possibleConstructorReturn(self, call) { if (call && (ServiceType_typeof(call) === "object" || typeof call === "function")) { return call; } return ServiceType_assertThisInitialized(self); }
+
+function ServiceType_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function ServiceType_getPrototypeOf(o) { ServiceType_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return ServiceType_getPrototypeOf(o); }
+
+function ServiceType_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) ServiceType_setPrototypeOf(subClass, superClass); }
+
+function ServiceType_setPrototypeOf(o, p) { ServiceType_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return ServiceType_setPrototypeOf(o, p); }
+
+
+
+
+
+
+var ServiceTypeBoxActive = styled_components_browser_esm["a" /* default */].div.withConfig({
+  displayName: "ServiceType__ServiceTypeBoxActive",
+  componentId: "sc-148n5kj-0"
+})(["border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;background-color:#326de6;color:white;margin-top:1vh;"]);
+var ServiceTypeBoxInActive = styled_components_browser_esm["a" /* default */].div.withConfig({
+  displayName: "ServiceType__ServiceTypeBoxInActive",
+  componentId: "sc-148n5kj-1"
+})(["border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;margin-top:1vh;"]);
+var ServiceList = styled_components_browser_esm["a" /* default */].div.withConfig({
+  displayName: "ServiceType__ServiceList",
+  componentId: "sc-148n5kj-2"
+})([""]);
+
+var ServiceType_ServiceType =
+/*#__PURE__*/
+function (_Component) {
+  ServiceType_inherits(ServiceType, _Component);
+
+  function ServiceType(props) {
+    ServiceType_classCallCheck(this, ServiceType);
+
+    return ServiceType_possibleConstructorReturn(this, ServiceType_getPrototypeOf(ServiceType).call(this, props));
+  }
+
+  ServiceType_createClass(ServiceType, [{
+    key: "handleOnClick",
+    value: function handleOnClick(e) {
+      this.props.toggleServiceType(this.props.type);
+    }
+  }, {
+    key: "renderServiceList",
+    value: function renderServiceList() {
+      var _this = this;
+
+      return this.props.listOfServices.map(function (service) {
+        if (_this.props.type === service.type) return react_default.a.createElement(services_window_ServiceItem, {
+          key: service.name,
+          service: service,
+          listOfServices: _this.props.listOfServices,
+          activeServices: _this.props.activeServices,
+          activeServiceTypes: _this.props.activeServiceTypes
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (this.props.activeServiceTypes.includes(this.props.type)) {
+        return react_default.a.createElement(ServiceList, null, react_default.a.createElement(ServiceTypeBoxActive, {
+          onClick: this.handleOnClick.bind(this)
+        }, this.props.type), this.renderServiceList());
+      } else return react_default.a.createElement(ServiceTypeBoxInActive, {
+        onClick: this.handleOnClick.bind(this)
+      }, this.props.type);
+    }
+  }]);
+
+  return ServiceType;
+}(react["Component"]);
+
+var ServiceType_mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    toggleServiceType: function toggleServiceType(serviceType) {
+      return dispatch(servicesAndPodsActions_toggleServiceType(serviceType));
+    }
+  };
+};
+
+/* harmony default export */ var services_window_ServiceType = (connect_connect(null, ServiceType_mapDispatchToProps)(ServiceType_ServiceType));
 // CONCATENATED MODULE: ./src/client/components/services_window/ViewModes.jsx
 function ViewModes_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { ViewModes_typeof = function _typeof(obj) { return typeof obj; }; } else { ViewModes_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return ViewModes_typeof(obj); }
 
@@ -47305,7 +47135,6 @@ function ServicesWindow_setPrototypeOf(o, p) { ServicesWindow_setPrototypeOf = O
 
 
 
-
 var ServicesWindow_Box = styled_components_browser_esm["a" /* default */].div.withConfig({
   displayName: "ServicesWindow__Box",
   componentId: "sc-63u4cn-0"
@@ -47350,31 +47179,16 @@ function (_Component) {
         return react_default.a.createElement(services_window_ServiceType, {
           key: serviceType,
           type: serviceType,
+          activeServices: _this.props.activeServices,
+          listOfServices: _this.props.listOfServices,
           activeServiceTypes: _this.props.activeServiceTypes
-        });
-      });
-    }
-  }, {
-    key: "renderServiceList",
-    value: function renderServiceList() {
-      var _this2 = this;
-
-      var i = 0;
-      return this.props.listOfServices.map(function (service) {
-        return react_default.a.createElement(ServiceItem, {
-          key: service.name,
-          name: service.name,
-          index: i++,
-          listOfServices: _this2.props.listOfServices,
-          activeServices: _this2.props.activeServices,
-          activeServiceTypes: _this2.props.activeServiceTypes
         });
       });
     }
   }, {
     key: "render",
     value: function render() {
-      return react_default.a.createElement(ServicesWindow_Box, null, react_default.a.createElement(ServicesWindow_Title, null, "View Mode"), react_default.a.createElement(services_window_ViewModes, null), react_default.a.createElement(ServicesWindow_Title, null, "Services"), "Service Types", react_default.a.createElement(ServiceTypes, null, this.renderServiceTypes()), "Services", react_default.a.createElement(Services, null, this.renderServiceList()));
+      return react_default.a.createElement(ServicesWindow_Box, null, react_default.a.createElement(ServicesWindow_Title, null, "View Mode"), react_default.a.createElement(services_window_ViewModes, null), react_default.a.createElement(ServicesWindow_Title, null, "Services"), react_default.a.createElement(ServiceTypes, null, this.renderServiceTypes()));
     }
   }]);
 
@@ -47570,7 +47384,7 @@ var InfoPane_mapStateToProps = function mapStateToProps(state) {
 
 /* harmony default export */ var info_window_InfoPane = (connect_connect(InfoPane_mapStateToProps)(InfoPane_InfoPane));
 // EXTERNAL MODULE: ./src/client/img/Node.svg
-var img_Node = __webpack_require__(170);
+var img_Node = __webpack_require__(169);
 
 // CONCATENATED MODULE: ./src/client/App.jsx
 function App_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { App_typeof = function _typeof(obj) { return typeof obj; }; } else { App_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return App_typeof(obj); }
@@ -47737,7 +47551,7 @@ var App_NotFound = function NotFound() {
 
 /* harmony default export */ var client_App = (App_App);
 // EXTERNAL MODULE: ./node_modules/redux-devtools-extension/index.js
-var redux_devtools_extension = __webpack_require__(171);
+var redux_devtools_extension = __webpack_require__(170);
 
 // CONCATENATED MODULE: ./node_modules/redux-thunk/es/index.js
 function createThunkMiddleware(extraArgument) {
@@ -47939,12 +47753,38 @@ function servicesReducer() {
     case SERVICES_FETCH:
       var activeServiceIndex = [];
 
-      for (var i = 0; i < action.payload.length; i++) {
-        activeServiceIndex.push(i);
+      for (var _i = 0; _i < action.payload.length; _i++) {
+        activeServiceIndex.push(_i);
+      }
+
+      var listOfServices = action.payload;
+      var i = 0;
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = listOfServices[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var service = _step.value;
+          service.index = i++;
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
       }
 
       return servicesReducer_objectSpread({}, state, {
-        listOfServices: action.payload,
+        listOfServices: listOfServices,
         activeServices: activeServiceIndex
       });
 
@@ -47960,8 +47800,8 @@ function servicesReducer() {
 
       var listOfServiceIndex = [];
 
-      for (var _i = 0; _i < state.listOfServices.length; _i++) {
-        listOfServiceIndex.push(_i);
+      for (var _i2 = 0; _i2 < state.listOfServices.length; _i2++) {
+        listOfServiceIndex.push(_i2);
       }
 
       return servicesReducer_objectSpread({}, state, {
