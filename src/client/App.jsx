@@ -45,32 +45,34 @@ const InfoWrapper = styled.section`
 
 const history = createBrowserHistory();
 history.push("/");
-const widthPercent = 0.8,
-  heightPercent = 0.7;
 
 class App extends Component {
   constructor() {
     super();
     //The initial dimensions of the Wrapper
     const initialWrapper = {
-      width: window.screen.width * widthPercent,
-      height: window.screen.height * heightPercent
+      width: window.screen.width * 0.8,
+      height: window.screen.height * 0.7
     };
+
     this.state = {
       servicesWindowOpen: true,
       initialWrapper: initialWrapper,
-      wrapper: initialWrapper
+      wrapper: initialWrapper,
+      infoWindowHeight: window.screen.height * 0.3
     };
     this.toggleServicesWindow = this.toggleServicesWindow.bind(this);
   }
 
   updateDimensions(e) {
     const wrapperDOM = ReactDOM.findDOMNode(this.refs.contentWrapper);
+    const infoWindowDOM = ReactDOM.findDOMNode(this.refs.infoWrapper);
     this.setState({
       wrapper: {
         width: wrapperDOM.offsetWidth,
         height: wrapperDOM.offsetHeight
-      }
+      },
+      infoWindowHeight: infoWindowDOM.offsetHeight
     });
   }
 
@@ -89,6 +91,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.infoWindowHeight);
     return (
       <Router history={history}>
         <PageContainer>
@@ -125,8 +128,8 @@ class App extends Component {
               <Route path="*" component={NotFound} />
             </Switch>
           </ContentWrapper>
-          <InfoWrapper>
-            <InfoPane />
+          <InfoWrapper ref="infoWrapper">
+            <InfoPane infoWindowHeight={this.state.infoWindowHeight} />
           </InfoWrapper>
         </PageContainer>
       </Router>
