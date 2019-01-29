@@ -6,7 +6,6 @@ import styled from "styled-components";
 const Box = styled.div`
   height: 100%;
   width: 100%;
-  border: solid 1px;
 `;
 
 class HexGraph extends Component {
