@@ -6,20 +6,22 @@ import { toggleService } from "../redux/actions/servicesAndPodsActions.js";
 const ServiceBoxActive = styled.div`
   border: 1px solid;
   border-radius: 5px;
-  min-width: 25vh;
+  min-width: 28vh;
   cursor: pointer;
-  background-color: #326DE6;
+  background-color: #003366;
+  margin-left: 2vh;
   color: white;
 `;
 
 const ServiceBoxInActive = styled.div`
   border: 1px solid;
   border-radius: 5px;
-  min-width: 25vh;
+  min-width: 28vh;
+  margin-left: 2vh;
   cursor: pointer;
 `;
 
-class ServiceList extends Component {
+class ServiceItem extends Component {
   constructor(props) {
     super(props);
   }
@@ -27,23 +29,23 @@ class ServiceList extends Component {
   handleOnClick(e) {
     if (
       this.props.activeServiceTypes.includes(
-        this.props.listOfServices[this.props.index].type
+        this.props.listOfServices[this.props.service.index].type
       )
     )
-      this.props.toggleService(this.props.index);
+      this.props.toggleService(this.props.service.index);
   }
 
   render() {
-    if (this.props.activeServices.includes(this.props.index)) {
+    if (this.props.activeServices.includes(this.props.service.index)) {
       return (
         <ServiceBoxActive onClick={this.handleOnClick.bind(this)}>
-          {this.props.name}
+          {this.props.service.name}
         </ServiceBoxActive>
       );
     } else
       return (
         <ServiceBoxInActive onClick={this.handleOnClick.bind(this)}>
-          {this.props.name}
+          {this.props.service.name}
         </ServiceBoxInActive>
       );
   }
@@ -58,4 +60,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(ServiceList);
+)(ServiceItem);
