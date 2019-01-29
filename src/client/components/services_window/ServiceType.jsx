@@ -3,24 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { toggleServiceType } from "../redux/actions/servicesAndPodsActions.js";
 import ServiceItem from "./ServiceItem.jsx";
-
-const ServiceTypeBoxActive = styled.div`
-  border: 1px solid;
-  border-radius: 5px;
-  min-width: 25vh;
-  cursor: pointer;
-  background-color: #326de6;
-  color: white;
-  margin-top: 1vh;
-`;
-
-const ServiceTypeBoxInActive = styled.div`
-  border: 1px solid;
-  border-radius: 5px;
-  min-width: 25vh;
-  cursor: pointer;
-  margin-top: 1vh;
-`;
+import {ServiceWindowBox} from "../styled/styledComponents.js";
 
 const ServiceList = styled.div``;
 
@@ -52,17 +35,17 @@ class ServiceType extends Component {
     if (this.props.activeServiceTypes.includes(this.props.type)) {
       return (
         <ServiceList>
-          <ServiceTypeBoxActive onClick={this.handleOnClick.bind(this)}>
+          <ServiceWindowBox active onClick={this.handleOnClick.bind(this)}>
             {this.props.type}
-          </ServiceTypeBoxActive>
+          </ServiceWindowBox>
           {this.renderServiceList()}
         </ServiceList>
       );
     } else
       return (
-        <ServiceTypeBoxInActive onClick={this.handleOnClick.bind(this)}>
+        <ServiceWindowBox onClick={this.handleOnClick.bind(this)}>
           {this.props.type}
-        </ServiceTypeBoxInActive>
+        </ServiceWindowBox>
       );
   }
 }

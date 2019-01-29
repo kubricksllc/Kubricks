@@ -10,7 +10,6 @@ import ServicesWindow from "./components/services_window/ServicesWindow.jsx";
 import InfoBanner from "./layout/InfoBanner.jsx";
 import InfoPane from "./components/info_window/InfoPane.jsx";
 import ReactDOM from "react-dom";
-import Hex from "./img/Node.svg";
 
 const PageContainer = styled.div`
   height: 100%;
@@ -26,49 +25,53 @@ const ContentWrapper = styled.section`
   grid-area: content;
   display: flex;
   justify-content: center;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: #d6d6d6;
 `;
 
 const ServicesWrapper = styled.section`
   grid-area: services;
+  border-right: 2px solid #1a1a1a;
+  background-color: #212121;
+  color: white;
 `;
 const InfoWrapper = styled.section`
   grid-area: info;
+  padding-left: 1em;
   border-top: 1px solid #d9d9d9;
-  background-color: #262626;
+  background-color: #272822;
   color: white;
 `;
 
 const history = createBrowserHistory();
 history.push("/");
-const widthPercent = 0.8,
-  heightPercent = 0.7;
 
 class App extends Component {
   constructor() {
     super();
     //The initial dimensions of the Wrapper
     const initialWrapper = {
-      width: window.screen.width * widthPercent,
-      height: window.screen.height * heightPercent
+      width: window.screen.width * 0.8,
+      height: window.screen.height * 0.7
     };
+
     this.state = {
       servicesWindowOpen: true,
       initialWrapper: initialWrapper,
-      wrapper: initialWrapper
+      wrapper: initialWrapper,
+      infoWindowHeight: window.screen.height * 0.3
     };
     this.toggleServicesWindow = this.toggleServicesWindow.bind(this);
   }
 
   updateDimensions(e) {
     const wrapperDOM = ReactDOM.findDOMNode(this.refs.contentWrapper);
+    const infoWindowDOM = ReactDOM.findDOMNode(this.refs.infoWrapper);
     this.setState({
       wrapper: {
         width: wrapperDOM.offsetWidth,
         height: wrapperDOM.offsetHeight
-      }
+      },
+      infoWindowHeight: infoWindowDOM.offsetHeight
     });
   }
 
@@ -87,6 +90,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.infoWindowHeight);
     return (
       <Router history={history}>
         <PageContainer>
@@ -123,8 +127,8 @@ class App extends Component {
               <Route path="*" component={NotFound} />
             </Switch>
           </ContentWrapper>
-          <InfoWrapper>
-            <InfoPane />
+          <InfoWrapper ref="infoWrapper">
+            <InfoPane infoWindowHeight={this.state.infoWindowHeight} />
           </InfoWrapper>
         </PageContainer>
       </Router>

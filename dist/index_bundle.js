@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 173);
+/******/ 	return __webpack_require__(__webpack_require__.s = 172);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1934,7 +1934,7 @@ if (true) {
             try {
                 oldLocale = globalLocale._abbr;
                 var aliasedRequire = require;
-                __webpack_require__(172)("./" + name);
+                __webpack_require__(171)("./" + name);
                 getSetGlobalLocale(oldLocale);
             } catch (e) {}
         }
@@ -4611,7 +4611,7 @@ if (true) {
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(171)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(170)(module)))
 
 /***/ }),
 /* 2 */
@@ -4659,7 +4659,7 @@ if (false) { var throwOnDirectAccess, isValidElement, REACT_ELEMENT_TYPE; } else
 /* harmony import */ var memoize_one__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(17);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(8);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _emotion_is_prop_valid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(152);
 
@@ -7247,6 +7247,40 @@ module.exports = warning;
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function checkDCE() {
+  /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
+  if (
+    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' ||
+    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function'
+  ) {
+    return;
+  }
+  if (false) {}
+  try {
+    // Verify that the code above has been dead code eliminated (DCE'd).
+    __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);
+  } catch (err) {
+    // DevTools shouldn't crash React, no matter what.
+    // We should still report in case we break this code.
+    console.error(err);
+  }
+}
+
+if (true) {
+  // DCE check should happen before ReactDOM bundle executes so that
+  // DevTools can report bad minification during injection.
+  checkDCE();
+  module.exports = __webpack_require__(154);
+} else {}
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7880,40 +7914,6 @@ function isCrushed() {}
 if (false) {}
 
 
-
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function checkDCE() {
-  /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
-  if (
-    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' ||
-    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function'
-  ) {
-    return;
-  }
-  if (false) {}
-  try {
-    // Verify that the code above has been dead code eliminated (DCE'd).
-    __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);
-  } catch (err) {
-    // DevTools shouldn't crash React, no matter what.
-    // We should still report in case we break this code.
-    console.error(err);
-  }
-}
-
-if (true) {
-  // DCE check should happen before ReactDOM bundle executes so that
-  // DevTools can report bad minification during injection.
-  checkDCE();
-  module.exports = __webpack_require__(154);
-} else {}
 
 
 /***/ }),
@@ -23288,16 +23288,10 @@ if (typeof Object.create === 'function') {
 /* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "6c2493ea3928328f251409f5c12b0e11.svg";
-
-/***/ }),
-/* 170 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 
 
-var compose = __webpack_require__(7).compose;
+var compose = __webpack_require__(8).compose;
 
 exports.__esModule = true;
 exports.composeWithDevTools = (
@@ -23318,7 +23312,7 @@ exports.devToolsEnhancer = (
 
 
 /***/ }),
-/* 171 */
+/* 170 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -23346,7 +23340,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 172 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -23619,10 +23613,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 172;
+webpackContext.id = 171;
 
 /***/ }),
-/* 173 */
+/* 172 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23633,7 +23627,7 @@ var react = __webpack_require__(0);
 var react_default = /*#__PURE__*/__webpack_require__.n(react);
 
 // EXTERNAL MODULE: ./node_modules/react-dom/index.js
-var react_dom = __webpack_require__(8);
+var react_dom = __webpack_require__(7);
 var react_dom_default = /*#__PURE__*/__webpack_require__.n(react_dom);
 
 // EXTERNAL MODULE: ./node_modules/styled-components/dist/styled-components.browser.esm.js
@@ -25533,7 +25527,7 @@ function shallowEqual(objA, objB) {
   return true;
 }
 // EXTERNAL MODULE: ./node_modules/redux/es/redux.js
-var redux = __webpack_require__(7);
+var redux = __webpack_require__(8);
 
 // CONCATENATED MODULE: ./node_modules/react-redux/es/utils/isPlainObject.js
 /**
@@ -46002,7 +45996,7 @@ function HexGraph_assertThisInitialized(self) { if (self === void 0) { throw new
 var Box = styled_components_browser_esm["a" /* default */].div.withConfig({
   displayName: "HexGraph__Box",
   componentId: "sc-1sp6e6s-0"
-})(["height:100%;width:100%;border:solid 1px;"]);
+})(["height:100%;width:100%;"]);
 
 var HexGraph_HexGraph =
 /*#__PURE__*/
@@ -46442,7 +46436,7 @@ function SpiderTree_assertThisInitialized(self) { if (self === void 0) { throw n
 var SpiderTree_Box = styled_components_browser_esm["a" /* default */].div.withConfig({
   displayName: "SpiderTree__Box",
   componentId: "sc-1rivo5m-0"
-})(["height:100%;width:100%;border:2px solid;"]);
+})(["height:100%;width:100%;"]);
 
 var SpiderTree_SpiderTree =
 /*#__PURE__*/
@@ -46858,6 +46852,22 @@ function servicesAndPodsFetchData(url) {
     });
   };
 }
+// CONCATENATED MODULE: ./src/client/components/styled/styledComponents.js
+
+var ServiceWindowBox = styled_components_browser_esm["a" /* default */].div.withConfig({
+  displayName: "styledComponents__ServiceWindowBox",
+  componentId: "sc-1o5mkb0-0"
+})(["padding:.3em 0 .3em 0;text-align:center;border:2px solid black;border-radius:5px;width:95%;margin-top:2px;cursor:pointer;background-color:", ";color:", ";"], function (props) {
+  return props.active ? '#326de6' : 'white';
+}, function (props) {
+  return props.active ? 'white' : 'black';
+});
+var ServiceBox = Object(styled_components_browser_esm["a" /* default */])(ServiceWindowBox).withConfig({
+  displayName: "styledComponents__ServiceBox",
+  componentId: "sc-1o5mkb0-1"
+})(["margin-top:0;margin-left:5%;width:95%;background-color:", ";"], function (props) {
+  return props.active ? 'darkblue' : 'white';
+});
 // CONCATENATED MODULE: ./src/client/components/services_window/ServiceItem.jsx
 function ServiceItem_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { ServiceItem_typeof = function _typeof(obj) { return typeof obj; }; } else { ServiceItem_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return ServiceItem_typeof(obj); }
 
@@ -46881,14 +46891,6 @@ function ServiceItem_setPrototypeOf(o, p) { ServiceItem_setPrototypeOf = Object.
 
 
 
-var ServiceBoxActive = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "ServiceItem__ServiceBoxActive",
-  componentId: "sc-1d5cuzt-0"
-})(["border:1px solid;border-radius:5px;min-width:28vh;cursor:pointer;background-color:#003366;margin-left:2vh;color:white;"]);
-var ServiceBoxInActive = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "ServiceItem__ServiceBoxInActive",
-  componentId: "sc-1d5cuzt-1"
-})(["border:1px solid;border-radius:5px;min-width:28vh;margin-left:2vh;cursor:pointer;"]);
 
 var ServiceItem_ServiceItem =
 /*#__PURE__*/
@@ -46910,10 +46912,11 @@ function (_Component) {
     key: "render",
     value: function render() {
       if (this.props.activeServices.includes(this.props.service.index)) {
-        return react_default.a.createElement(ServiceBoxActive, {
+        return react_default.a.createElement(ServiceBox, {
+          active: true,
           onClick: this.handleOnClick.bind(this)
         }, this.props.service.name);
-      } else return react_default.a.createElement(ServiceBoxInActive, {
+      } else return react_default.a.createElement(ServiceBox, {
         onClick: this.handleOnClick.bind(this)
       }, this.props.service.name);
     }
@@ -46955,17 +46958,10 @@ function ServiceType_setPrototypeOf(o, p) { ServiceType_setPrototypeOf = Object.
 
 
 
-var ServiceTypeBoxActive = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "ServiceType__ServiceTypeBoxActive",
-  componentId: "sc-148n5kj-0"
-})(["border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;background-color:#326de6;color:white;margin-top:1vh;"]);
-var ServiceTypeBoxInActive = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "ServiceType__ServiceTypeBoxInActive",
-  componentId: "sc-148n5kj-1"
-})(["border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;margin-top:1vh;"]);
+
 var ServiceList = styled_components_browser_esm["a" /* default */].div.withConfig({
   displayName: "ServiceType__ServiceList",
-  componentId: "sc-148n5kj-2"
+  componentId: "sc-148n5kj-0"
 })([""]);
 
 var ServiceType_ServiceType =
@@ -47003,10 +46999,11 @@ function (_Component) {
     key: "render",
     value: function render() {
       if (this.props.activeServiceTypes.includes(this.props.type)) {
-        return react_default.a.createElement(ServiceList, null, react_default.a.createElement(ServiceTypeBoxActive, {
+        return react_default.a.createElement(ServiceList, null, react_default.a.createElement(ServiceWindowBox, {
+          active: true,
           onClick: this.handleOnClick.bind(this)
         }, this.props.type), this.renderServiceList());
-      } else return react_default.a.createElement(ServiceTypeBoxInActive, {
+      } else return react_default.a.createElement(ServiceWindowBox, {
         onClick: this.handleOnClick.bind(this)
       }, this.props.type);
     }
@@ -47048,14 +47045,11 @@ function ViewModes_assertThisInitialized(self) { if (self === void 0) { throw ne
 
 
 
-var ViewModeBoxActive = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "ViewModes__ViewModeBoxActive",
+
+var StyledLink = Object(styled_components_browser_esm["a" /* default */])(es_Link).withConfig({
+  displayName: "ViewModes__StyledLink",
   componentId: "sc-771hfe-0"
-})(["text-align:center;border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;background-color:#326de6;color:white;"]);
-var ViewModeBoxInActive = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "ViewModes__ViewModeBoxInActive",
-  componentId: "sc-771hfe-1"
-})(["text-align:center;border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;background-color:white;color:black;"]);
+})(["text-decoration:none;&:focus,&:hover,&:visited,&:link,&:active{text-decoration:none;}"]);
 
 var ViewModes_ViewModes =
 /*#__PURE__*/
@@ -47080,13 +47074,17 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return react_default.a.createElement("div", null, react_default.a.createElement(es_Link, {
+      return react_default.a.createElement("div", null, react_default.a.createElement(StyledLink, {
         to: "/"
-      }, this.props.viewMode === "Cluster" ? react_default.a.createElement(ViewModeBoxActive, null, "Cluster") : react_default.a.createElement(ViewModeBoxInActive, {
+      }, this.props.viewMode === "Cluster" ? react_default.a.createElement(ServiceWindowBox, {
+        active: true
+      }, "Cluster") : react_default.a.createElement(ServiceWindowBox, {
         onClick: this.handleOnClick.bind(this)
-      }, "Cluster")), react_default.a.createElement(es_Link, {
+      }, "Cluster")), react_default.a.createElement(StyledLink, {
         to: "/traffic"
-      }, this.props.viewMode === "Traffic" ? react_default.a.createElement(ViewModeBoxActive, null, "Traffic") : react_default.a.createElement(ViewModeBoxInActive, {
+      }, this.props.viewMode === "Traffic" ? react_default.a.createElement(ServiceWindowBox, {
+        active: true
+      }, "Traffic") : react_default.a.createElement(ServiceWindowBox, {
         onClick: this.handleOnClick.bind(this)
       }, "Traffic")));
     }
@@ -47138,7 +47136,7 @@ function ServicesWindow_setPrototypeOf(o, p) { ServicesWindow_setPrototypeOf = O
 var ServicesWindow_Box = styled_components_browser_esm["a" /* default */].div.withConfig({
   displayName: "ServicesWindow__Box",
   componentId: "sc-63u4cn-0"
-})(["height:100%;margin:0;border:1px solid #d9d9d9;padding:1em;"]);
+})(["height:100%;margin:0;padding:1em;overflow:auto;"]);
 var ServicesWindow_Title = styled_components_browser_esm["a" /* default */].h1.withConfig({
   displayName: "ServicesWindow__Title",
   componentId: "sc-63u4cn-1"
@@ -47315,10 +47313,15 @@ function InfoPane_setPrototypeOf(o, p) { InfoPane_setPrototypeOf = Object.setPro
 
 
 
+
 var InfoTitle = styled_components_browser_esm["a" /* default */].h1.withConfig({
   displayName: "InfoPane__InfoTitle",
   componentId: "sc-1bd1tm0-0"
-})(["text-decoration:underline;"]);
+})(["margin-top:10px !important;margin:0;"]);
+var InfoPane_InfoBox = styled_components_browser_esm["a" /* default */].div.withConfig({
+  displayName: "InfoPane__InfoBox",
+  componentId: "sc-1bd1tm0-1"
+})([""]);
 
 var InfoPane_InfoPane =
 /*#__PURE__*/
@@ -47342,21 +47345,24 @@ function (_Component) {
         displayObjectSize: false,
         displayDataTypes: false
       };
+      var infoTitle = react_dom_default.a.findDOMNode(this.refs.infoTitle);
+      var height = infoTitle === null ? 0 : this.props.infoWindowHeight - infoTitle.offsetHeight - 15;
       var inlineStyle = {
-        overflow: 'auto',
-        maxHeight: 150
+        overflow: "auto",
+        maxHeight: height
       };
+      console.log("height", height);
 
       switch (this.props.typeContent) {
-        case 'node':
+        case "node":
           rjvConfig.src = this.props.currentNode;
           break;
 
-        case 'pod':
+        case "pod":
           rjvConfig.src = this.props.currentPod;
           break;
 
-        case 'service':
+        case "service":
           rjvConfig.src = this.props.currentService;
           break;
 
@@ -47364,7 +47370,9 @@ function (_Component) {
 
       }
 
-      return react_default.a.createElement("div", null, react_default.a.createElement(InfoTitle, null, "Info Window"), react_default.a.createElement(main_default.a, InfoPane_extends({}, rjvConfig, {
+      return react_default.a.createElement("div", null, react_default.a.createElement(InfoTitle, {
+        ref: "infoTitle"
+      }, "Info Window"), react_default.a.createElement(main_default.a, InfoPane_extends({}, rjvConfig, {
         style: inlineStyle
       })));
     }
@@ -47383,9 +47391,6 @@ var InfoPane_mapStateToProps = function mapStateToProps(state) {
 };
 
 /* harmony default export */ var info_window_InfoPane = (connect_connect(InfoPane_mapStateToProps)(InfoPane_InfoPane));
-// EXTERNAL MODULE: ./src/client/img/Node.svg
-var img_Node = __webpack_require__(169);
-
 // CONCATENATED MODULE: ./src/client/App.jsx
 function App_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { App_typeof = function _typeof(obj) { return typeof obj; }; } else { App_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return App_typeof(obj); }
 
@@ -47417,7 +47422,6 @@ function App_assertThisInitialized(self) { if (self === void 0) { throw new Refe
 
 
 
-
 var PageContainer = styled_components_browser_esm["a" /* default */].div.withConfig({
   displayName: "App__PageContainer",
   componentId: "sc-1wjjh7q-0"
@@ -47425,19 +47429,17 @@ var PageContainer = styled_components_browser_esm["a" /* default */].div.withCon
 var ContentWrapper = styled_components_browser_esm["a" /* default */].section.withConfig({
   displayName: "App__ContentWrapper",
   componentId: "sc-1wjjh7q-1"
-})(["grid-area:content;display:flex;justify-content:center;background-size:contain;background-position:center;background-repeat:no-repeat;"]);
+})(["grid-area:content;display:flex;justify-content:center;background-color:#d6d6d6;"]);
 var ServicesWrapper = styled_components_browser_esm["a" /* default */].section.withConfig({
   displayName: "App__ServicesWrapper",
   componentId: "sc-1wjjh7q-2"
-})(["grid-area:services;"]);
+})(["grid-area:services;border-right:2px solid #1a1a1a;background-color:#212121;color:white;"]);
 var InfoWrapper = styled_components_browser_esm["a" /* default */].section.withConfig({
   displayName: "App__InfoWrapper",
   componentId: "sc-1wjjh7q-3"
-})(["grid-area:info;border-top:1px solid #d9d9d9;background-color:#262626;color:white;"]);
+})(["grid-area:info;padding-left:1em;border-top:1px solid #d9d9d9;background-color:#272822;color:white;"]);
 var App_history = createBrowserHistory_default()();
 App_history.push("/");
-var widthPercent = 0.8,
-    heightPercent = 0.7;
 
 var App_App =
 /*#__PURE__*/
@@ -47452,13 +47454,14 @@ function (_Component) {
     _this = App_possibleConstructorReturn(this, App_getPrototypeOf(App).call(this)); //The initial dimensions of the Wrapper
 
     var initialWrapper = {
-      width: window.screen.width * widthPercent,
-      height: window.screen.height * heightPercent
+      width: window.screen.width * 0.8,
+      height: window.screen.height * 0.7
     };
     _this.state = {
       servicesWindowOpen: true,
       initialWrapper: initialWrapper,
-      wrapper: initialWrapper
+      wrapper: initialWrapper,
+      infoWindowHeight: window.screen.height * 0.3
     };
     _this.toggleServicesWindow = _this.toggleServicesWindow.bind(App_assertThisInitialized(App_assertThisInitialized(_this)));
     return _this;
@@ -47468,11 +47471,13 @@ function (_Component) {
     key: "updateDimensions",
     value: function updateDimensions(e) {
       var wrapperDOM = react_dom_default.a.findDOMNode(this.refs.contentWrapper);
+      var infoWindowDOM = react_dom_default.a.findDOMNode(this.refs.infoWrapper);
       this.setState({
         wrapper: {
           width: wrapperDOM.offsetWidth,
           height: wrapperDOM.offsetHeight
-        }
+        },
+        infoWindowHeight: infoWindowDOM.offsetHeight
       });
     }
   }, {
@@ -47499,6 +47504,7 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
+      console.log(this.state.infoWindowHeight);
       return react_default.a.createElement(es_HashRouter, {
         history: App_history
       }, react_default.a.createElement(PageContainer, null, react_default.a.createElement(ServicesWrapper, null, react_default.a.createElement(services_window_ServicesWindow, {
@@ -47536,7 +47542,11 @@ function (_Component) {
       }), react_default.a.createElement(react_router_dom_es_Route, {
         path: "*",
         component: App_NotFound
-      }))), react_default.a.createElement(InfoWrapper, null, react_default.a.createElement(info_window_InfoPane, null))));
+      }))), react_default.a.createElement(InfoWrapper, {
+        ref: "infoWrapper"
+      }, react_default.a.createElement(info_window_InfoPane, {
+        infoWindowHeight: this.state.infoWindowHeight
+      }))));
     }
   }]);
 
@@ -47551,7 +47561,7 @@ var App_NotFound = function NotFound() {
 
 /* harmony default export */ var client_App = (App_App);
 // EXTERNAL MODULE: ./node_modules/redux-devtools-extension/index.js
-var redux_devtools_extension = __webpack_require__(170);
+var redux_devtools_extension = __webpack_require__(169);
 
 // CONCATENATED MODULE: ./node_modules/redux-thunk/es/index.js
 function createThunkMiddleware(extraArgument) {
