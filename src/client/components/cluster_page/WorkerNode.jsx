@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   displayNodeInfo,
   hideNodeInfo
-} from "../redux/actions/windowActions.js";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import * as d3 from "d3";
+} from '../redux/actions/windowActions.js';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import * as d3 from 'd3';
 
 class WorkerNode extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class WorkerNode extends Component {
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this);
-    this.state = { transform: "scale(1)" };
+    this.state = { transform: 'scale(1)' };
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -53,11 +53,11 @@ class WorkerNode extends Component {
 
   handleMouseLeave(e) {
     this.props.hideNodeInfo(this.props.nodeIndex);
-    this.setState({ transform: "scale(1)" }); //TODO: does not work yet
+    this.setState({ transform: 'scale(1)' }); //TODO: does not work yet
   }
 
   handleOnClick(e) {
-    this.props.hideNodeInfo(e.target.getAttribute("nodeIndex"));
+    this.props.hideNodeInfo(e.target.getAttribute('nodeIndex'));
   }
 
   render() {
@@ -65,7 +65,7 @@ class WorkerNode extends Component {
     const { xScale, yScale } = this.props;
     let param = '';
     if (this.props.currentNode) {
-      param = this.props.currentNode.name
+      param = this.props.currentNode.name;
     }
 
     return (
@@ -129,15 +129,13 @@ class WorkerNode extends Component {
 const mapStateToProps = state => {
   return {
     currentNode: state.nodesReducer.currentNode
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
-    displayNodeInfo: (nodeIndex, mouseInfo) =>
-      dispatch(displayNodeInfo(nodeIndex, mouseInfo)),
-    hideNodeInfo: (nodeIndex, mouseInfo) =>
-      dispatch(hideNodeInfo(nodeIndex, mouseInfo))
+    displayNodeInfo: nodeIndex => dispatch(displayNodeInfo(nodeIndex)),
+    hideNodeInfo: nodeIndex => dispatch(hideNodeInfo(nodeIndex))
   };
 };
 

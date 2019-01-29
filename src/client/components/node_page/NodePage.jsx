@@ -54,7 +54,6 @@ class NodePage extends Component {
 }
 
 const mapStateToProps = state => {
-  // console.log(state);
   return {
     listOfPods: state.podsReducer.listOfPods,
     currentNode: state.nodesReducer.currentNode,
@@ -67,9 +66,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     
-    displayPodInfo: (podIndex, mouseInfo, contentInfo) => 
-      dispatch(displayPodInfo(podIndex, mouseInfo, contentInfo)),
-    hidePodInfo: (podIndex, mouseInfo) => dispatch(hidePodInfo(podIndex, mouseInfo)),
+    displayPodInfo: (podIndex) => 
+      dispatch(displayPodInfo(podIndex)),
+    hidePodInfo: (podIndex) => dispatch(hidePodInfo(podIndex)),
     displayPVInfo: (pvIndex) => dispatch(displayPVInfo(pvIndex)),
     hidePVInfo: (pvIndex) => dispatch(hidePVInfo(pvIndex)),
     updateCurrentPod: podObj => dispatch(updateCurrentPod(podObj)),

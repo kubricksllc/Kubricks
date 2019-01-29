@@ -11,7 +11,7 @@ const server = httpServer.Server(app);
 
 app.use(express.static(path.join(__dirname, "../../main")));
 app.use("*", (req, res, next) => {
-  console.log("processing request", req.params);
+  // console.log("processing request", req.params);
   next();
 });
 

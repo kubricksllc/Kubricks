@@ -90,7 +90,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.infoWindowHeight);
     return (
       <Router history={history}>
         <PageContainer>

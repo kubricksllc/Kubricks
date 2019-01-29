@@ -25,7 +25,6 @@ function buildDataSet(service, listOfPods, listOfPVs, nodeName) {
   }
 
   const temp = listOfPods.reduce((list, pod, idx) => {
-    // console.log(list, pod);
     if (
       key &&
       JSON.stringify(pod.labels) === key &&

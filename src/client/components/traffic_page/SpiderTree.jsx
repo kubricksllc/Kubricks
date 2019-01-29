@@ -8,7 +8,6 @@ import {
   hideServiceInfo
 } from '../redux/actions/windowActions.js';
 import { connect } from 'react-redux';
-import { throws } from 'assert';
 
 const Box = styled.div`
   height: 100%;
@@ -39,7 +38,6 @@ class SpiderTree extends Component {
       .select('svg')
       .remove();
     d3.select(this.refs.svg).call(this.zoom);
-
     this.buildTree();
     this.drawTree();
   }
@@ -62,8 +60,7 @@ class SpiderTree extends Component {
   }
 
   drawTree() {
-    const radius = 2000;
-
+    const radius = 500 * this.props.activeServices.length;
     const tree = data =>
       d3
         .tree()
@@ -129,7 +126,7 @@ class SpiderTree extends Component {
     node
       .append('circle')
       .attr('fill', d => d.data.data.fill)
-      .attr('r', 40);
+      .attr('r', `40`);
 
     node
       .selectAll('circle')
@@ -158,17 +155,11 @@ class SpiderTree extends Component {
   handleNodeEnter(node) {
     if (node.depth === 2) {
       //pod
-      this.props.displayPodInfo(node.data.data.otherAttr.podIdx, {
-        x: this.mouseX + 50,
-        y: this.mouseY - 100
-      });
+      this.props.displayPodInfo(node.data.data.otherAttr.podIdx);
     } else if (node.depth === 1) {
       //service
       if (node.data.data.name !== 'No_Service') {
-        this.props.displayServiceInfo(node.data.data.otherAttr.serviceIdx, {
-          x: this.mouseX + 50,
-          y: this.mouseY - 100
-        });
+        this.props.displayServiceInfo(node.data.data.otherAttr.serviceIdx);
       }
     }
   }
@@ -203,11 +194,10 @@ class SpiderTree extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    displayPodInfo: (podIndex, mouseInfo) =>
-      dispatch(displayPodInfo(podIndex, mouseInfo)),
+    displayPodInfo: podIndex => dispatch(displayPodInfo(podIndex)),
     hidePodInfo: podIndex => dispatch(hidePodInfo(podIndex)),
-    displayServiceInfo: (serviceIndex, mouseInfo) =>
-      dispatch(displayServiceInfo(serviceIndex, mouseInfo)),
+    displayServiceInfo: serviceIndex =>
+      dispatch(displayServiceInfo(serviceIndex)),
     hideServiceInfo: serviceIndex => dispatch(hideServiceInfo(serviceIndex))
   };
 };
