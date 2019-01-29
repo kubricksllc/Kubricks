@@ -59876,11 +59876,16 @@ function (_Component) {
         data: BuildData(this.props.listOfPods, this.props.listOfPVs, this.props.activeServices, this.props.listOfServices, this.props.currentNode.name),
         separation: {
           siblings: 1,
-          nonSiblings: 5
+          nonSiblings: 1000
         },
         translate: {
-          x: 50,
-          y: 50
+          x: 150,
+          y: 150
+        },
+        textLayout: {
+          textAnchor: 'start',
+          x: 0,
+          y: -20
         }
       }));
     }
@@ -60192,7 +60197,7 @@ function buildSingleTree(service, listOfPodsInStore, serviceIdx) {
 
   listOfPodsInStore.forEach(function (pod, idx) {
     // console.log(pod, service)
-    if (key && JSON.stringify(pod.labels) === key) {
+    if (key && JSON.stringify(pod.labels).includes(key)) {
       var podNode = new traffic_page_Constructors.PodNode(pod.name, pod.labels, pod.containers[0].mappedContainerPort, idx, checkPodStatus(pod.status.currentStatus));
       podIdxUsed[idx] = 1;
       serviceNode.children.push(podNode);
