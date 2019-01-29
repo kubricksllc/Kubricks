@@ -10,7 +10,6 @@ ___
 Kubricks is an Electron App designed to provide intuitive graphs of current cluster deployment to engineers. It allows us to: 
   - Visualize cluster resources and their relationships 
   - Condtionally render resources to highlight errors
-  - 
 #### Prerequisites 
 In order to properly utilize the Kubricks app, a few conditions have to be met. You should have:
   - A Kubernetes cluster deployed
