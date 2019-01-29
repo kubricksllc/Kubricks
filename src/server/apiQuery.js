@@ -42,7 +42,8 @@ const api = {
 
   getPV: () =>
     kube.listPersistentVolume('true', null, null, true, null, 50, null)
-
 };
 
 module.exports = api;
+
+//api.getAllServices().then(res => console.log(res.body.items))
