@@ -26,18 +26,20 @@ const ContentWrapper = styled.section`
   grid-area: content;
   display: flex;
   justify-content: center;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: #d6d6d6;
 `;
 
 const ServicesWrapper = styled.section`
   grid-area: services;
+  border-right: 2px solid #1a1a1a;
+  background-color: #212121;
+  color: white;
 `;
 const InfoWrapper = styled.section`
   grid-area: info;
+  padding-left: 1em;
   border-top: 1px solid #d9d9d9;
-  background-color: #262626;
+  background-color: #272822;
   color: white;
 `;
 

@@ -9,7 +9,6 @@ import ViewModes from "./ViewModes.jsx";
 const Box = styled.div`
   height: 100%;
   margin: 0;
-  border: 1px solid #d9d9d9;
   padding: 1em;
 `;
 

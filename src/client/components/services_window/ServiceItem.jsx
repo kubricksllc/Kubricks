@@ -2,22 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { toggleService } from "../redux/actions/servicesAndPodsActions.js";
-
-const ServiceBoxActive = styled.div`
-  border: 1px solid;
-  border-radius: 5px;
-  min-width: 25vh;
-  cursor: pointer;
-  background-color: #326DE6;
-  color: white;
-`;
-
-const ServiceBoxInActive = styled.div`
-  border: 1px solid;
-  border-radius: 5px;
-  min-width: 25vh;
-  cursor: pointer;
-`;
+import { ServiceWindowBox } from '../styled/styledComponents';
 
 class ServiceList extends Component {
   constructor(props) {
@@ -36,15 +21,15 @@ class ServiceList extends Component {
   render() {
     if (this.props.activeServices.includes(this.props.index)) {
       return (
-        <ServiceBoxActive onClick={this.handleOnClick.bind(this)}>
+        <ServiceWindowBox active onClick={this.handleOnClick.bind(this)}>
           {this.props.name}
-        </ServiceBoxActive>
+        </ServiceWindowBox>
       );
     } else
       return (
-        <ServiceBoxInActive onClick={this.handleOnClick.bind(this)}>
+        <ServiceWindowBox onClick={this.handleOnClick.bind(this)}>
           {this.props.name}
-        </ServiceBoxInActive>
+        </ServiceWindowBox>
       );
   }
 }

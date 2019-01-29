@@ -8224,7 +8224,7 @@ function index (resultFn, isEqual) {
   var calledOnce = false;
 
   var isNewArgEqualToLast = function isNewArgEqualToLast(newArg, index) {
-    return isEqual(newArg, lastArgs[index]);
+    return isEqual(newArg, lastArgs[index], index);
   };
 
   var result = function result() {
@@ -46192,7 +46192,7 @@ function HexGraph_assertThisInitialized(self) { if (self === void 0) { throw new
 var Box = styled_components_browser_esm["a" /* default */].div.withConfig({
   displayName: "HexGraph__Box",
   componentId: "sc-1sp6e6s-0"
-})(["height:100%;width:100%;border:solid 1px;"]);
+})(["height:100%;width:100%;"]);
 
 var HexGraph_HexGraph =
 /*#__PURE__*/
@@ -46632,7 +46632,7 @@ function SpiderTree_assertThisInitialized(self) { if (self === void 0) { throw n
 var SpiderTree_Box = styled_components_browser_esm["a" /* default */].div.withConfig({
   displayName: "SpiderTree__Box",
   componentId: "sc-1rivo5m-0"
-})(["height:100%;width:100%;border:2px solid;"]);
+})(["height:100%;width:100%;"]);
 
 var SpiderTree_SpiderTree =
 /*#__PURE__*/
@@ -47048,6 +47048,16 @@ function servicesAndPodsFetchData(url) {
     });
   };
 }
+// CONCATENATED MODULE: ./src/client/components/styled/styledComponents.js
+
+var ServiceWindowBox = styled_components_browser_esm["a" /* default */].div.withConfig({
+  displayName: "styledComponents__ServiceWindowBox",
+  componentId: "sc-1o5mkb0-0"
+})(["padding:.3em 0 .3em 0;text-align:center;border:2px solid black;border-radius:5px;width:100%;cursor:pointer;background-color:", ";color:", ";"], function (props) {
+  return props.active ? '#326de6' : 'white';
+}, function (props) {
+  return props.active ? 'white' : 'black';
+});
 // CONCATENATED MODULE: ./src/client/components/services_window/ServiceType.jsx
 function ServiceType_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { ServiceType_typeof = function _typeof(obj) { return typeof obj; }; } else { ServiceType_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return ServiceType_typeof(obj); }
 
@@ -47071,14 +47081,7 @@ function ServiceType_setPrototypeOf(o, p) { ServiceType_setPrototypeOf = Object.
 
 
 
-var ServiceTypeBoxActive = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "ServiceType__ServiceTypeBoxActive",
-  componentId: "sc-148n5kj-0"
-})(["border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;background-color:#326DE6;color:white;"]);
-var ServiceTypeBoxInActive = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "ServiceType__ServiceTypeBoxInActive",
-  componentId: "sc-148n5kj-1"
-})(["border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;"]);
+
 
 var ServiceType_ServiceType =
 /*#__PURE__*/
@@ -47100,10 +47103,11 @@ function (_Component) {
     key: "render",
     value: function render() {
       if (this.props.activeServiceTypes.includes(this.props.type)) {
-        return react_default.a.createElement(ServiceTypeBoxActive, {
+        return react_default.a.createElement(ServiceWindowBox, {
+          active: true,
           onClick: this.handleOnClick.bind(this)
         }, this.props.type);
-      } else return react_default.a.createElement(ServiceTypeBoxInActive, {
+      } else return react_default.a.createElement(ServiceWindowBox, {
         onClick: this.handleOnClick.bind(this)
       }, this.props.type);
     }
@@ -47144,14 +47148,7 @@ function ServiceItem_setPrototypeOf(o, p) { ServiceItem_setPrototypeOf = Object.
 
 
 
-var ServiceBoxActive = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "ServiceItem__ServiceBoxActive",
-  componentId: "sc-1d5cuzt-0"
-})(["border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;background-color:#326DE6;color:white;"]);
-var ServiceBoxInActive = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "ServiceItem__ServiceBoxInActive",
-  componentId: "sc-1d5cuzt-1"
-})(["border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;"]);
+
 
 var ServiceItem_ServiceList =
 /*#__PURE__*/
@@ -47173,10 +47170,11 @@ function (_Component) {
     key: "render",
     value: function render() {
       if (this.props.activeServices.includes(this.props.index)) {
-        return react_default.a.createElement(ServiceBoxActive, {
+        return react_default.a.createElement(ServiceWindowBox, {
+          active: true,
           onClick: this.handleOnClick.bind(this)
         }, this.props.name);
-      } else return react_default.a.createElement(ServiceBoxInActive, {
+      } else return react_default.a.createElement(ServiceWindowBox, {
         onClick: this.handleOnClick.bind(this)
       }, this.props.name);
     }
@@ -47218,14 +47216,11 @@ function ViewModes_assertThisInitialized(self) { if (self === void 0) { throw ne
 
 
 
-var ViewModeBoxActive = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "ViewModes__ViewModeBoxActive",
+
+var StyledLink = Object(styled_components_browser_esm["a" /* default */])(es_Link).withConfig({
+  displayName: "ViewModes__StyledLink",
   componentId: "sc-771hfe-0"
-})(["text-align:center;border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;background-color:#326de6;color:white;"]);
-var ViewModeBoxInActive = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "ViewModes__ViewModeBoxInActive",
-  componentId: "sc-771hfe-1"
-})(["text-align:center;border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;background-color:white;color:black;"]);
+})(["text-decoration:none;&:focus,&:hover,&:visited,&:link,&:active{text-decoration:none;}"]);
 
 var ViewModes_ViewModes =
 /*#__PURE__*/
@@ -47250,13 +47245,17 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return react_default.a.createElement("div", null, react_default.a.createElement(es_Link, {
+      return react_default.a.createElement("div", null, react_default.a.createElement(StyledLink, {
         to: "/"
-      }, this.props.viewMode === "Cluster" ? react_default.a.createElement(ViewModeBoxActive, null, "Cluster") : react_default.a.createElement(ViewModeBoxInActive, {
+      }, this.props.viewMode === "Cluster" ? react_default.a.createElement(ServiceWindowBox, {
+        active: true
+      }, "Cluster") : react_default.a.createElement(ServiceWindowBox, {
         onClick: this.handleOnClick.bind(this)
-      }, "Cluster")), react_default.a.createElement(es_Link, {
+      }, "Cluster")), react_default.a.createElement(StyledLink, {
         to: "/traffic"
-      }, this.props.viewMode === "Traffic" ? react_default.a.createElement(ViewModeBoxActive, null, "Traffic") : react_default.a.createElement(ViewModeBoxInActive, {
+      }, this.props.viewMode === "Traffic" ? react_default.a.createElement(ServiceWindowBox, {
+        active: true
+      }, "Traffic") : react_default.a.createElement(ServiceWindowBox, {
         onClick: this.handleOnClick.bind(this)
       }, "Traffic")));
     }
@@ -47309,7 +47308,7 @@ function ServicesWindow_setPrototypeOf(o, p) { ServicesWindow_setPrototypeOf = O
 var ServicesWindow_Box = styled_components_browser_esm["a" /* default */].div.withConfig({
   displayName: "ServicesWindow__Box",
   componentId: "sc-63u4cn-0"
-})(["height:100%;margin:0;border:1px solid #d9d9d9;padding:1em;"]);
+})(["height:100%;margin:0;padding:1em;"]);
 var ServicesWindow_Title = styled_components_browser_esm["a" /* default */].h1.withConfig({
   displayName: "ServicesWindow__Title",
   componentId: "sc-63u4cn-1"
@@ -47611,15 +47610,15 @@ var PageContainer = styled_components_browser_esm["a" /* default */].div.withCon
 var ContentWrapper = styled_components_browser_esm["a" /* default */].section.withConfig({
   displayName: "App__ContentWrapper",
   componentId: "sc-1wjjh7q-1"
-})(["grid-area:content;display:flex;justify-content:center;background-size:contain;background-position:center;background-repeat:no-repeat;"]);
+})(["grid-area:content;display:flex;justify-content:center;background-color:#d6d6d6;"]);
 var ServicesWrapper = styled_components_browser_esm["a" /* default */].section.withConfig({
   displayName: "App__ServicesWrapper",
   componentId: "sc-1wjjh7q-2"
-})(["grid-area:services;"]);
+})(["grid-area:services;border-right:2px solid #1a1a1a;background-color:#212121;color:white;"]);
 var InfoWrapper = styled_components_browser_esm["a" /* default */].section.withConfig({
   displayName: "App__InfoWrapper",
   componentId: "sc-1wjjh7q-3"
-})(["grid-area:info;border-top:1px solid #d9d9d9;background-color:#262626;color:white;"]);
+})(["grid-area:info;padding-left:1em;border-top:1px solid #d9d9d9;background-color:#272822;color:white;"]);
 var App_history = createBrowserHistory_default()();
 App_history.push("/");
 var widthPercent = 0.8,
