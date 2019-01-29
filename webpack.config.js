@@ -9,9 +9,9 @@ module.exports = {
     filename: "index_bundle.js",
     publicPath: "/"
   },
-  optimization: {
-    minimize: false
-  },
+  // optimization: {
+  //   minimize: false
+  // },
   module: {
     rules: [
       {
