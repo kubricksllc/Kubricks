@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class MasterNode extends Component {
   constructor(props) {
@@ -6,7 +6,6 @@ class MasterNode extends Component {
   }
 
   render() {
-    const dist = 10;
     const { xScale, yScale } = this.props;
 
     if (!Number.isNaN(xScale) && !Number.isNaN(yScale)) {

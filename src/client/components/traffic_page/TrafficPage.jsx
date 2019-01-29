@@ -1,9 +1,8 @@
-import React, { Component } from "react";
-import SpiderTree from "./SpiderTree.jsx";
-import buildTreeData from "./BuildTree.js";
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import InfoWindow from "../../layout/InfoWindow.jsx";
+import React, { Component } from 'react';
+import SpiderTree from './SpiderTree.jsx';
+import buildTreeData from './BuildTree.js';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class TrafficPage extends Component {
   constructor(props) {
@@ -19,6 +18,7 @@ class TrafficPage extends Component {
             this.props.listOfServices,
             this.props.listOfPods
           )}
+          activeServices={this.props.activeServices}
           width={this.props.width}
           height={this.props.height}
         />

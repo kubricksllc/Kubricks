@@ -1,11 +1,15 @@
-import { PVS_FETCH, UPDATE_CURRENT_PV, DISPLAY_PV_INFO, HIDE_PV_INFO } from '../actions/actionTypes.js';
+import {
+  PVS_FETCH,
+  DISPLAY_PV_INFO,
+  HIDE_PV_INFO
+} from '../actions/actionTypes.js';
 
-import moment from "moment";
+import moment from 'moment';
 
 const initialState = {
   listOfPVs: [],
   currentPV: null
-}
+};
 
 function getAge(datetime) {
   var time = new Date() - new Date(datetime);
@@ -14,19 +18,16 @@ function getAge(datetime) {
   return `${days}d${hours}h`;
 }
 
-export function pvsReducer (state = initialState, action) {
-  switch(action.type) {
+export function pvsReducer(state = initialState, action) {
+  switch (action.type) {
     case PVS_FETCH:
       return {
         ...state,
         listOfPVs: action.payload
-      };   
+      };
 
     case DISPLAY_PV_INFO:
-      const currentPV = Object.assign(
-        {},
-        state.listOfPVs[action.payload]
-      );
+      const currentPV = Object.assign({}, state.listOfPVs[action.payload]);
       currentPV.age = getAge(currentPV.createdAt);
       return {
         ...state,
@@ -39,7 +40,7 @@ export function pvsReducer (state = initialState, action) {
       };
 
     default: {
-      return state
+      return state;
     }
   }
 }

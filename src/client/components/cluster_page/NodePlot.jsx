@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import * as d3 from "d3";
-import WorkerNode from "./WorkerNode.jsx";
-import MasterNode from "./MasterNode.jsx";
+import React, { Component } from 'react';
+import * as d3 from 'd3';
+import WorkerNode from './WorkerNode.jsx';
+import MasterNode from './MasterNode.jsx';
 
 class NodePlot extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class NodePlot extends Component {
         .domain([0, d3.max(data, node => node.y)])
         .range([0, height]));
 
-    if (zoomTransform && zoomType === "detail") {
+    if (zoomTransform && zoomType === 'detail') {
       this.xScale.domain(zoomTransform.rescaleX(this.xScale).domain());
       this.yScale.domain(zoomTransform.rescaleY(this.yScale).domain());
     }
@@ -31,9 +31,9 @@ class NodePlot extends Component {
 
   get transform() {
     const { x, y, zoomTransform, zoomType } = this.props;
-    let transform = "";
+    let transform = '';
 
-    if (zoomTransform && zoomType === "scale") {
+    if (zoomTransform && zoomType === 'scale') {
       transform = `translate(${x + zoomTransform.x}, ${y +
         zoomTransform.y}) scale(${zoomTransform.k})`;
     } else {

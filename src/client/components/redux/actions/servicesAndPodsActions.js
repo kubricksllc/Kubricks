@@ -39,7 +39,6 @@ export function servicesAndPodsFetchData(url) {
         return res.json();
       })
       .then(data => {
-        console.log("hitting response", data);
         dispatch(servicesFetch(data.services));
         dispatch(podsFetch(data.pods));
       })

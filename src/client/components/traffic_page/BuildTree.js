@@ -19,11 +19,7 @@ export default function buildTreeData(
 
   const noServiceTree = buildNoServiceTree(listOfPodsInStore);
 
-  // console.log(blankMasterNode, serviceTree, noServiceTree);
-
   blankMasterNode.children = serviceTree.concat([noServiceTree]);
-
-  // console.log(blankMasterNode)
 
   return blankMasterNode;
 }

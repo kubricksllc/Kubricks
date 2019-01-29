@@ -1,26 +1,22 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import InfoWindow from "../../layout/InfoWindow.jsx";
-import HexGraph from "./HexGraph.jsx";
-import { nodesFetchData } from "../redux/actions/nodesActions.js";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import HexGraph from './HexGraph.jsx';
+import { nodesFetchData } from '../redux/actions/nodesActions.js';
 
 class ClusterPage extends Component {
   constructor() {
     super();
     this.state = {
-      title: "Cluster",
+      title: 'Cluster',
       data: []
     };
-    this.showNodeInfo = this.showNodeInfo.bind(this);
-    this.hideNodeInfo = this.hideNodeInfo.bind(this);
-    this.handleMouseMove = this.handleMouseMove.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchData("http://localhost:8080/api/nodes");
+    this.props.fetchData('http://localhost:8080/api/nodes');
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     //IF THEW NODE LIST CHANGES UPDATE IT
 
     if (this.props.listOfNodes !== prevProps.listOfNodes) {
@@ -66,21 +62,6 @@ class ClusterPage extends Component {
       }
     }
     return nodes;
-  }
-
-  showNodeInfo(node) {
-    this.setState({ windowOpen: true, target: node });
-  }
-
-  hideNodeInfo() {
-    this.setState({ windowOpen: false });
-  }
-
-  handleMouseMove(e) {
-    this.setState({
-      mouseX: e.clientX,
-      mouseY: e.clientY
-    });
   }
 
   render() {

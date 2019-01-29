@@ -2,7 +2,6 @@
 
 function parsePV(listOfVolumes) {
   return listOfVolumes.reduce((list, volume) => {
-    // console.log(volume);
     if (volume.persistentVolumeClaim) {
       list[volume.persistentVolumeClaim.claimName] = volume.name;
     }

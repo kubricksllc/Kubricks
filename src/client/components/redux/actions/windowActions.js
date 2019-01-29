@@ -8,7 +8,7 @@ import {
   DISPLAY_PV_INFO,
   HIDE_PV_INFO,
   TOGGLE_VIEW_MODE
-} from "./actionTypes";
+} from './actionTypes';
 
 // Action creators
 export function toggleViewMode() {
@@ -16,55 +16,47 @@ export function toggleViewMode() {
     type: TOGGLE_VIEW_MODE
   };
 }
-export function displayNodeInfo(nodeIndex, mouseInfo, contentInfo) {
+export function displayNodeInfo(nodeIndex) {
   return {
     type: DISPLAY_NODE_INFO,
     payload: {
-      nodeIndex,
-      mouseInfo,
-      contentInfo
+      nodeIndex
     }
   };
 }
 
-export function hideNodeInfo(nodeIndex, mouseInfo) {
+export function hideNodeInfo(nodeIndex) {
   return {
     type: HIDE_NODE_INFO,
     payload: {
-      nodeIndex,
-      mouseInfo
+      nodeIndex
     }
   };
 }
 
-export function displayPodInfo(podIndex, mouseInfo, contentInfo) {
+export function displayPodInfo(podIndex) {
   return {
     type: DISPLAY_POD_INFO,
     payload: {
-      podIndex,
-      mouseInfo,
-      contentInfo
+      podIndex
     }
   };
 }
 
-export function hidePodInfo(podIndex, mouseInfo) {
+export function hidePodInfo(podIndex) {
   return {
     type: HIDE_POD_INFO,
     payload: {
-      podIndex,
-      mouseInfo
+      podIndex
     }
   };
 }
 
-export function displayServiceInfo(serviceIndex, mouseInfo, contentInfo) {
+export function displayServiceInfo(serviceIndex) {
   return {
     type: DISPLAY_SERVICE_INFO,
     payload: {
-      serviceIndex,
-      mouseInfo,
-      contentInfo
+      serviceIndex
     }
   };
 }
@@ -73,8 +65,7 @@ export function hideServiceInfo(serviceIndex, mouseInfo) {
   return {
     type: HIDE_SERVICE_INFO,
     payload: {
-      serviceIndex,
-      mouseInfo
+      serviceIndex
     }
   };
 }
