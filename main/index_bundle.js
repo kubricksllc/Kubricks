@@ -37742,14 +37742,6 @@ Route_Route.childContextTypes = {
 var history_createBrowserHistory = __webpack_require__(153);
 var createBrowserHistory_default = /*#__PURE__*/__webpack_require__.n(history_createBrowserHistory);
 
-// CONCATENATED MODULE: ./src/client/layout/HexTitle.jsx
-
-
-var HexTitle_HexTitle = function HexTitle(props) {
-  return react_default.a.createElement("h1", null, props.title);
-};
-
-/* harmony default export */ var layout_HexTitle = (HexTitle_HexTitle);
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js
 function _inheritsLoose(subClass, superClass) {
   subClass.prototype = Object.create(superClass.prototype);
@@ -38512,91 +38504,6 @@ function createConnect(_temp) {
 
 
 
-// CONCATENATED MODULE: ./src/client/layout/InfoWindow.jsx
-function InfoWindow_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { InfoWindow_typeof = function _typeof(obj) { return typeof obj; }; } else { InfoWindow_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return InfoWindow_typeof(obj); }
-
-function InfoWindow_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function InfoWindow_possibleConstructorReturn(self, call) { if (call && (InfoWindow_typeof(call) === "object" || typeof call === "function")) { return call; } return InfoWindow_assertThisInitialized(self); }
-
-function InfoWindow_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function InfoWindow_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-
-var Window = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "InfoWindow__Window",
-  componentId: "vrx4ak-0"
-})(["background-color:black;border-radius:3px;position:fixed;z-index:1;max-width:250px;word-break:break-word;width:100%;color:white;padding:10px;font-family:Lucida Console,Lucida Sans Typewriter,monaco,Bitstream Vera Sans Mono,monospace;"]);
-var Title = styled_components_browser_esm["a" /* default */].h1.withConfig({
-  displayName: "InfoWindow__Title",
-  componentId: "vrx4ak-1"
-})(["font-size:1em;text-align:center;"]);
-
-var InfoWindow_InfoWindow =
-/*#__PURE__*/
-function (_Component) {
-  InfoWindow_inherits(InfoWindow, _Component);
-
-  function InfoWindow(props) {
-    InfoWindow_classCallCheck(this, InfoWindow);
-
-    return InfoWindow_possibleConstructorReturn(this, _getPrototypeOf(InfoWindow).call(this, props));
-  }
-
-  _createClass(InfoWindow, [{
-    key: "render",
-    value: function render() {
-      var windowStyle = {
-        left: this.props.mouseInfo.x,
-        top: this.props.mouseInfo.y
-      };
-
-      if (this.props.currentNode !== null && this.props.currentPod === null && this.props.currentService === null) {
-        return react_default.a.createElement(Window, {
-          style: windowStyle
-        }, react_default.a.createElement("div", null, react_default.a.createElement(Title, null, "NODE"), react_default.a.createElement("p", null, "NAME: ", this.props.currentNode.name), react_default.a.createElement("p", null, "STATUS: ", this.props.currentNode.status), react_default.a.createElement("p", null, "AGE: ", this.props.currentNode.age), react_default.a.createElement("p", null, "VERSION: ", this.props.currentNode.version)));
-      }
-
-      if (this.props.viewMode === "Traffic") {
-        if (this.props.currentPod) {
-          return react_default.a.createElement(Window, {
-            style: windowStyle
-          }, react_default.a.createElement("div", null, react_default.a.createElement(Title, null, "POD"), react_default.a.createElement("p", null, "NAME: ", this.props.currentPod.name), react_default.a.createElement("p", null, "STATUS: ", this.props.currentPod.status.currentStatus), react_default.a.createElement("p", null, "IP: ", this.props.currentPod.status.podIP), react_default.a.createElement("p", null, "LABELS: ", JSON.stringify(this.props.currentPod.labels)), react_default.a.createElement("p", null, "AGE: ", this.props.currentPod.age)));
-        } else if (this.props.currentService) {
-          return react_default.a.createElement(Window, {
-            style: windowStyle
-          }, react_default.a.createElement("div", null, react_default.a.createElement(Title, null, "SERVICE"), react_default.a.createElement("p", null, "name: ", this.props.currentService.name), react_default.a.createElement("p", null, "type: ", this.props.currentService.type), this.props.currentService.type === "ClusterIP" && react_default.a.createElement("p", null, "clusterIP: ", this.props.currentService.clusterIP)));
-        }
-      }
-    }
-  }]);
-
-  return InfoWindow;
-}(react["Component"]);
-
-var InfoWindow_mapStateToProps = function mapStateToProps(state) {
-  return {
-    viewMode: state.windowReducer.viewMode,
-    currentNode: state.nodesReducer.currentNode,
-    currentPod: state.podsReducer.currentPod,
-    currentService: state.servicesReducer.currentService,
-    mouseInfo: state.windowReducer.mouseInfo,
-    typeContent: state.windowReducer.typeContent
-  };
-};
-
-/* harmony default export */ var layout_InfoWindow = (connect_connect(InfoWindow_mapStateToProps)(InfoWindow_InfoWindow));
 // CONCATENATED MODULE: ./node_modules/d3/dist/package.js
 var package_name = "d3";
 var version = "5.8.0";
@@ -58576,20 +58483,19 @@ function WorkerNode_typeof(obj) { if (typeof Symbol === "function" && typeof Sym
 
 function WorkerNode_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function WorkerNode_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function WorkerNode_createClass(Constructor, protoProps, staticProps) { if (protoProps) WorkerNode_defineProperties(Constructor.prototype, protoProps); if (staticProps) WorkerNode_defineProperties(Constructor, staticProps); return Constructor; }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 function WorkerNode_possibleConstructorReturn(self, call) { if (call && (WorkerNode_typeof(call) === "object" || typeof call === "function")) { return call; } return WorkerNode_assertThisInitialized(self); }
 
-function WorkerNode_getPrototypeOf(o) { WorkerNode_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return WorkerNode_getPrototypeOf(o); }
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-function WorkerNode_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) WorkerNode_setPrototypeOf(subClass, superClass); }
+function WorkerNode_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
-function WorkerNode_setPrototypeOf(o, p) { WorkerNode_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return WorkerNode_setPrototypeOf(o, p); }
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function WorkerNode_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 
 
 
@@ -58606,7 +58512,7 @@ function (_Component) {
 
     WorkerNode_classCallCheck(this, WorkerNode);
 
-    _this = WorkerNode_possibleConstructorReturn(this, WorkerNode_getPrototypeOf(WorkerNode).call(this, props));
+    _this = WorkerNode_possibleConstructorReturn(this, _getPrototypeOf(WorkerNode).call(this, props));
     _this.handleMouseEnter = _this.handleMouseEnter.bind(WorkerNode_assertThisInitialized(WorkerNode_assertThisInitialized(_this)));
     _this.handleMouseLeave = _this.handleMouseLeave.bind(WorkerNode_assertThisInitialized(WorkerNode_assertThisInitialized(_this)));
     _this.handleOnClick = _this.handleOnClick.bind(WorkerNode_assertThisInitialized(WorkerNode_assertThisInitialized(_this)));
@@ -58616,7 +58522,7 @@ function (_Component) {
     return _this;
   }
 
-  WorkerNode_createClass(WorkerNode, [{
+  _createClass(WorkerNode, [{
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
       if (this.state.scaling && !prevState.scaling) {
@@ -58795,7 +58701,6 @@ function (_Component) {
   MasterNode_createClass(MasterNode, [{
     key: "render",
     value: function render() {
-      var dist = 10;
       var _this$props = this.props,
           xScale = _this$props.xScale,
           yScale = _this$props.yScale;
@@ -58906,7 +58811,7 @@ function (_Component) {
         return node.y;
       })]).range([0, height]);
 
-      if (zoomTransform && zoomType === "detail") {
+      if (zoomTransform && zoomType === 'detail') {
         this.xScale.domain(zoomTransform.rescaleX(this.xScale).domain());
         this.yScale.domain(zoomTransform.rescaleY(this.yScale).domain());
       }
@@ -58944,9 +58849,9 @@ function (_Component) {
           y = _this$props.y,
           zoomTransform = _this$props.zoomTransform,
           zoomType = _this$props.zoomType;
-      var transform = "";
+      var transform = '';
 
-      if (zoomTransform && zoomType === "scale") {
+      if (zoomTransform && zoomType === 'scale') {
         transform = "translate(".concat(x + zoomTransform.x, ", ").concat(y + zoomTransform.y, ") scale(").concat(zoomTransform.k, ")");
       } else {
         transform = "translate(".concat(x, ", ").concat(y, ")");
@@ -59007,7 +58912,7 @@ function (_Component) {
       svgWidth: _this.props.width,
       svgHeight: _this.props.height
     };
-    _this.zoom = d3_zoom_src_zoom().scaleExtent([-5, 5]).extent([[-100, -100], [props.width + 100, props.height + 100]]).on("zoom", _this.zoomed.bind(HexGraph_assertThisInitialized(HexGraph_assertThisInitialized(_this))));
+    _this.zoom = d3_zoom_src_zoom().scaleExtent([-5, 5]).extent([[-100, -100], [props.width + 100, props.height + 100]]).on('zoom', _this.zoomed.bind(HexGraph_assertThisInitialized(HexGraph_assertThisInitialized(_this))));
     return _this;
   }
 
@@ -59095,14 +59000,13 @@ function ClusterPage_createClass(Constructor, protoProps, staticProps) { if (pro
 
 function ClusterPage_possibleConstructorReturn(self, call) { if (call && (ClusterPage_typeof(call) === "object" || typeof call === "function")) { return call; } return ClusterPage_assertThisInitialized(self); }
 
+function ClusterPage_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 function ClusterPage_getPrototypeOf(o) { ClusterPage_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return ClusterPage_getPrototypeOf(o); }
 
 function ClusterPage_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) ClusterPage_setPrototypeOf(subClass, superClass); }
 
 function ClusterPage_setPrototypeOf(o, p) { ClusterPage_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return ClusterPage_setPrototypeOf(o, p); }
-
-function ClusterPage_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 
 
 
@@ -59121,23 +59025,20 @@ function (_Component) {
 
     _this = ClusterPage_possibleConstructorReturn(this, ClusterPage_getPrototypeOf(ClusterPage).call(this));
     _this.state = {
-      title: "Cluster",
+      title: 'Cluster',
       data: []
     };
-    _this.showNodeInfo = _this.showNodeInfo.bind(ClusterPage_assertThisInitialized(ClusterPage_assertThisInitialized(_this)));
-    _this.hideNodeInfo = _this.hideNodeInfo.bind(ClusterPage_assertThisInitialized(ClusterPage_assertThisInitialized(_this)));
-    _this.handleMouseMove = _this.handleMouseMove.bind(ClusterPage_assertThisInitialized(ClusterPage_assertThisInitialized(_this)));
     return _this;
   }
 
   ClusterPage_createClass(ClusterPage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchData("http://localhost:8080/api/nodes");
+      this.props.fetchData('http://localhost:8080/api/nodes');
     }
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps, prevState) {
+    value: function componentDidUpdate(prevProps) {
       //IF THEW NODE LIST CHANGES UPDATE IT
       if (this.props.listOfNodes !== prevProps.listOfNodes) {
         this.setState({
@@ -59191,29 +59092,6 @@ function (_Component) {
       }
 
       return nodes;
-    }
-  }, {
-    key: "showNodeInfo",
-    value: function showNodeInfo(node) {
-      this.setState({
-        windowOpen: true,
-        target: node
-      });
-    }
-  }, {
-    key: "hideNodeInfo",
-    value: function hideNodeInfo() {
-      this.setState({
-        windowOpen: false
-      });
-    }
-  }, {
-    key: "handleMouseMove",
-    value: function handleMouseMove(e) {
-      this.setState({
-        mouseX: e.clientX,
-        mouseY: e.clientY
-      });
     }
   }, {
     key: "render",
@@ -59844,7 +59722,6 @@ function buildSingleTree(service, listOfPodsInStore, serviceIdx) {
   }
 
   listOfPodsInStore.forEach(function (pod, idx) {
-    // console.log(pod, service)
     if (key && JSON.stringify(pod.labels).includes(key)) {
       var podNode = new PodNodeSvcNodeClass.PodNode(pod.name, pod.labels, pod.containers[0].mappedContainerPort, idx, checkPodStatus(pod.status.currentStatus));
       podIdxUsed[idx] = 1;
@@ -59896,7 +59773,6 @@ function TrafficPage_getPrototypeOf(o) { TrafficPage_getPrototypeOf = Object.set
 function TrafficPage_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) TrafficPage_setPrototypeOf(subClass, superClass); }
 
 function TrafficPage_setPrototypeOf(o, p) { TrafficPage_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return TrafficPage_setPrototypeOf(o, p); }
-
 
 
 
@@ -59992,7 +59868,7 @@ function servicesAndPodsFetchData(url) {
 var ServiceWindowBox = styled_components_browser_esm["a" /* default */].div.withConfig({
   displayName: "styledComponents__ServiceWindowBox",
   componentId: "sc-1o5mkb0-0"
-})(["padding:.3em 0 .3em 0;text-align:center;border:2px solid black;border-radius:5px;width:95%;margin-top:2px;cursor:pointer;background-color:", ";color:", ";"], function (props) {
+})(["padding:0.3em 0 0.3em 0;text-align:center;border:2px solid black;border-radius:5px;width:95%;margin-top:2px;cursor:pointer;background-color:", ";color:", ";"], function (props) {
   return props.active ? '#326de6' : 'white';
 }, function (props) {
   return props.active ? 'white' : 'black';
@@ -60211,13 +60087,13 @@ function (_Component) {
     value: function render() {
       return react_default.a.createElement("div", null, react_default.a.createElement(StyledLink, {
         to: "/"
-      }, this.props.viewMode === "Cluster" ? react_default.a.createElement(ServiceWindowBox, {
+      }, this.props.viewMode === 'Cluster' ? react_default.a.createElement(ServiceWindowBox, {
         active: true
       }, "Cluster") : react_default.a.createElement(ServiceWindowBox, {
         onClick: this.handleOnClick.bind(this)
       }, "Cluster")), react_default.a.createElement(StyledLink, {
         to: "/traffic"
-      }, this.props.viewMode === "Traffic" ? react_default.a.createElement(ServiceWindowBox, {
+      }, this.props.viewMode === 'Traffic' ? react_default.a.createElement(ServiceWindowBox, {
         active: true
       }, "Traffic") : react_default.a.createElement(ServiceWindowBox, {
         onClick: this.handleOnClick.bind(this)
@@ -60272,17 +60148,13 @@ var ServicesWindow_Box = styled_components_browser_esm["a" /* default */].div.wi
   displayName: "ServicesWindow__Box",
   componentId: "sc-63u4cn-0"
 })(["height:100%;margin:0;padding:1em;overflow:auto;"]);
-var ServicesWindow_Title = styled_components_browser_esm["a" /* default */].h1.withConfig({
+var Title = styled_components_browser_esm["a" /* default */].h1.withConfig({
   displayName: "ServicesWindow__Title",
   componentId: "sc-63u4cn-1"
 })(["text-align:center;"]);
 var ServiceTypes = styled_components_browser_esm["a" /* default */].div.withConfig({
   displayName: "ServicesWindow__ServiceTypes",
   componentId: "sc-63u4cn-2"
-})(["text-align:center;"]);
-var Services = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "ServicesWindow__Services",
-  componentId: "sc-63u4cn-3"
 })(["text-align:center;"]);
 
 var ServicesWindow_ServicesWindow =
@@ -60299,7 +60171,7 @@ function (_Component) {
   ServicesWindow_createClass(ServicesWindow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var url = "api/renderall";
+      var url = 'api/renderall';
       this.props.fetchData(url);
     }
   }, {
@@ -60320,7 +60192,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return react_default.a.createElement(ServicesWindow_Box, null, react_default.a.createElement(ServicesWindow_Title, null, "View Mode"), react_default.a.createElement(services_window_ViewModes, null), react_default.a.createElement(ServicesWindow_Title, null, "Services"), react_default.a.createElement(ServiceTypes, null, this.renderServiceTypes()));
+      return react_default.a.createElement(ServicesWindow_Box, null, react_default.a.createElement(Title, null, "View Mode"), react_default.a.createElement(services_window_ViewModes, null), react_default.a.createElement(Title, null, "Services"), react_default.a.createElement(ServiceTypes, null, this.renderServiceTypes()));
     }
   }]);
 
@@ -60452,10 +60324,6 @@ var InfoTitle = styled_components_browser_esm["a" /* default */].h1.withConfig({
   displayName: "InfoPane__InfoTitle",
   componentId: "sc-1bd1tm0-0"
 })(["margin-top:10px !important;margin:0;"]);
-var InfoPane_InfoBox = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "InfoPane__InfoBox",
-  componentId: "sc-1bd1tm0-1"
-})([""]);
 
 var InfoPane_InfoPane =
 /*#__PURE__*/
@@ -60474,7 +60342,7 @@ function (_Component) {
       var rjvConfig = {
         src: {},
         name: false,
-        theme: "monokai",
+        theme: 'monokai',
         enableClipboard: false,
         displayObjectSize: false,
         displayDataTypes: false
@@ -60482,29 +60350,26 @@ function (_Component) {
       var infoTitle = react_dom_default.a.findDOMNode(this.refs.infoTitle);
       var height = infoTitle === null ? 0 : this.props.infoWindowHeight - infoTitle.offsetHeight - 15;
       var inlineStyle = {
-        overflow: "auto",
+        overflow: 'auto',
         maxHeight: height
       };
 
       switch (this.props.typeContent) {
-        case "node":
+        case 'node':
           rjvConfig.src = this.props.currentNode;
           break;
 
-        case "pod":
+        case 'pod':
           rjvConfig.src = this.props.currentPod;
           break;
 
-        case "service":
+        case 'service':
           rjvConfig.src = this.props.currentService;
           break;
 
         case 'pv':
           rjvConfig.src = this.props.currentPV;
           break;
-
-        default: //   rjvConfig.src = {};
-
       }
 
       return react_default.a.createElement("div", null, react_default.a.createElement(InfoTitle, {
@@ -60559,11 +60424,10 @@ function App_assertThisInitialized(self) { if (self === void 0) { throw new Refe
 
 
 
-
 var PageContainer = styled_components_browser_esm["a" /* default */].div.withConfig({
   displayName: "App__PageContainer",
   componentId: "sc-1wjjh7q-0"
-})(["height:100%;display:grid;grid-template-columns:20% 80%;grid-template-rows:70% 30%;grid-template-areas:\"services content\" \"services info\";"]);
+})(["height:100%;display:grid;grid-template-columns:20% 80%;grid-template-rows:70% 30%;grid-template-areas:'services content' 'services info';"]);
 var ContentWrapper = styled_components_browser_esm["a" /* default */].section.withConfig({
   displayName: "App__ContentWrapper",
   componentId: "sc-1wjjh7q-1"
@@ -60577,7 +60441,7 @@ var InfoWrapper = styled_components_browser_esm["a" /* default */].section.withC
   componentId: "sc-1wjjh7q-3"
 })(["grid-area:info;padding-left:1em;border-top:1px solid #d9d9d9;background-color:#272822;color:white;"]);
 var App_history = createBrowserHistory_default()();
-App_history.push("/");
+App_history.push('/');
 
 var App_App =
 /*#__PURE__*/
@@ -60622,12 +60486,12 @@ function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.updateDimensions();
-      window.addEventListener("resize", this.updateDimensions.bind(this));
+      window.addEventListener('resize', this.updateDimensions.bind(this));
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      window.removeEventListener("resize", this.updateDimensions.bind(this));
+      window.removeEventListener('resize', this.updateDimensions.bind(this));
     }
   }, {
     key: "toggleServicesWindow",
@@ -60807,7 +60671,7 @@ var windowReducer_initalState = {
     x: 0,
     y: 0
   },
-  viewMode: "Cluster"
+  viewMode: 'Cluster'
 };
 function windowReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : windowReducer_initalState;
@@ -60815,7 +60679,7 @@ function windowReducer() {
 
   switch (action.type) {
     case TOGGLE_VIEW_MODE:
-      var viewMode = state.viewMode === "Cluster" ? "Traffic" : "Cluster";
+      var viewMode = state.viewMode === 'Cluster' ? 'Traffic' : 'Cluster';
       return windowReducer_objectSpread({}, state, {
         viewMode: viewMode
       });

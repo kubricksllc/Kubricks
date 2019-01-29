@@ -8,7 +8,7 @@ import {
   DISPLAY_PV_INFO,
   HIDE_PV_INFO,
   TOGGLE_VIEW_MODE
-} from "../actions/actionTypes";
+} from '../actions/actionTypes';
 
 const initalState = {
   nodeInfoOpen: false,
@@ -17,13 +17,13 @@ const initalState = {
   pvInfoOpen: false,
   typeContent: '',
   mouseInfo: { x: 0, y: 0 },
-  viewMode: "Cluster"
+  viewMode: 'Cluster'
 };
 
 export function windowReducer(state = initalState, action) {
   switch (action.type) {
     case TOGGLE_VIEW_MODE:
-      const viewMode = state.viewMode === "Cluster" ? "Traffic" : "Cluster";
+      const viewMode = state.viewMode === 'Cluster' ? 'Traffic' : 'Cluster';
       return {
         ...state,
         viewMode
@@ -77,7 +77,7 @@ export function windowReducer(state = initalState, action) {
       return {
         ...state,
         pvInfoOpen: false
-      }
+      };
     default:
       return state;
   }

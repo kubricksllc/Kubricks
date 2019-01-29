@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { toggleService } from "../redux/actions/servicesAndPodsActions.js";
-import { ServiceBox } from "../styled/styledComponents";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { toggleService } from '../redux/actions/servicesAndPodsActions.js';
+import { ServiceBox } from '../styled/styledComponents';
 
 class ServiceItem extends Component {
   constructor(props) {

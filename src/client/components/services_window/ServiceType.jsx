@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import { connect } from "react-redux";
-import { toggleServiceType } from "../redux/actions/servicesAndPodsActions.js";
-import ServiceItem from "./ServiceItem.jsx";
-import {ServiceWindowBox} from "../styled/styledComponents.js";
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { toggleServiceType } from '../redux/actions/servicesAndPodsActions.js';
+import ServiceItem from './ServiceItem.jsx';
+import { ServiceWindowBox } from '../styled/styledComponents.js';
 
 const ServiceList = styled.div``;
 

@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import { connect } from "react-redux";
-import { servicesAndPodsFetchData } from "../redux/actions/servicesAndPodsActions.js";
-import ServiceType from "./ServiceType.jsx";
-import ViewModes from "./ViewModes.jsx";
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { servicesAndPodsFetchData } from '../redux/actions/servicesAndPodsActions.js';
+import ServiceType from './ServiceType.jsx';
+import ViewModes from './ViewModes.jsx';
 
 const Box = styled.div`
   height: 100%;
@@ -20,18 +20,13 @@ const ServiceTypes = styled.div`
   text-align: center;
 `;
 
-const Services = styled.div`
-  text-align: center;
-`;
-
 class ServicesWindow extends Component {
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
-    const url =
-      "api/renderall";
+    const url = 'api/renderall';
     this.props.fetchData(url);
   }
 

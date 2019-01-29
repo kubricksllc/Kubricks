@@ -1,15 +1,14 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import { HashRouter as Router, Route, Switch, Link } from "react-router-dom";
-import createBrowserHistory from "history/createBrowserHistory";
-import HexTitle from "./layout/HexTitle.jsx";
-import ClusterPage from "./components/cluster_page/ClusterPage.jsx";
-import NodePage from "./components/node_page/NodePage.jsx";
-import TrafficPage from "./components/traffic_page/TrafficPage.jsx";
-import ServicesWindow from "./components/services_window/ServicesWindow.jsx";
-import InfoBanner from "./layout/InfoBanner.jsx";
-import InfoPane from "./components/info_window/InfoPane.jsx";
-import ReactDOM from "react-dom";
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import createBrowserHistory from 'history/createBrowserHistory';
+import ClusterPage from './components/cluster_page/ClusterPage.jsx';
+import NodePage from './components/node_page/NodePage.jsx';
+import TrafficPage from './components/traffic_page/TrafficPage.jsx';
+import ServicesWindow from './components/services_window/ServicesWindow.jsx';
+import InfoBanner from './layout/InfoBanner.jsx';
+import InfoPane from './components/info_window/InfoPane.jsx';
+import ReactDOM from 'react-dom';
 
 const PageContainer = styled.div`
   height: 100%;
@@ -17,8 +16,8 @@ const PageContainer = styled.div`
   grid-template-columns: 20% 80%;
   grid-template-rows: 70% 30%;
   grid-template-areas:
-    "services content"
-    "services info";
+    'services content'
+    'services info';
 `;
 
 const ContentWrapper = styled.section`
@@ -43,7 +42,7 @@ const InfoWrapper = styled.section`
 `;
 
 const history = createBrowserHistory();
-history.push("/");
+history.push('/');
 
 class App extends Component {
   constructor() {
@@ -77,11 +76,11 @@ class App extends Component {
 
   componentDidMount() {
     this.updateDimensions();
-    window.addEventListener("resize", this.updateDimensions.bind(this));
+    window.addEventListener('resize', this.updateDimensions.bind(this));
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.updateDimensions.bind(this));
+    window.removeEventListener('resize', this.updateDimensions.bind(this));
   }
 
   toggleServicesWindow() {
