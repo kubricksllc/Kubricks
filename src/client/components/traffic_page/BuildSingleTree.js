@@ -1,5 +1,5 @@
-import Builder from './Constructors.jsx';
-import { checkPodStatus, checkPortMapping } from './Util.jsx';
+import Builder from './PodNodeSvcNodeClass.js';
+import { checkPodStatus, checkPortMapping } from './Util.js';
 
 const podIdxUsed = {};
 

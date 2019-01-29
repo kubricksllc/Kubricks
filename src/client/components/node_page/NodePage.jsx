@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { updateCurrentPod } from '../redux/actions/podsActions.js';
 import { withRouter } from 'react-router-dom';
 import { pvFetchData } from '../redux/actions/pvsActions.js';
-import buildData from './BuildData.jsx';
+import buildData from './BuildData.js';
 import Tree from 'react-d3-tree';
 
 const NodePageContainer = styled.div`

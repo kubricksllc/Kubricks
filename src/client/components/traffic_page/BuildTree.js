@@ -1,5 +1,5 @@
-import { buildSingleTree, buildNoServiceTree } from './BuildSingleTree.jsx';
-import Builder from './Constructors.jsx';
+import { buildSingleTree, buildNoServiceTree } from './BuildSingleTree.js';
+import Builder from './PodNodeSvcNodeClass.js';
 
 export default function buildTreeData(
   listOfActiveServices,
