@@ -21,9 +21,14 @@ export function servicesReducer(state = initialState, action) {
       for (let i = 0; i < action.payload.length; i++) {
         activeServiceIndex.push(i);
       }
+      const listOfServices = action.payload;
+      let i = 0;
+      for (let service of listOfServices) {
+        service.index = i++;
+      }
       return {
         ...state,
-        listOfServices: action.payload,
+        listOfServices,
         activeServices: activeServiceIndex
       };
 

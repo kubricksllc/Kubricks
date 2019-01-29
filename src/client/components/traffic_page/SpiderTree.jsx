@@ -13,7 +13,6 @@ import { throws } from 'assert';
 const Box = styled.div`
   height: 100%;
   width: 100%;
-  border: 2px solid;
 `;
 
 class SpiderTree extends Component {

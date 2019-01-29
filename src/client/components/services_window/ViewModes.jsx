@@ -3,25 +3,14 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { toggleViewMode } from "../redux/actions/windowActions.js";
 import { Link } from "react-router-dom";
+import { ServiceWindowBox} from '../styled/styledComponents';
 
-const ViewModeBoxActive = styled.div`
-  text-align: center;
-  border: 1px solid;
-  border-radius: 5px;
-  min-width: 25vh;
-  cursor: pointer;
-  background-color: #326de6;
-  color: white;
-`;
+const StyledLink = styled(Link)`
+    text-decoration: none;
 
-const ViewModeBoxInActive = styled.div`
-  text-align: center;
-  border: 1px solid;
-  border-radius: 5px;
-  min-width: 25vh;
-  cursor: pointer;
-  background-color: white;
-  color: black;
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
 `;
 
 class ViewModes extends Component {
@@ -37,24 +26,24 @@ class ViewModes extends Component {
   render() {
     return (
       <div>
-        <Link to="/">
+        <StyledLink to="/">
           {this.props.viewMode === "Cluster" ? (
-            <ViewModeBoxActive>Cluster</ViewModeBoxActive>
+            <ServiceWindowBox active>Cluster</ServiceWindowBox>
           ) : (
-            <ViewModeBoxInActive onClick={this.handleOnClick.bind(this)}>
+            <ServiceWindowBox onClick={this.handleOnClick.bind(this)}>
               Cluster
-            </ViewModeBoxInActive>
+            </ServiceWindowBox>
           )}
-        </Link>
-        <Link to="/traffic">
+        </StyledLink>
+        <StyledLink to="/traffic">
           {this.props.viewMode === "Traffic" ? (
-            <ViewModeBoxActive>Traffic</ViewModeBoxActive>
+            <ServiceWindowBox active>Traffic</ServiceWindowBox>
           ) : (
-            <ViewModeBoxInActive onClick={this.handleOnClick.bind(this)}>
+            <ServiceWindowBox onClick={this.handleOnClick.bind(this)}>
               Traffic
-            </ViewModeBoxInActive>
+            </ServiceWindowBox>
           )}
-        </Link>
+        </StyledLink>
       </div>
     );
   }

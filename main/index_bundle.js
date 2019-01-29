@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 206);
+/******/ 	return __webpack_require__(__webpack_require__.s = 205);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1951,7 +1951,7 @@ if (true) {
             try {
                 oldLocale = globalLocale._abbr;
                 var aliasedRequire = require;
-                __webpack_require__(205)("./" + name);
+                __webpack_require__(204)("./" + name);
                 getSetGlobalLocale(oldLocale);
             } catch (e) {}
         }
@@ -4702,7 +4702,7 @@ if (true) {
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(204)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(203)(module)))
 
 /***/ }),
 /* 2 */
@@ -4750,7 +4750,7 @@ if (false) { var throwOnDirectAccess, isValidElement, REACT_ELEMENT_TYPE; } else
 /* harmony import */ var memoize_one__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(18);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(8);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _emotion_is_prop_valid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(163);
 
@@ -7338,6 +7338,40 @@ module.exports = warning;
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function checkDCE() {
+  /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
+  if (
+    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' ||
+    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function'
+  ) {
+    return;
+  }
+  if (false) {}
+  try {
+    // Verify that the code above has been dead code eliminated (DCE'd).
+    __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);
+  } catch (err) {
+    // DevTools shouldn't crash React, no matter what.
+    // We should still report in case we break this code.
+    console.error(err);
+  }
+}
+
+if (true) {
+  // DCE check should happen before ReactDOM bundle executes so that
+  // DevTools can report bad minification during injection.
+  checkDCE();
+  module.exports = __webpack_require__(165);
+} else {}
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7971,40 +8005,6 @@ function isCrushed() {}
 if (false) {}
 
 
-
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function checkDCE() {
-  /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
-  if (
-    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' ||
-    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function'
-  ) {
-    return;
-  }
-  if (false) {}
-  try {
-    // Verify that the code above has been dead code eliminated (DCE'd).
-    __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);
-  } catch (err) {
-    // DevTools shouldn't crash React, no matter what.
-    // We should still report in case we break this code.
-    console.error(err);
-  }
-}
-
-if (true) {
-  // DCE check should happen before ReactDOM bundle executes so that
-  // DevTools can report bad minification during injection.
-  checkDCE();
-  module.exports = __webpack_require__(165);
-} else {}
 
 
 /***/ }),
@@ -35446,7 +35446,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _reactDom = __webpack_require__(8);
+var _reactDom = __webpack_require__(7);
 
 var _PropTypes = __webpack_require__(26);
 
@@ -37118,16 +37118,10 @@ if (typeof Object.create === 'function') {
 /* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "6c2493ea3928328f251409f5c12b0e11.svg";
-
-/***/ }),
-/* 203 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 
 
-var compose = __webpack_require__(7).compose;
+var compose = __webpack_require__(8).compose;
 
 exports.__esModule = true;
 exports.composeWithDevTools = (
@@ -37148,7 +37142,7 @@ exports.devToolsEnhancer = (
 
 
 /***/ }),
-/* 204 */
+/* 203 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -37176,7 +37170,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 205 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -37455,10 +37449,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 205;
+webpackContext.id = 204;
 
 /***/ }),
-/* 206 */
+/* 205 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -37469,7 +37463,7 @@ var react = __webpack_require__(0);
 var react_default = /*#__PURE__*/__webpack_require__.n(react);
 
 // EXTERNAL MODULE: ./node_modules/react-dom/index.js
-var react_dom = __webpack_require__(8);
+var react_dom = __webpack_require__(7);
 var react_dom_default = /*#__PURE__*/__webpack_require__.n(react_dom);
 
 // EXTERNAL MODULE: ./node_modules/styled-components/dist/styled-components.browser.esm.js
@@ -39373,7 +39367,7 @@ function shallowEqual(objA, objB) {
   return true;
 }
 // EXTERNAL MODULE: ./node_modules/redux/es/redux.js
-var redux = __webpack_require__(7);
+var redux = __webpack_require__(8);
 
 // CONCATENATED MODULE: ./node_modules/react-redux/es/utils/isPlainObject.js
 /**
@@ -60249,7 +60243,7 @@ function HexGraph_assertThisInitialized(self) { if (self === void 0) { throw new
 var Box = styled_components_browser_esm["a" /* default */].div.withConfig({
   displayName: "HexGraph__Box",
   componentId: "sc-1sp6e6s-0"
-})(["height:100%;width:100%;border:solid 1px;"]);
+})(["height:100%;width:100%;"]);
 
 var HexGraph_HexGraph =
 /*#__PURE__*/
@@ -60883,7 +60877,7 @@ function SpiderTree_assertThisInitialized(self) { if (self === void 0) { throw n
 var SpiderTree_Box = styled_components_browser_esm["a" /* default */].div.withConfig({
   displayName: "SpiderTree__Box",
   componentId: "sc-1rivo5m-0"
-})(["height:100%;width:100%;border:2px solid;"]);
+})(["height:100%;width:100%;"]);
 
 var SpiderTree_SpiderTree =
 /*#__PURE__*/
@@ -61261,79 +61255,22 @@ function servicesAndPodsFetchData(url) {
     });
   };
 }
-// CONCATENATED MODULE: ./src/client/components/services_window/ServiceType.jsx
-function ServiceType_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { ServiceType_typeof = function _typeof(obj) { return typeof obj; }; } else { ServiceType_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return ServiceType_typeof(obj); }
+// CONCATENATED MODULE: ./src/client/components/styled/styledComponents.js
 
-function ServiceType_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function ServiceType_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function ServiceType_createClass(Constructor, protoProps, staticProps) { if (protoProps) ServiceType_defineProperties(Constructor.prototype, protoProps); if (staticProps) ServiceType_defineProperties(Constructor, staticProps); return Constructor; }
-
-function ServiceType_possibleConstructorReturn(self, call) { if (call && (ServiceType_typeof(call) === "object" || typeof call === "function")) { return call; } return ServiceType_assertThisInitialized(self); }
-
-function ServiceType_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function ServiceType_getPrototypeOf(o) { ServiceType_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return ServiceType_getPrototypeOf(o); }
-
-function ServiceType_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) ServiceType_setPrototypeOf(subClass, superClass); }
-
-function ServiceType_setPrototypeOf(o, p) { ServiceType_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return ServiceType_setPrototypeOf(o, p); }
-
-
-
-
-
-var ServiceTypeBoxActive = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "ServiceType__ServiceTypeBoxActive",
-  componentId: "sc-148n5kj-0"
-})(["border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;background-color:#326DE6;color:white;"]);
-var ServiceTypeBoxInActive = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "ServiceType__ServiceTypeBoxInActive",
-  componentId: "sc-148n5kj-1"
-})(["border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;"]);
-
-var ServiceType_ServiceType =
-/*#__PURE__*/
-function (_Component) {
-  ServiceType_inherits(ServiceType, _Component);
-
-  function ServiceType(props) {
-    ServiceType_classCallCheck(this, ServiceType);
-
-    return ServiceType_possibleConstructorReturn(this, ServiceType_getPrototypeOf(ServiceType).call(this, props));
-  }
-
-  ServiceType_createClass(ServiceType, [{
-    key: "handleOnClick",
-    value: function handleOnClick(e) {
-      this.props.toggleServiceType(this.props.type);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      if (this.props.activeServiceTypes.includes(this.props.type)) {
-        return react_default.a.createElement(ServiceTypeBoxActive, {
-          onClick: this.handleOnClick.bind(this)
-        }, this.props.type);
-      } else return react_default.a.createElement(ServiceTypeBoxInActive, {
-        onClick: this.handleOnClick.bind(this)
-      }, this.props.type);
-    }
-  }]);
-
-  return ServiceType;
-}(react["Component"]);
-
-var ServiceType_mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    toggleServiceType: function toggleServiceType(serviceType) {
-      return dispatch(servicesAndPodsActions_toggleServiceType(serviceType));
-    }
-  };
-};
-
-/* harmony default export */ var services_window_ServiceType = (connect_connect(null, ServiceType_mapDispatchToProps)(ServiceType_ServiceType));
+var ServiceWindowBox = styled_components_browser_esm["a" /* default */].div.withConfig({
+  displayName: "styledComponents__ServiceWindowBox",
+  componentId: "sc-1o5mkb0-0"
+})(["padding:.3em 0 .3em 0;text-align:center;border:2px solid black;border-radius:5px;width:95%;margin-top:2px;cursor:pointer;background-color:", ";color:", ";"], function (props) {
+  return props.active ? '#326de6' : 'white';
+}, function (props) {
+  return props.active ? 'white' : 'black';
+});
+var ServiceBox = Object(styled_components_browser_esm["a" /* default */])(ServiceWindowBox).withConfig({
+  displayName: "styledComponents__ServiceBox",
+  componentId: "sc-1o5mkb0-1"
+})(["margin-top:0;margin-left:5%;width:95%;background-color:", ";"], function (props) {
+  return props.active ? 'darkblue' : 'white';
+});
 // CONCATENATED MODULE: ./src/client/components/services_window/ServiceItem.jsx
 function ServiceItem_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { ServiceItem_typeof = function _typeof(obj) { return typeof obj; }; } else { ServiceItem_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return ServiceItem_typeof(obj); }
 
@@ -61357,45 +61294,38 @@ function ServiceItem_setPrototypeOf(o, p) { ServiceItem_setPrototypeOf = Object.
 
 
 
-var ServiceBoxActive = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "ServiceItem__ServiceBoxActive",
-  componentId: "sc-1d5cuzt-0"
-})(["border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;background-color:#326DE6;color:white;"]);
-var ServiceBoxInActive = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "ServiceItem__ServiceBoxInActive",
-  componentId: "sc-1d5cuzt-1"
-})(["border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;"]);
 
-var ServiceItem_ServiceList =
+var ServiceItem_ServiceItem =
 /*#__PURE__*/
 function (_Component) {
-  ServiceItem_inherits(ServiceList, _Component);
+  ServiceItem_inherits(ServiceItem, _Component);
 
-  function ServiceList(props) {
-    ServiceItem_classCallCheck(this, ServiceList);
+  function ServiceItem(props) {
+    ServiceItem_classCallCheck(this, ServiceItem);
 
-    return ServiceItem_possibleConstructorReturn(this, ServiceItem_getPrototypeOf(ServiceList).call(this, props));
+    return ServiceItem_possibleConstructorReturn(this, ServiceItem_getPrototypeOf(ServiceItem).call(this, props));
   }
 
-  ServiceItem_createClass(ServiceList, [{
+  ServiceItem_createClass(ServiceItem, [{
     key: "handleOnClick",
     value: function handleOnClick(e) {
-      if (this.props.activeServiceTypes.includes(this.props.listOfServices[this.props.index].type)) this.props.toggleService(this.props.index);
+      if (this.props.activeServiceTypes.includes(this.props.listOfServices[this.props.service.index].type)) this.props.toggleService(this.props.service.index);
     }
   }, {
     key: "render",
     value: function render() {
-      if (this.props.activeServices.includes(this.props.index)) {
-        return react_default.a.createElement(ServiceBoxActive, {
+      if (this.props.activeServices.includes(this.props.service.index)) {
+        return react_default.a.createElement(ServiceBox, {
+          active: true,
           onClick: this.handleOnClick.bind(this)
-        }, this.props.name);
-      } else return react_default.a.createElement(ServiceBoxInActive, {
+        }, this.props.service.name);
+      } else return react_default.a.createElement(ServiceBox, {
         onClick: this.handleOnClick.bind(this)
-      }, this.props.name);
+      }, this.props.service.name);
     }
   }]);
 
-  return ServiceList;
+  return ServiceItem;
 }(react["Component"]);
 
 var ServiceItem_mapDispatchToProps = function mapDispatchToProps(dispatch) {
@@ -61406,7 +61336,94 @@ var ServiceItem_mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ var ServiceItem = (connect_connect(null, ServiceItem_mapDispatchToProps)(ServiceItem_ServiceList));
+/* harmony default export */ var services_window_ServiceItem = (connect_connect(null, ServiceItem_mapDispatchToProps)(ServiceItem_ServiceItem));
+// CONCATENATED MODULE: ./src/client/components/services_window/ServiceType.jsx
+function ServiceType_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { ServiceType_typeof = function _typeof(obj) { return typeof obj; }; } else { ServiceType_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return ServiceType_typeof(obj); }
+
+function ServiceType_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function ServiceType_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function ServiceType_createClass(Constructor, protoProps, staticProps) { if (protoProps) ServiceType_defineProperties(Constructor.prototype, protoProps); if (staticProps) ServiceType_defineProperties(Constructor, staticProps); return Constructor; }
+
+function ServiceType_possibleConstructorReturn(self, call) { if (call && (ServiceType_typeof(call) === "object" || typeof call === "function")) { return call; } return ServiceType_assertThisInitialized(self); }
+
+function ServiceType_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function ServiceType_getPrototypeOf(o) { ServiceType_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return ServiceType_getPrototypeOf(o); }
+
+function ServiceType_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) ServiceType_setPrototypeOf(subClass, superClass); }
+
+function ServiceType_setPrototypeOf(o, p) { ServiceType_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return ServiceType_setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+var ServiceList = styled_components_browser_esm["a" /* default */].div.withConfig({
+  displayName: "ServiceType__ServiceList",
+  componentId: "sc-148n5kj-0"
+})([""]);
+
+var ServiceType_ServiceType =
+/*#__PURE__*/
+function (_Component) {
+  ServiceType_inherits(ServiceType, _Component);
+
+  function ServiceType(props) {
+    ServiceType_classCallCheck(this, ServiceType);
+
+    return ServiceType_possibleConstructorReturn(this, ServiceType_getPrototypeOf(ServiceType).call(this, props));
+  }
+
+  ServiceType_createClass(ServiceType, [{
+    key: "handleOnClick",
+    value: function handleOnClick(e) {
+      this.props.toggleServiceType(this.props.type);
+    }
+  }, {
+    key: "renderServiceList",
+    value: function renderServiceList() {
+      var _this = this;
+
+      return this.props.listOfServices.map(function (service) {
+        if (_this.props.type === service.type) return react_default.a.createElement(services_window_ServiceItem, {
+          key: service.name,
+          service: service,
+          listOfServices: _this.props.listOfServices,
+          activeServices: _this.props.activeServices,
+          activeServiceTypes: _this.props.activeServiceTypes
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (this.props.activeServiceTypes.includes(this.props.type)) {
+        return react_default.a.createElement(ServiceList, null, react_default.a.createElement(ServiceWindowBox, {
+          active: true,
+          onClick: this.handleOnClick.bind(this)
+        }, this.props.type), this.renderServiceList());
+      } else return react_default.a.createElement(ServiceWindowBox, {
+        onClick: this.handleOnClick.bind(this)
+      }, this.props.type);
+    }
+  }]);
+
+  return ServiceType;
+}(react["Component"]);
+
+var ServiceType_mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    toggleServiceType: function toggleServiceType(serviceType) {
+      return dispatch(servicesAndPodsActions_toggleServiceType(serviceType));
+    }
+  };
+};
+
+/* harmony default export */ var services_window_ServiceType = (connect_connect(null, ServiceType_mapDispatchToProps)(ServiceType_ServiceType));
 // CONCATENATED MODULE: ./src/client/components/services_window/ViewModes.jsx
 function ViewModes_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { ViewModes_typeof = function _typeof(obj) { return typeof obj; }; } else { ViewModes_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return ViewModes_typeof(obj); }
 
@@ -61431,14 +61448,11 @@ function ViewModes_assertThisInitialized(self) { if (self === void 0) { throw ne
 
 
 
-var ViewModeBoxActive = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "ViewModes__ViewModeBoxActive",
+
+var StyledLink = Object(styled_components_browser_esm["a" /* default */])(es_Link).withConfig({
+  displayName: "ViewModes__StyledLink",
   componentId: "sc-771hfe-0"
-})(["text-align:center;border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;background-color:#326de6;color:white;"]);
-var ViewModeBoxInActive = styled_components_browser_esm["a" /* default */].div.withConfig({
-  displayName: "ViewModes__ViewModeBoxInActive",
-  componentId: "sc-771hfe-1"
-})(["text-align:center;border:1px solid;border-radius:5px;min-width:25vh;cursor:pointer;background-color:white;color:black;"]);
+})(["text-decoration:none;&:focus,&:hover,&:visited,&:link,&:active{text-decoration:none;}"]);
 
 var ViewModes_ViewModes =
 /*#__PURE__*/
@@ -61463,13 +61477,17 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return react_default.a.createElement("div", null, react_default.a.createElement(es_Link, {
+      return react_default.a.createElement("div", null, react_default.a.createElement(StyledLink, {
         to: "/"
-      }, this.props.viewMode === "Cluster" ? react_default.a.createElement(ViewModeBoxActive, null, "Cluster") : react_default.a.createElement(ViewModeBoxInActive, {
+      }, this.props.viewMode === "Cluster" ? react_default.a.createElement(ServiceWindowBox, {
+        active: true
+      }, "Cluster") : react_default.a.createElement(ServiceWindowBox, {
         onClick: this.handleOnClick.bind(this)
-      }, "Cluster")), react_default.a.createElement(es_Link, {
+      }, "Cluster")), react_default.a.createElement(StyledLink, {
         to: "/traffic"
-      }, this.props.viewMode === "Traffic" ? react_default.a.createElement(ViewModeBoxActive, null, "Traffic") : react_default.a.createElement(ViewModeBoxInActive, {
+      }, this.props.viewMode === "Traffic" ? react_default.a.createElement(ServiceWindowBox, {
+        active: true
+      }, "Traffic") : react_default.a.createElement(ServiceWindowBox, {
         onClick: this.handleOnClick.bind(this)
       }, "Traffic")));
     }
@@ -61518,11 +61536,10 @@ function ServicesWindow_setPrototypeOf(o, p) { ServicesWindow_setPrototypeOf = O
 
 
 
-
 var ServicesWindow_Box = styled_components_browser_esm["a" /* default */].div.withConfig({
   displayName: "ServicesWindow__Box",
   componentId: "sc-63u4cn-0"
-})(["height:100%;margin:0;border:1px solid #d9d9d9;padding:1em;"]);
+})(["height:100%;margin:0;padding:1em;overflow:auto;"]);
 var ServicesWindow_Title = styled_components_browser_esm["a" /* default */].h1.withConfig({
   displayName: "ServicesWindow__Title",
   componentId: "sc-63u4cn-1"
@@ -61562,31 +61579,16 @@ function (_Component) {
         return react_default.a.createElement(services_window_ServiceType, {
           key: serviceType,
           type: serviceType,
+          activeServices: _this.props.activeServices,
+          listOfServices: _this.props.listOfServices,
           activeServiceTypes: _this.props.activeServiceTypes
-        });
-      });
-    }
-  }, {
-    key: "renderServiceList",
-    value: function renderServiceList() {
-      var _this2 = this;
-
-      var i = 0;
-      return this.props.listOfServices.map(function (service) {
-        return react_default.a.createElement(ServiceItem, {
-          key: service.name,
-          name: service.name,
-          index: i++,
-          listOfServices: _this2.props.listOfServices,
-          activeServices: _this2.props.activeServices,
-          activeServiceTypes: _this2.props.activeServiceTypes
         });
       });
     }
   }, {
     key: "render",
     value: function render() {
-      return react_default.a.createElement(ServicesWindow_Box, null, react_default.a.createElement(ServicesWindow_Title, null, "View Mode"), react_default.a.createElement(services_window_ViewModes, null), react_default.a.createElement(ServicesWindow_Title, null, "Services"), "Service Types", react_default.a.createElement(ServiceTypes, null, this.renderServiceTypes()), "Services", react_default.a.createElement(Services, null, this.renderServiceList()));
+      return react_default.a.createElement(ServicesWindow_Box, null, react_default.a.createElement(ServicesWindow_Title, null, "View Mode"), react_default.a.createElement(services_window_ViewModes, null), react_default.a.createElement(ServicesWindow_Title, null, "Services"), react_default.a.createElement(ServiceTypes, null, this.renderServiceTypes()));
     }
   }]);
 
@@ -61713,10 +61715,15 @@ function InfoPane_setPrototypeOf(o, p) { InfoPane_setPrototypeOf = Object.setPro
 
 
 
+
 var InfoTitle = styled_components_browser_esm["a" /* default */].h1.withConfig({
   displayName: "InfoPane__InfoTitle",
   componentId: "sc-1bd1tm0-0"
-})(["text-decoration:underline;"]);
+})(["margin-top:10px !important;margin:0;"]);
+var InfoPane_InfoBox = styled_components_browser_esm["a" /* default */].div.withConfig({
+  displayName: "InfoPane__InfoBox",
+  componentId: "sc-1bd1tm0-1"
+})([""]);
 
 var InfoPane_InfoPane =
 /*#__PURE__*/
@@ -61740,21 +61747,24 @@ function (_Component) {
         displayObjectSize: false,
         displayDataTypes: false
       };
+      var infoTitle = react_dom_default.a.findDOMNode(this.refs.infoTitle);
+      var height = infoTitle === null ? 0 : this.props.infoWindowHeight - infoTitle.offsetHeight - 15;
       var inlineStyle = {
-        overflow: 'auto',
-        maxHeight: 150
+        overflow: "auto",
+        maxHeight: height
       };
+      console.log("height", height);
 
       switch (this.props.typeContent) {
-        case 'node':
+        case "node":
           rjvConfig.src = this.props.currentNode;
           break;
 
-        case 'pod':
+        case "pod":
           rjvConfig.src = this.props.currentPod;
           break;
 
-        case 'service':
+        case "service":
           rjvConfig.src = this.props.currentService;
           break;
 
@@ -61766,7 +61776,9 @@ function (_Component) {
 
       }
 
-      return react_default.a.createElement("div", null, react_default.a.createElement(InfoTitle, null, "Info Window"), react_default.a.createElement(main_default.a, InfoPane_extends({}, rjvConfig, {
+      return react_default.a.createElement("div", null, react_default.a.createElement(InfoTitle, {
+        ref: "infoTitle"
+      }, "Info Window"), react_default.a.createElement(main_default.a, InfoPane_extends({}, rjvConfig, {
         style: inlineStyle
       })));
     }
@@ -61786,9 +61798,6 @@ var InfoPane_mapStateToProps = function mapStateToProps(state) {
 };
 
 /* harmony default export */ var info_window_InfoPane = (connect_connect(InfoPane_mapStateToProps)(InfoPane_InfoPane));
-// EXTERNAL MODULE: ./src/client/img/Node.svg
-var img_Node = __webpack_require__(202);
-
 // CONCATENATED MODULE: ./src/client/App.jsx
 function App_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { App_typeof = function _typeof(obj) { return typeof obj; }; } else { App_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return App_typeof(obj); }
 
@@ -61820,7 +61829,6 @@ function App_assertThisInitialized(self) { if (self === void 0) { throw new Refe
 
 
 
-
 var PageContainer = styled_components_browser_esm["a" /* default */].div.withConfig({
   displayName: "App__PageContainer",
   componentId: "sc-1wjjh7q-0"
@@ -61828,19 +61836,17 @@ var PageContainer = styled_components_browser_esm["a" /* default */].div.withCon
 var ContentWrapper = styled_components_browser_esm["a" /* default */].section.withConfig({
   displayName: "App__ContentWrapper",
   componentId: "sc-1wjjh7q-1"
-})(["grid-area:content;display:flex;justify-content:center;background-size:contain;background-position:center;background-repeat:no-repeat;"]);
+})(["grid-area:content;display:flex;justify-content:center;background-color:#d6d6d6;"]);
 var ServicesWrapper = styled_components_browser_esm["a" /* default */].section.withConfig({
   displayName: "App__ServicesWrapper",
   componentId: "sc-1wjjh7q-2"
-})(["grid-area:services;"]);
+})(["grid-area:services;border-right:2px solid #1a1a1a;background-color:#212121;color:white;"]);
 var InfoWrapper = styled_components_browser_esm["a" /* default */].section.withConfig({
   displayName: "App__InfoWrapper",
   componentId: "sc-1wjjh7q-3"
-})(["grid-area:info;border-top:1px solid #d9d9d9;background-color:#262626;color:white;"]);
+})(["grid-area:info;padding-left:1em;border-top:1px solid #d9d9d9;background-color:#272822;color:white;"]);
 var App_history = createBrowserHistory_default()();
 App_history.push("/");
-var widthPercent = 0.8,
-    heightPercent = 0.7;
 
 var App_App =
 /*#__PURE__*/
@@ -61855,13 +61861,14 @@ function (_Component) {
     _this = App_possibleConstructorReturn(this, App_getPrototypeOf(App).call(this)); //The initial dimensions of the Wrapper
 
     var initialWrapper = {
-      width: window.screen.width * widthPercent,
-      height: window.screen.height * heightPercent
+      width: window.screen.width * 0.8,
+      height: window.screen.height * 0.7
     };
     _this.state = {
       servicesWindowOpen: true,
       initialWrapper: initialWrapper,
-      wrapper: initialWrapper
+      wrapper: initialWrapper,
+      infoWindowHeight: window.screen.height * 0.3
     };
     _this.toggleServicesWindow = _this.toggleServicesWindow.bind(App_assertThisInitialized(App_assertThisInitialized(_this)));
     return _this;
@@ -61871,11 +61878,13 @@ function (_Component) {
     key: "updateDimensions",
     value: function updateDimensions(e) {
       var wrapperDOM = react_dom_default.a.findDOMNode(this.refs.contentWrapper);
+      var infoWindowDOM = react_dom_default.a.findDOMNode(this.refs.infoWrapper);
       this.setState({
         wrapper: {
           width: wrapperDOM.offsetWidth,
           height: wrapperDOM.offsetHeight
-        }
+        },
+        infoWindowHeight: infoWindowDOM.offsetHeight
       });
     }
   }, {
@@ -61902,6 +61911,7 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
+      console.log(this.state.infoWindowHeight);
       return react_default.a.createElement(es_HashRouter, {
         history: App_history
       }, react_default.a.createElement(PageContainer, null, react_default.a.createElement(ServicesWrapper, null, react_default.a.createElement(services_window_ServicesWindow, {
@@ -61939,7 +61949,11 @@ function (_Component) {
       }), react_default.a.createElement(react_router_dom_es_Route, {
         path: "*",
         component: App_NotFound
-      }))), react_default.a.createElement(InfoWrapper, null, react_default.a.createElement(info_window_InfoPane, null))));
+      }))), react_default.a.createElement(InfoWrapper, {
+        ref: "infoWrapper"
+      }, react_default.a.createElement(info_window_InfoPane, {
+        infoWindowHeight: this.state.infoWindowHeight
+      }))));
     }
   }]);
 
@@ -61954,7 +61968,7 @@ var App_NotFound = function NotFound() {
 
 /* harmony default export */ var client_App = (App_App);
 // EXTERNAL MODULE: ./node_modules/redux-devtools-extension/index.js
-var redux_devtools_extension = __webpack_require__(203);
+var redux_devtools_extension = __webpack_require__(202);
 
 // CONCATENATED MODULE: ./node_modules/redux-thunk/es/index.js
 function createThunkMiddleware(extraArgument) {
@@ -62168,12 +62182,38 @@ function servicesReducer() {
     case SERVICES_FETCH:
       var activeServiceIndex = [];
 
-      for (var i = 0; i < action.payload.length; i++) {
-        activeServiceIndex.push(i);
+      for (var _i = 0; _i < action.payload.length; _i++) {
+        activeServiceIndex.push(_i);
+      }
+
+      var listOfServices = action.payload;
+      var i = 0;
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = listOfServices[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var service = _step.value;
+          service.index = i++;
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
       }
 
       return servicesReducer_objectSpread({}, state, {
-        listOfServices: action.payload,
+        listOfServices: listOfServices,
         activeServices: activeServiceIndex
       });
 
@@ -62189,8 +62229,8 @@ function servicesReducer() {
 
       var listOfServiceIndex = [];
 
-      for (var _i = 0; _i < state.listOfServices.length; _i++) {
-        listOfServiceIndex.push(_i);
+      for (var _i2 = 0; _i2 < state.listOfServices.length; _i2++) {
+        listOfServiceIndex.push(_i2);
       }
 
       return servicesReducer_objectSpread({}, state, {
