@@ -23,7 +23,6 @@ export function pvsReducer (state = initialState, action) {
       };   
 
     case DISPLAY_PV_INFO:
-      console.log(action);
       const currentPV = Object.assign(
         {},
         state.listOfPVs[action.payload]

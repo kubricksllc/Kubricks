@@ -25,7 +25,6 @@ class NodePage extends Component {
   }
 
   handleMouseOver(nodeObj) {
-    console.log(nodeObj);
     if(nodeObj instanceof classes.Pod) {
       this.props.displayPodInfo(nodeObj.otherAttr.podIdx);
     } else if(nodeObj instanceof classes.PV) {
