@@ -5,13 +5,13 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 module.exports = {
   entry: "./src/client/index.js",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "main"),
     filename: "index_bundle.js",
     publicPath: "/"
   },
-  optimization: {
-    minimize: false
-  },
+  // optimization: {
+  //   minimize: false
+  // },
   module: {
     rules: [
       {
@@ -42,6 +42,6 @@ module.exports = {
       template: "./src/index.html",
       filename: "./index.html"
     }),
-    new CleanWebpackPlugin(["dist", "build"])
+    new CleanWebpackPlugin(["main", "build"])
   ]
 };

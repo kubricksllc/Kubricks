@@ -9,10 +9,9 @@ const pvQuery = require('./pvQuery.js');
 const app = express();
 const server = httpServer.Server(app);
 
-// express routes
-app.use(express.static(path.join(__dirname, '../../dist')));
-app.use('*', (req, res, next) => {
-  console.log('processing request', req.params);
+app.use(express.static(path.join(__dirname, "../../main")));
+app.use("*", (req, res, next) => {
+  console.log("processing request", req.params);
   next();
 });
 
@@ -22,10 +21,8 @@ app.get('/api/renderall', nodeQuery.getServicesAndPods, (req, res) =>
   res.end()
 );
 
-app.get('/api/pv/*', pvQuery.getPV, (req, res) => res.end());
-
-app.get('/*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../../dist/index.html'));
+app.get("/*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../../main/index.html"));
 });
 
 server.listen(process.env.PORT || 8080, err => {
