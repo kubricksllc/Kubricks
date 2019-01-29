@@ -12,7 +12,6 @@ export function pvFetchData(url) {
     fetch(url)
       .then(result => result.json())
       .then(result => dispatch(pvFetchResult(result)))
-      .catch(err => console.log(err));
   };
 }
 

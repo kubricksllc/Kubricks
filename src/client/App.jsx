@@ -90,7 +90,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.infoWindowHeight);
     return (
       <Router history={history}>
         <PageContainer>
@@ -100,7 +99,7 @@ class App extends Component {
           <Link to="/pod">back</Link> */}
           </ServicesWrapper>
           <ContentWrapper ref="contentWrapper">
-            <InfoBanner />
+            {/* <InfoBanner /> */}
             <Switch>
               <Route
                 exact

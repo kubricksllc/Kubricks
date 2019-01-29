@@ -34,7 +34,6 @@ class InfoPane extends Component {
       maxHeight: height
     };
 
-    console.log("height", height);
     switch (this.props.typeContent) {
       case "node":
         rjvConfig.src = this.props.currentNode;

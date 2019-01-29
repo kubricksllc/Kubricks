@@ -22,7 +22,6 @@ const nodeQuery = {
         return { services, pods };
       })
       .then(result => {
-        // console.log(result, res);
         res.set({
           'Content-Type': 'application/json'
         });
