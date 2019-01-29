@@ -1,5 +1,5 @@
 const api = require('./apiQuery.js');
-const Constructor = require('./Constructors.js');
+const Constructor = require('./ResponseClasses.js');
 
 const pvQuery = {
   getPV: (req, res, next) => {
