@@ -63,9 +63,13 @@ class WorkerNode extends Component {
   render() {
     const dist = this.state.size;
     const { xScale, yScale } = this.props;
+    let param = '';
+    if (this.props.currentNode) {
+      param = this.props.currentNode.name
+    }
 
     return (
-      <Link to={`/traffic`}>
+      <Link to={`/node/${param}`}>
         <svg
           width="100"
           height="116"
@@ -122,6 +126,12 @@ class WorkerNode extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    currentNode: state.nodesReducer.currentNode
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     displayNodeInfo: (nodeIndex, mouseInfo) =>
@@ -132,6 +142,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(WorkerNode);

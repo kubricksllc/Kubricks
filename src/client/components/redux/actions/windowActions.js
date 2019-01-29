@@ -5,6 +5,8 @@ import {
   HIDE_POD_INFO,
   DISPLAY_SERVICE_INFO,
   HIDE_SERVICE_INFO,
+  DISPLAY_PV_INFO,
+  HIDE_PV_INFO,
   TOGGLE_VIEW_MODE
 } from "./actionTypes";
 
@@ -74,5 +76,19 @@ export function hideServiceInfo(serviceIndex, mouseInfo) {
       serviceIndex,
       mouseInfo
     }
+  };
+}
+
+export function displayPVInfo(pvIndex) {
+  return {
+    type: DISPLAY_PV_INFO,
+    payload: pvIndex
+  };
+}
+
+export function hidePVInfo(pvIndex) {
+  return {
+    type: HIDE_PV_INFO,
+    payload: pvIndex
   };
 }

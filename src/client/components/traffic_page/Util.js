@@ -1,5 +1,5 @@
-export function checkPodStatus (currentStatus) {
-  switch(currentStatus) {
+export function checkPodStatus(currentStatus) {
+  switch (currentStatus) {
     case 'Running': {
       return 'green';
     }
@@ -15,11 +15,14 @@ export function checkPodStatus (currentStatus) {
     case 'Succeeded': {
       return 'black';
     }
+    default: {
+      return 'gray';
+    }
   }
 }
 
-export function checkPortMapping (serviceListeningPort, podContainerPort) {
-  if(serviceListeningPort !== podContainerPort) {
+export function checkPortMapping(serviceListeningPort, podContainerPort) {
+  if (serviceListeningPort !== podContainerPort) {
     return false;
   }
   return true;

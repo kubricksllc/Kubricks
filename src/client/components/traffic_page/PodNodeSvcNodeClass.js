@@ -1,4 +1,11 @@
-function ServiceNode(name = null, type = null, selector = null, ports = null, color = null, serviceIdx = null) {
+function ServiceNode(
+  name = null,
+  type = null,
+  selector = null,
+  ports = null,
+  color = null,
+  serviceIdx = null
+) {
   this.name = name;
   this.attributes = {
     type,
@@ -9,13 +16,19 @@ function ServiceNode(name = null, type = null, selector = null, ports = null, co
   this.fill = color || 'blue';
 
   this.otherAttr = {
-    serviceIdx: serviceIdx
+    serviceIdx
   };
-  
-  this.children = []
+
+  this.children = [];
 }
 
-function PodNode(name = null, labels = null, ports = null, podIdx = null, color = null) {
+function PodNode(
+  name = null,
+  labels = null,
+  ports = null,
+  podIdx = null,
+  color = null
+) {
   this.name = name;
   this.attributes = {
     labels: JSON.stringify(labels),
@@ -25,8 +38,8 @@ function PodNode(name = null, labels = null, ports = null, podIdx = null, color 
   this.shape = 'rect';
 
   this.otherAttr = {
-    podIdx,
-  }
+    podIdx
+  };
 }
 
 export default { ServiceNode, PodNode };

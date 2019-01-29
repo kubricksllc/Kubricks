@@ -4,12 +4,12 @@ import {
   TOGGLE_SERVICE,
   DISPLAY_SERVICE_INFO,
   HIDE_SERVICE_INFO
-} from "../actions/actionTypes.js";
+} from '../actions/actionTypes.js';
 
 const initialState = {
   listOfServices: [],
-  serviceTypes: ["NodePort", "ClusterIP", "LoadBalancer", "Ingress"],
-  activeServiceTypes: ["NodePort", "ClusterIP", "LoadBalancer", "Ingress"],
+  serviceTypes: ['NodePort', 'ClusterIP', 'LoadBalancer', 'Ingress'],
+  activeServiceTypes: ['NodePort', 'ClusterIP', 'LoadBalancer', 'Ingress'],
   activeServices: [],
   currentService: null
 };
@@ -78,7 +78,7 @@ export function servicesReducer(state = initialState, action) {
       };
 
     case HIDE_SERVICE_INFO:
-      return { 
+      return {
         ...state
       };
     default:

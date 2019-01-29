@@ -4,16 +4,14 @@ import styled from 'styled-components';
 import { updateCurrentPod } from '../redux/actions/podsActions.js';
 import { withRouter } from 'react-router-dom';
 import { pvFetchData } from '../redux/actions/pvsActions.js';
-import DraggableComp from './DraggableComp.jsx';
-
-//TODO: fix the width and height after hex viewport is implemented!!!!!!!!!!!!!!!!
+import { displayPodInfo, hidePodInfo, displayPVInfo, hidePVInfo } from '../redux/actions/windowActions.js';
+import buildData from './BuildData.js';
+import Tree from 'react-d3-tree';
+import classes from './PodPVClass.js';
 
 const NodePageContainer = styled.div`
   width: 97%;
-  height: 70vh;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid;
+  height: 97%;
 `;
 
 class NodePage extends Component {
@@ -26,22 +24,29 @@ class NodePage extends Component {
     this.props.fetchPVs(url);
   }
 
-  display(listOfPods) {
-    return listOfPods.reduce((display, pod) => {
-      console.log(pod);
-      if (pod.nodeName === this.props.currentNode) {
-        display.push(<DraggableComp name={pod.name} />);
-      }
-      console.log(display);
-      return display;
-    }, []);
+  handleMouseOver(nodeObj) {
+    if(nodeObj instanceof classes.Pod) {
+      this.props.displayPodInfo(nodeObj.otherAttr.podIdx);
+    } else if(nodeObj instanceof classes.PV) {
+      this.props.displayPVInfo(nodeObj.otherAttr.pvIdx);
+    }
   }
 
-  // console.log(arr)
   render() {
     return (
       <NodePageContainer>
-        {this.display(this.props.listOfPods)}
+        <Tree
+          data={buildData(
+            this.props.listOfPods,
+            this.props.listOfPVs,
+            this.props.activeServices,
+            this.props.listOfServices,
+            this.props.currentNode.name
+          )}
+          separation={{ siblings: 1, nonSiblings: 5 }}
+          translate={{x: 50, y: 50}}
+          onMouseOver={(nodeObj) => { this.handleMouseOver(nodeObj); }}
+        />
       </NodePageContainer>
     );
   }
@@ -52,15 +57,23 @@ const mapStateToProps = state => {
   return {
     listOfPods: state.podsReducer.listOfPods,
     currentNode: state.nodesReducer.currentNode,
-    listOfPVs: state.pvsReducer.listOfPVs
+    listOfPVs: state.pvsReducer.listOfPVs,
+    activeServices: state.servicesReducer.activeServices,
+    listOfServices: state.servicesReducer.listOfServices
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateCurrentPod: podIdx => dispatch(updateCurrentPod(podIdx)),
-    updateCurrentService: serviceIdx =>
-      dispatch(updateCurrentService(serviceIdx)),
+    
+    displayPodInfo: (podIndex, mouseInfo, contentInfo) => 
+      dispatch(displayPodInfo(podIndex, mouseInfo, contentInfo)),
+    hidePodInfo: (podIndex, mouseInfo) => dispatch(hidePodInfo(podIndex, mouseInfo)),
+    displayPVInfo: (pvIndex) => dispatch(displayPVInfo(pvIndex)),
+    hidePVInfo: (pvIndex) => dispatch(hidePVInfo(pvIndex)),
+    updateCurrentPod: podObj => dispatch(updateCurrentPod(podObj)),
+    updateCurrentService: serviceObj =>
+      dispatch(updateCurrentService(serviceObj)),
     fetchPVs: url => dispatch(pvFetchData(url))
   };
 };

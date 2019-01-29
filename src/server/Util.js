@@ -1,8 +1,14 @@
-// helper function sanitize
+// helper function in pvQuery
 
-// function sanitize(input) {
-//
-// }
+function parsePV(listOfVolumes) {
+  return listOfVolumes.reduce((list, volume) => {
+    // console.log(volume);
+    if (volume.persistentVolumeClaim) {
+      list[volume.persistentVolumeClaim.claimName] = volume.name;
+    }
+    return list;
+  }, {});
+}
 
 // helper functions in nodeQuery
 function parseContainers(containerArr) {
@@ -44,4 +50,4 @@ function checkReadiness(conditionsArr) {
   return ready ? 'Ready' : 'Not Ready';
 }
 
-module.exports = { parseContainers, parseStatus, checkReadiness };
+module.exports = { parseContainers, parseStatus, checkReadiness, parsePV };
