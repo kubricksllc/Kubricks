@@ -34,8 +34,9 @@ class NodePage extends Component {
             this.props.listOfServices,
             this.props.currentNode.name
           )}
-          separation={{ siblings: 1, nonSiblings: 5 }}
-          translate={{x: 50, y: 50}}
+          separation={{ siblings: 1, nonSiblings: 1000 }}
+          translate={{x: 150, y: 150}}
+          textLayout={{textAnchor: 'start', x: 0, y: -20}}
         />
       </NodePageContainer>
     );
