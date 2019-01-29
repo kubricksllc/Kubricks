@@ -9,9 +9,9 @@ module.exports = {
     filename: "index_bundle.js",
     publicPath: "/"
   },
-  optimization: {
-    minimize: false
-  },
+  // optimization: {
+  //   minimize: false
+  // },
   module: {
     rules: [
       {
@@ -42,6 +42,6 @@ module.exports = {
       template: "./src/index.html",
       filename: "./index.html"
     }),
-    new CleanWebpackPlugin(["main", "build"])
+    new CleanWebpackPlugin(["main"])
   ]
 };

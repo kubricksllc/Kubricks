@@ -44,8 +44,9 @@ class NodePage extends Component {
             this.props.currentNode.name
           )}
           separation={{ siblings: 1, nonSiblings: 5 }}
-          translate={{x: 50, y: 50}}
           onMouseOver={(nodeObj) => { this.handleMouseOver(nodeObj); }}
+          translate={{x: 150, y: 150}}
+          textLayout={{textAnchor: 'start', x: 0, y: -20}}
         />
       </NodePageContainer>
     );

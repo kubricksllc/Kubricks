@@ -7,8 +7,12 @@ const nodeQuery = {
     Promise.all([api.getAllServices(), api.getAllPods()])
       .then(result => {
         const services = result[0].body.items.reduce(
-          (listOfServices, service) =>
-            listOfServices.concat([new ServiceQueryBody(service)]),
+          (listOfServices, service) => {
+            if (service.metadata.name === 'kubernetes') {
+              return listOfServices;
+            }
+            return listOfServices.concat([new ServiceQueryBody(service)]);
+          },
           []
         );
         const pods = result[1].body.items.reduce(

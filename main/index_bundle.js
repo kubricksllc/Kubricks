@@ -60784,12 +60784,17 @@ function (_Component) {
           siblings: 1,
           nonSiblings: 5
         },
-        translate: {
-          x: 50,
-          y: 50
-        },
         onMouseOver: function onMouseOver(nodeObj) {
           _this.handleMouseOver(nodeObj);
+        },
+        translate: {
+          x: 150,
+          y: 150
+        },
+        textLayout: {
+          textAnchor: 'start',
+          x: 0,
+          y: -20
         }
       }));
     }
