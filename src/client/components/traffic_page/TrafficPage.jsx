@@ -3,7 +3,6 @@ import SpiderTree from './SpiderTree.jsx';
 import buildTreeData from './BuildTree.js';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import InfoWindow from '../../layout/InfoWindow.jsx';
 
 class TrafficPage extends Component {
   constructor(props) {

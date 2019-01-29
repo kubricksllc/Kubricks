@@ -1,14 +1,13 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import { connect } from "react-redux";
-import ReactJson from "react-json-view";
-import ReactDOM from "react-dom";
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import { connect } from 'react-redux';
+import ReactJson from 'react-json-view';
+import ReactDOM from 'react-dom';
 
 const InfoTitle = styled.h1`
   margin-top: 10px !important;
   margin: 0;
 `;
-const InfoBox = styled.div``;
 class InfoPane extends Component {
   constructor() {
     super();
@@ -18,7 +17,7 @@ class InfoPane extends Component {
     let rjvConfig = {
       src: {},
       name: false,
-      theme: "monokai",
+      theme: 'monokai',
       enableClipboard: false,
       displayObjectSize: false,
       displayDataTypes: false
@@ -30,25 +29,23 @@ class InfoPane extends Component {
         ? 0
         : this.props.infoWindowHeight - infoTitle.offsetHeight - 15;
     let inlineStyle = {
-      overflow: "auto",
+      overflow: 'auto',
       maxHeight: height
     };
 
     switch (this.props.typeContent) {
-      case "node":
+      case 'node':
         rjvConfig.src = this.props.currentNode;
         break;
-      case "pod":
+      case 'pod':
         rjvConfig.src = this.props.currentPod;
         break;
-      case "service":
+      case 'service':
         rjvConfig.src = this.props.currentService;
         break;
       case 'pv':
         rjvConfig.src = this.props.currentPV;
         break;
-      default:
-      //   rjvConfig.src = {};
     }
 
     return (
@@ -62,11 +59,11 @@ class InfoPane extends Component {
 
 const mapStateToProps = state => {
   return {
-      currentNode: state.nodesReducer.currentNode,
-      currentService: state.servicesReducer.currentService,
-      currentPod: state.podsReducer.currentPod,
-      currentPV: state.pvsReducer.currentPV,
-      typeContent: state.windowReducer.typeContent
+    currentNode: state.nodesReducer.currentNode,
+    currentService: state.servicesReducer.currentService,
+    currentPod: state.podsReducer.currentPod,
+    currentPV: state.pvsReducer.currentPV,
+    typeContent: state.windowReducer.typeContent
   };
 };
 

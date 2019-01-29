@@ -1,16 +1,20 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import { connect } from "react-redux";
-import { toggleViewMode } from "../redux/actions/windowActions.js";
-import { Link } from "react-router-dom";
-import { ServiceWindowBox} from '../styled/styledComponents';
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { toggleViewMode } from '../redux/actions/windowActions.js';
+import { Link } from 'react-router-dom';
+import { ServiceWindowBox } from '../styled/styledComponents';
 
 const StyledLink = styled(Link)`
-    text-decoration: none;
+  text-decoration: none;
 
-    &:focus, &:hover, &:visited, &:link, &:active {
-        text-decoration: none;
-    }
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
 `;
 
 class ViewModes extends Component {
@@ -27,7 +31,7 @@ class ViewModes extends Component {
     return (
       <div>
         <StyledLink to="/">
-          {this.props.viewMode === "Cluster" ? (
+          {this.props.viewMode === 'Cluster' ? (
             <ServiceWindowBox active>Cluster</ServiceWindowBox>
           ) : (
             <ServiceWindowBox onClick={this.handleOnClick.bind(this)}>
@@ -36,7 +40,7 @@ class ViewModes extends Component {
           )}
         </StyledLink>
         <StyledLink to="/traffic">
-          {this.props.viewMode === "Traffic" ? (
+          {this.props.viewMode === 'Traffic' ? (
             <ServiceWindowBox active>Traffic</ServiceWindowBox>
           ) : (
             <ServiceWindowBox onClick={this.handleOnClick.bind(this)}>

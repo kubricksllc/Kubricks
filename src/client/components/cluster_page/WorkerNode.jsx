@@ -5,7 +5,6 @@ import {
 } from '../redux/actions/windowActions.js';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import * as d3 from 'd3';
 
 class WorkerNode extends Component {
   constructor(props) {

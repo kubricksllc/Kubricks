@@ -3,9 +3,9 @@ import {
   DISPLAY_POD_INFO,
   HIDE_POD_INFO,
   UPDATE_CURRENT_POD
-} from "../actions/actionTypes.js";
+} from '../actions/actionTypes.js';
 
-import moment from "moment";
+import moment from 'moment';
 
 const initialState = {
   listOfPods: [],

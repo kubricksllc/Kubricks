@@ -9,7 +9,7 @@ gulp.task('js', () => {
   gulp
     .src('./src/index.js')
     .pipe(webpackStream(webpackConfig, webpack))
-    .pipe(gulp.dest("./main/"));
+    .pipe(gulp.dest('./main/'));
 });
 
 gulp.task('serve', function() {
