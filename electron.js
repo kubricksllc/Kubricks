@@ -6,12 +6,6 @@ let appWin = null;
 let loadingWin = null;
 const server = require("./src/server/index");
 
-//Use this module for electron-package
-// const { serverProcess } = require("./process/serverProcess");
-// const { portForward } = require("./process/portForward");
-//Otherwise set serverProcess to null if you're using gulp
-// let serverProcess;
-
 function createLoadingWindow() {
   // Initialize the window to our specified dimensions
   loadingWin = new BrowserWindow({
@@ -52,7 +46,9 @@ function createLoadingWindow() {
 
 function createAppWindow() {
   // Initialize the window to our specified dimensions
-  appWin = new BrowserWindow({ width: 1000, height: 600, show: true });
+  appWin = new BrowserWindow({ show: false });
+  appWin.maximize();
+  appWin.show();
 
   // Specify entry point
   appWin.loadURL("http://localhost:8080");
@@ -82,13 +78,5 @@ app.on("activate", () => {
 app.on("window-all-closed", function() {
   if (process.platform != "darwin") {
     app.quit();
-
-    // if (serverProcess) {
-    //   // serverProcess.kill("SIGINT");
-    // }
-
-    // if (portForward) {
-    //   // portForward.kill("SIGINT");
-    // }
   }
 });

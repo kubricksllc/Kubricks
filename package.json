@@ -3,17 +3,61 @@
   "version": "1.0.0",
   "description": "",
   "main": "electron.js",
+  "author": "Eugene Chen <benesitis@gmail.com>",
+  "authors": [
+    {
+      "name": "Eguene Chen",
+      "email": "benesitis@gmail.com"
+    },
+    {
+      "name": "Bryan Li"
+    },
+    {
+      "name": "Leury Rodriguez"
+    },
+    {
+      "name": "Taihyun (Ray) Lee",
+      "email": "taihyun.ray.lee@gmail.com"
+    }
+  ],
+  "license": "ISC",
   "scripts": {
     "start": "webpack-dev-server --open --mode development ",
     "build": "electron-packager . Kubricks --overwrite",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dist": "build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/th9061/Kubricks.git"
   },
-  "author": "",
-  "license": "ISC",
+  "build": {
+    "appId": "kubricks",
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "squirrel",
+      "icon": "build/icon.ico"
+    }
+  },
   "bugs": {
     "url": "https://github.com/th9061/Kubricks/issues"
   },
@@ -27,6 +71,7 @@
     "babel-plugin-styled-components": "^1.10.0",
     "clean-webpack-plugin": "^1.0.1",
     "electron": "^4.0.2",
+    "electron-builder": "^20.38.5",
     "eslint": "^5.12.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.6.0",
