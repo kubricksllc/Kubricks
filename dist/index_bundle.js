@@ -39845,7 +39845,8 @@ var InfoWindow_mapStateToProps = function mapStateToProps(state) {
     currentNode: state.nodesReducer.currentNode,
     currentPod: state.podsReducer.currentPod,
     currentService: state.servicesReducer.currentService,
-    mouseInfo: state.windowReducer.mouseInfo
+    mouseInfo: state.windowReducer.mouseInfo,
+    typeContent: state.windowReducer.typeContent
   };
 };
 
@@ -60772,8 +60773,6 @@ function (_Component) {
   }, {
     key: "handleMouseOver",
     value: function handleMouseOver(nodeObj) {
-      console.log(nodeObj);
-
       if (nodeObj instanceof PodPVClass.Pod) {
         this.props.displayPodInfo(nodeObj.otherAttr.podIdx);
       } else if (nodeObj instanceof PodPVClass.PV) {
@@ -60940,7 +60939,7 @@ function (_Component) {
   }, {
     key: "drawTree",
     value: function drawTree() {
-      var radius = 1000;
+      var radius = 2000;
 
       var tree = function tree(data) {
         return src_tree().size([2 * Math.PI, radius]).separation(function (a, b) {
@@ -60987,8 +60986,6 @@ function (_Component) {
   }, {
     key: "handleNodeEnter",
     value: function handleNodeEnter(node) {
-      console.log(node);
-
       if (node.depth === 2) {
         //pod
         this.props.displayPodInfo(node.data.data.otherAttr.podIdx, {
@@ -62312,7 +62309,6 @@ function pvsReducer() {
       });
 
     case DISPLAY_PV_INFO:
-      console.log(action);
       var currentPV = Object.assign({}, state.listOfPVs[action.payload]);
       currentPV.age = pvsReducer_getAge(currentPV.createdAt);
       return pvsReducer_objectSpread({}, state, {

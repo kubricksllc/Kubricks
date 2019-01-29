@@ -63,7 +63,7 @@ class SpiderTree extends Component {
   }
 
   drawTree() {
-    const radius = 1000;
+    const radius = 2000;
 
     const tree = data =>
       d3
@@ -157,7 +157,6 @@ class SpiderTree extends Component {
   }
 
   handleNodeEnter(node) {
-    console.log(node);
     if (node.depth === 2) {
       //pod
       this.props.displayPodInfo(node.data.data.otherAttr.podIdx, {
