@@ -59635,11 +59635,11 @@ var NODES_FETCH_DATA_SUCCESS = 'NODES_FETCH_DATA_SUCCESS';
 var TOGGLE_VIEW_MODE = 'TOGGLE_VIEW_MODE';
 var DISPLAY_NODE_INFO = 'DISPLAY_NODE_INFO,';
 var HIDE_NODE_INFO = 'HIDE_NODE_INFO';
-var UPDATE_CURRENT_NODE = 'bailamos';
+var UPDATE_CURRENT_NODE = 'UPDATE_CURRENT_NODE';
 var SERVICES_FETCH = 'SERVICES_FETCH';
 var TOGGLE_SERVICE_TYPE = 'TOGGLE_SERVICE_TYPE';
 var TOGGLE_SERVICE = 'TOGGLE_SERVICE';
-var UPDATE_CURRENT_SERVICE = 'princess consuella';
+var UPDATE_CURRENT_SERVICE = 'UPDATE_CURRENT_SERVICE';
 var PODS_FETCH = 'PODS_FETCH';
 var DISPLAY_POD_INFO = 'DISPLAY_POD_INFO';
 var HIDE_POD_INFO = 'HIDE_POD_INFO';
@@ -59647,6 +59647,9 @@ var DISPLAY_SERVICE_INFO = 'DISPLAY_SERVICE_INFO';
 var HIDE_SERVICE_INFO = 'HIDE_SERVICE_INFO';
 var UPDATE_CURRENT_POD = 'UPDATE_CURRENT_POD';
 var PVS_FETCH = 'PVS_FETCH';
+var UPDATE_CURRENT_PV = 'UPDATE_CURRENT_PV';
+var DISPLAY_PV_INFO = 'DISPLAY_PV_INFO';
+var HIDE_PV_INFO = 'HIDE_PV_INFO';
 
 // CONCATENATED MODULE: ./src/client/components/redux/actions/windowActions.js
  // Action creators
@@ -59711,6 +59714,18 @@ function windowActions_hideServiceInfo(serviceIndex, mouseInfo) {
       serviceIndex: serviceIndex,
       mouseInfo: mouseInfo
     }
+  };
+}
+function windowActions_displayPVInfo(pvIndex) {
+  return {
+    type: DISPLAY_PV_INFO,
+    payload: pvIndex
+  };
+}
+function windowActions_hidePVInfo(pvIndex) {
+  return {
+    type: HIDE_PV_INFO,
+    payload: pvIndex
   };
 }
 // CONCATENATED MODULE: ./node_modules/react-router-dom/es/Link.js
@@ -60473,7 +60488,7 @@ function (_Component) {
           width: this.props.width,
           height: this.props.height,
           initialWrapper: this.props.initialWrapper
-        })), this.props.nodeInfoOpen && react_default.a.createElement(layout_InfoWindow, null));
+        })));
       }
 
       return react_default.a.createElement("div", null);
@@ -60572,6 +60587,12 @@ function pvFetchData(url) {
     }).catch(function (err) {
       return console.log(err);
     });
+  };
+}
+function updateCurrentPV(pvIdx) {
+  return {
+    type: UPDATE_CURRENT_PV,
+    payload: pvIdx
   };
 }
 // CONCATENATED MODULE: ./src/client/components/traffic_page/Util.js
@@ -60724,6 +60745,8 @@ function NodePage_setPrototypeOf(o, p) { NodePage_setPrototypeOf = Object.setPro
 
 
 
+
+
 var NodePageContainer = styled_components_browser_esm["a" /* default */].div.withConfig({
   displayName: "NodePage__NodePageContainer",
   componentId: "sc-10xk8b-0"
@@ -60745,11 +60768,23 @@ function (_Component) {
     value: function componentDidMount() {
       var url = '/api/pv/';
       this.props.fetchPVs(url);
-    } // console.log(arr)
+    }
+  }, {
+    key: "handleMouseOver",
+    value: function handleMouseOver(nodeObj) {
+      console.log(nodeObj);
 
+      if (nodeObj instanceof PodPVClass.Pod) {
+        this.props.displayPodInfo(nodeObj.otherAttr.podIdx);
+      } else if (nodeObj instanceof PodPVClass.PV) {
+        this.props.displayPVInfo(nodeObj.otherAttr.pvIdx);
+      }
+    }
   }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       return react_default.a.createElement(NodePageContainer, null, react_default.a.createElement(react_d3_tree_min_default.a, {
         data: BuildData(this.props.listOfPods, this.props.listOfPVs, this.props.activeServices, this.props.listOfServices, this.props.currentNode.name),
         separation: {
@@ -60759,6 +60794,9 @@ function (_Component) {
         translate: {
           x: 50,
           y: 50
+        },
+        onMouseOver: function onMouseOver(nodeObj) {
+          _this.handleMouseOver(nodeObj);
         }
       }));
     }
@@ -60780,8 +60818,20 @@ var NodePage_mapStateToProps = function mapStateToProps(state) {
 
 var NodePage_mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    updateCurrentPod: function updateCurrentPod(podIdx) {
-      return dispatch(podsActions_updateCurrentPod(podIdx));
+    displayPodInfo: function displayPodInfo(podIndex, mouseInfo, contentInfo) {
+      return dispatch(windowActions_displayPodInfo(podIndex, mouseInfo, contentInfo));
+    },
+    hidePodInfo: function hidePodInfo(podIndex, mouseInfo) {
+      return dispatch(windowActions_hidePodInfo(podIndex, mouseInfo));
+    },
+    displayPVInfo: function displayPVInfo(pvIndex) {
+      return dispatch(windowActions_displayPVInfo(pvIndex));
+    },
+    hidePVInfo: function hidePVInfo(pvIndex) {
+      return dispatch(windowActions_hidePVInfo(pvIndex));
+    },
+    updateCurrentPod: function updateCurrentPod(podObj) {
+      return dispatch(podsActions_updateCurrentPod(podObj));
     },
     updateCurrentService: function (_updateCurrentService) {
       function updateCurrentService(_x) {
@@ -60793,8 +60843,8 @@ var NodePage_mapDispatchToProps = function mapDispatchToProps(dispatch) {
       };
 
       return updateCurrentService;
-    }(function (serviceIdx) {
-      return dispatch(updateCurrentService(serviceIdx));
+    }(function (serviceObj) {
+      return dispatch(updateCurrentService(serviceObj));
     }),
     fetchPVs: function fetchPVs(url) {
       return dispatch(pvFetchData(url));
@@ -61149,7 +61199,7 @@ function (_Component) {
         data: buildTreeData(this.props.activeServices, this.props.listOfServices, this.props.listOfPods),
         width: this.props.width,
         height: this.props.height
-      }), this.props.serviceInfoOpen && react_default.a.createElement(layout_InfoWindow, null), this.props.podInfoOpen && react_default.a.createElement(layout_InfoWindow, null));
+      }));
     }
   }]);
 
@@ -61711,6 +61761,10 @@ function (_Component) {
           rjvConfig.src = this.props.currentService;
           break;
 
+        case 'pv':
+          rjvConfig.src = this.props.currentPV;
+          break;
+
         default: //   rjvConfig.src = {};
 
       }
@@ -61729,6 +61783,7 @@ var InfoPane_mapStateToProps = function mapStateToProps(state) {
     currentNode: state.nodesReducer.currentNode,
     currentService: state.servicesReducer.currentService,
     currentPod: state.podsReducer.currentPod,
+    currentPV: state.pvsReducer.currentPV,
     typeContent: state.windowReducer.typeContent
   };
 };
@@ -62005,7 +62060,8 @@ var windowReducer_initalState = {
   nodeInfoOpen: false,
   podInfoOpen: false,
   serviceInfoOpen: false,
-  typeContent: {},
+  pvInfoOpen: false,
+  typeContent: '',
   mouseInfo: {
     x: 0,
     y: 0
@@ -62069,6 +62125,17 @@ function windowReducer() {
           x: 0,
           y: 0
         }
+      });
+
+    case DISPLAY_PV_INFO:
+      return windowReducer_objectSpread({}, state, {
+        pvInfoOpen: true,
+        typeContent: 'pv'
+      });
+
+    case HIDE_PV_INFO:
+      return windowReducer_objectSpread({}, state, {
+        pvInfoOpen: false
       });
 
     default:
@@ -62221,21 +62288,39 @@ function pvsReducer_objectSpread(target) { for (var i = 1; i < arguments.length;
 function pvsReducer_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
+
 var pvsReducer_initialState = {
   listOfPVs: [],
   currentPV: null
 };
+
+function pvsReducer_getAge(datetime) {
+  var time = new Date() - new Date(datetime);
+  var hours = moment_default.a.duration(time).hours();
+  var days = moment_default.a.duration(time).days();
+  return "".concat(days, "d").concat(hours, "h");
+}
+
 function pvsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : pvsReducer_initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
     case PVS_FETCH:
-      {
-        return pvsReducer_objectSpread({}, state, {
-          listOfPVs: action.payload
-        });
-      }
+      return pvsReducer_objectSpread({}, state, {
+        listOfPVs: action.payload
+      });
+
+    case DISPLAY_PV_INFO:
+      console.log(action);
+      var currentPV = Object.assign({}, state.listOfPVs[action.payload]);
+      currentPV.age = pvsReducer_getAge(currentPV.createdAt);
+      return pvsReducer_objectSpread({}, state, {
+        currentPV: currentPV
+      });
+
+    case HIDE_PV_INFO:
+      return pvsReducer_objectSpread({}, state);
 
     default:
       {

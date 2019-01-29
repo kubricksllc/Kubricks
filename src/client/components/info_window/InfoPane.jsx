@@ -37,6 +37,9 @@ class InfoPane extends Component {
       case 'service':
         rjvConfig.src = this.props.currentService;
         break;
+      case 'pv':
+        rjvConfig.src = this.props.currentPV;
+        break;
       default:
       //   rjvConfig.src = {};
     }
@@ -55,6 +58,7 @@ const mapStateToProps = state => {
       currentNode: state.nodesReducer.currentNode,
       currentService: state.servicesReducer.currentService,
       currentPod: state.podsReducer.currentPod,
+      currentPV: state.pvsReducer.currentPV,
       typeContent: state.windowReducer.typeContent
   };
 }

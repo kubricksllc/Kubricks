@@ -4,8 +4,10 @@ import styled from 'styled-components';
 import { updateCurrentPod } from '../redux/actions/podsActions.js';
 import { withRouter } from 'react-router-dom';
 import { pvFetchData } from '../redux/actions/pvsActions.js';
+import { displayPodInfo, hidePodInfo, displayPVInfo, hidePVInfo } from '../redux/actions/windowActions.js';
 import buildData from './BuildData.js';
 import Tree from 'react-d3-tree';
+import classes from './PodPVClass.js';
 
 const NodePageContainer = styled.div`
   width: 97%;
@@ -22,7 +24,15 @@ class NodePage extends Component {
     this.props.fetchPVs(url);
   }
 
-  // console.log(arr)
+  handleMouseOver(nodeObj) {
+    console.log(nodeObj);
+    if(nodeObj instanceof classes.Pod) {
+      this.props.displayPodInfo(nodeObj.otherAttr.podIdx);
+    } else if(nodeObj instanceof classes.PV) {
+      this.props.displayPVInfo(nodeObj.otherAttr.pvIdx);
+    }
+  }
+
   render() {
     return (
       <NodePageContainer>
@@ -36,6 +46,7 @@ class NodePage extends Component {
           )}
           separation={{ siblings: 1, nonSiblings: 5 }}
           translate={{x: 50, y: 50}}
+          onMouseOver={(nodeObj) => { this.handleMouseOver(nodeObj); }}
         />
       </NodePageContainer>
     );
@@ -55,9 +66,15 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateCurrentPod: podIdx => dispatch(updateCurrentPod(podIdx)),
-    updateCurrentService: serviceIdx =>
-      dispatch(updateCurrentService(serviceIdx)),
+    
+    displayPodInfo: (podIndex, mouseInfo, contentInfo) => 
+      dispatch(displayPodInfo(podIndex, mouseInfo, contentInfo)),
+    hidePodInfo: (podIndex, mouseInfo) => dispatch(hidePodInfo(podIndex, mouseInfo)),
+    displayPVInfo: (pvIndex) => dispatch(displayPVInfo(pvIndex)),
+    hidePVInfo: (pvIndex) => dispatch(hidePVInfo(pvIndex)),
+    updateCurrentPod: podObj => dispatch(updateCurrentPod(podObj)),
+    updateCurrentService: serviceObj =>
+      dispatch(updateCurrentService(serviceObj)),
     fetchPVs: url => dispatch(pvFetchData(url))
   };
 };

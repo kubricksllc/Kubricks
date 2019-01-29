@@ -5,6 +5,8 @@ import {
   HIDE_POD_INFO,
   DISPLAY_SERVICE_INFO,
   HIDE_SERVICE_INFO,
+  DISPLAY_PV_INFO,
+  HIDE_PV_INFO,
   TOGGLE_VIEW_MODE
 } from "../actions/actionTypes";
 
@@ -12,7 +14,8 @@ const initalState = {
   nodeInfoOpen: false,
   podInfoOpen: false,
   serviceInfoOpen: false,
-  typeContent: {},
+  pvInfoOpen: false,
+  typeContent: '',
   mouseInfo: { x: 0, y: 0 },
   viewMode: "Cluster"
 };
@@ -64,6 +67,17 @@ export function windowReducer(state = initalState, action) {
         serviceInfoOpen: false,
         mouseInfo: { x: 0, y: 0 }
       };
+    case DISPLAY_PV_INFO:
+      return {
+        ...state,
+        pvInfoOpen: true,
+        typeContent: 'pv'
+      };
+    case HIDE_PV_INFO:
+      return {
+        ...state,
+        pvInfoOpen: false
+      }
     default:
       return state;
   }
