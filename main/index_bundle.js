@@ -58751,10 +58751,17 @@ function (_Component) {
       zoomTransform: null,
       loaded: false
     };
+    _this.podStatus = {
+      green: "Running",
+      red: "Failed",
+      yellow: "Pending",
+      grey: "Unknown",
+      black: "Succeeded"
+    };
     _this.zoom = d3_zoom_src_zoom().on('zoom', _this.zoomed.bind(SpiderTree_assertThisInitialized(SpiderTree_assertThisInitialized(_this))));
     _this.handleNodeEnter = _this.handleNodeEnter.bind(SpiderTree_assertThisInitialized(SpiderTree_assertThisInitialized(_this)));
     _this.handleNodeOut = _this.handleNodeOut.bind(SpiderTree_assertThisInitialized(SpiderTree_assertThisInitialized(_this)));
-    _this.handleMouseMove = _this.handleMouseMove.bind(SpiderTree_assertThisInitialized(SpiderTree_assertThisInitialized(_this)));
+    _this.handleNodeClick = _this.handleNodeClick.bind(SpiderTree_assertThisInitialized(SpiderTree_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -58762,6 +58769,7 @@ function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       src_select(this.refs.svg).call(this.zoom);
+      src_select(this.refs.svg).call(this.zoom.transform, transform_identity.translate(this.props.width / 2, 250).scale(5));
       this.buildTree();
       this.drawTree();
     }
@@ -58790,7 +58798,9 @@ function (_Component) {
   }, {
     key: "drawTree",
     value: function drawTree() {
-      var radius = 500 * this.props.activeServices.length;
+      var _this2 = this;
+
+      var radius = 30 * this.props.activeServices.length;
 
       var tree = function tree(data) {
         return src_tree().size([2 * Math.PI, radius]).separation(function (a, b) {
@@ -58801,9 +58811,11 @@ function (_Component) {
       var treeData = hierarchy(this.props.data);
       var root = tree(treeData);
       var svg = src_select(this.refs.svg).select('svg');
-      var link = svg.append('g').attr('id', 'link_layer').attr('stroke', 'black').attr('stroke-opacity', 0.9).attr('stroke-width', 3).selectAll('path').data(root.links()).enter().append('path').attr('class', function (d) {
+      var link = svg.append('g').attr('id', 'link_layer').attr('stroke', 'green').attr('stroke-opacity', 0.7).attr('stroke-width', 0.5).selectAll('path').data(root.links()).enter().append('path').attr('class', function (d) {
         if (d.target.depth > 1 && d.target.data.data.attributes.containerPort !== d.target.data.parent.data.attributes.targetPort) {
           return 'miss-link';
+        } else if (d.target.data.data.name === 'No_Service') {
+          return 'no-service';
         } else {
           return 'link';
         }
@@ -58811,26 +58823,37 @@ function (_Component) {
         return d.x;
       }).radius(function (d) {
         return d.y;
-      })).style('fill-opacity', 0.9).style('fill', 'none');
+      })).style('fill-opacity', 0.7).style('fill', 'none');
       src_selectAll('.miss-link').attr('stroke', 'red');
+      src_selectAll('.no-service').attr('stroke', 'grey');
       src_select('#link_layer').attr('transform', this.state.zoomTransform);
       var nodeIndex = -1;
-      var node = svg.append('g').attr('id', 'node_layer').attr('stroke-linejoin', 'round').attr('stroke-width', 3).selectAll('g').data(root.descendants()).enter().append('g').attr('class', 'node').attr('transform', function (d) {
+      var node = svg.append('g').attr('id', 'node_layer').attr('stroke-linejoin', 'round').attr('stroke-width', 3).selectAll('g').data(root.descendants()).enter().append('g').attr('class', node).attr('transform', function (d) {
         return "\n        rotate(".concat(d.x * 180 / Math.PI - 90, ")\n        translate(").concat(d.y, ",0)\n      ");
       });
-      node.append('circle').attr('fill', function (d) {
+      node.append('circle').attr('id', function (d) {
+        return d.data.data.name;
+      }).attr('fill', function (d) {
         return d.data.data.fill;
-      }).attr('r', "40");
-      node.selectAll('circle').on('mouseenter', this.handleNodeEnter).on('mouseout', this.handleNodeOut);
-      node.append('text').attr('dy', '2em').attr('x', function (d) {
-        return d.x < Math.PI === !d.children ? 6 : -6;
+      }).attr('r', "2");
+      node.selectAll('circle').on('mouseenter', this.handleNodeEnter).on('mouseout', this.handleNodeOut).on('click', this.handleNodeClick).append('title').text(function (d) {
+        console.log(d);
+
+        if (d.depth === 1) {
+          return "Port: ".concat(d.data.data.attributes.listeningPort, "\nTarget: ").concat(d.data.data.attributes.targetPort);
+        } else if (d.depth === 2) {
+          return "Status: ".concat(_this2.podStatus[d.data.data.fill], "\nPort: ").concat(d.data.data.attributes.containerPort);
+        }
+      });
+      node.append('text').attr('dy', 0).attr('x', function (d) {
+        return d.x < Math.PI === !d.children ? 3 : -3;
       }).attr('text-anchor', function (d) {
         return d.x < Math.PI === !d.children ? 'start' : 'end';
       }).attr('transform', function (d) {
         return d.x >= Math.PI ? 'rotate(180)' : null;
       }).text(function (d) {
         return d.data.data.name;
-      }).style('font-size', '2em').clone(true).lower().attr('stroke', 'white');
+      }).style('font-size', '2px').clone(true).lower();
       src_select('#node_layer').attr('transform', this.state.zoomTransform);
       src_select('#link_layer').style('margin', 'auto');
       src_select('#node_layer').style('margin', 'auto');
@@ -58838,6 +58861,8 @@ function (_Component) {
   }, {
     key: "handleNodeEnter",
     value: function handleNodeEnter(node) {
+      src_select("#".concat(node.data.data.name)).attr('r', '2.5');
+
       if (node.depth === 2) {
         //pod
         this.props.displayPodInfo(node.data.data.otherAttr.podIdx);
@@ -58851,6 +58876,8 @@ function (_Component) {
   }, {
     key: "handleNodeOut",
     value: function handleNodeOut(node) {
+      src_select("#".concat(node.data.data.name)).attr('r', '2');
+
       if (node.depth === 2) {
         //pod
         this.props.hidePodInfo(node.data.data.otherAttr.podIdx, {
@@ -58868,17 +58895,15 @@ function (_Component) {
       }
     }
   }, {
-    key: "handleMouseMove",
-    value: function handleMouseMove(e) {
-      this.mouseX = e.clientX;
-      this.mouseY = e.clientY;
+    key: "handleNodeClick",
+    value: function handleNodeClick(node) {
+      console.log(node);
     }
   }, {
     key: "render",
     value: function render() {
       return react_default.a.createElement(SpiderTree_Box, {
         id: "chart",
-        onMouseMove: this.handleMouseMove,
         ref: "svg"
       });
     }
@@ -58972,7 +58997,7 @@ function buildSingleTree(service, listOfPodsInStore, serviceIdx) {
 }
 function buildNoServiceTree(listOfPodsInStore) {
   // console.log(service);
-  var serviceNode = new PodNodeSvcNodeClass.ServiceNode('No_Service', null, null, null, 'red');
+  var serviceNode = new PodNodeSvcNodeClass.ServiceNode('No_Service', null, null, null, 'grey');
   listOfPodsInStore.forEach(function (pod, idx) {
     if (!podIdxUsed[idx]) {
       var podNode = new PodNodeSvcNodeClass.PodNode(pod.name, pod.labels, pod.containers[0].mappedContainerPort, idx, 'red');

@@ -41,7 +41,7 @@ export function buildNoServiceTree(listOfPodsInStore) {
     null,
     null,
     null,
-    'red'
+    'grey'
   );
   listOfPodsInStore.forEach((pod, idx) => {
     if (!podIdxUsed[idx]) {
