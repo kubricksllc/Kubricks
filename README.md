@@ -23,7 +23,7 @@ Cluster View mirrors the way kublet interacts with resources that are hosted on 
 Traffic View mirrors the way kube-proxy directs incoming requests to different pods through services. This view is to render services with selected pods, and to highlight port mapping errors. 
 
 #Set Up
-  - go to www.kubricks.io and download the installer
+  - go to kubricks.io and download the installer
 
 #Contributing
 Kubricks is currenty in beta release. There is still a long way to being a polished tool. Please make pull requests to help us 
