@@ -57849,7 +57849,7 @@ function (_Component) {
         x: xScale,
         y: yScale,
         id: "node#".concat(this.props.nodeIndex)
-      }, react_default.a.createElement("g", null, react_default.a.createElement("rect", {
+      }, react_default.a.createElement("title", null, param), react_default.a.createElement("g", null, react_default.a.createElement("rect", {
         fill: "none",
         id: "canvas_background",
         height: "118",
@@ -58752,11 +58752,11 @@ function (_Component) {
       loaded: false
     };
     _this.podStatus = {
-      green: "Running",
-      red: "Failed",
-      yellow: "Pending",
-      grey: "Unknown",
-      black: "Succeeded"
+      green: 'Running',
+      red: 'Failed',
+      yellow: 'Pending',
+      grey: 'Unknown',
+      black: 'Succeeded'
     };
     _this.zoom = d3_zoom_src_zoom().on('zoom', _this.zoomed.bind(SpiderTree_assertThisInitialized(SpiderTree_assertThisInitialized(_this))));
     _this.handleNodeEnter = _this.handleNodeEnter.bind(SpiderTree_assertThisInitialized(SpiderTree_assertThisInitialized(_this)));
@@ -58837,8 +58837,6 @@ function (_Component) {
         return d.data.data.fill;
       }).attr('r', "2");
       node.selectAll('circle').on('mouseenter', this.handleNodeEnter).on('mouseout', this.handleNodeOut).on('click', this.handleNodeClick).append('title').text(function (d) {
-        console.log(d);
-
         if (d.depth === 1) {
           return "Port: ".concat(d.data.data.attributes.listeningPort, "\nTarget: ").concat(d.data.data.attributes.targetPort);
         } else if (d.depth === 2) {

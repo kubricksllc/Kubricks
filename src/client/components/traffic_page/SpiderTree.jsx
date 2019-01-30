@@ -147,7 +147,6 @@ class SpiderTree extends Component {
       .on('click', this.handleNodeClick)
       .append('title')
       .text(d => {
-        console.log(d);
         if (d.depth === 1) {
           return `Port: ${d.data.data.attributes.listeningPort}\nTarget: ${
             d.data.data.attributes.targetPort
