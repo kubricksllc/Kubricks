@@ -58801,17 +58801,18 @@ function (_Component) {
       var treeData = hierarchy(this.props.data);
       var root = tree(treeData);
       var svg = src_select(this.refs.svg).select('svg');
-      var link = svg.append('g').attr('id', 'link_layer').attr('stroke', 'black').attr('stroke-opacity', 0.9).attr('stroke-width', 3).selectAll('path').data(root.links()).enter().append('path').attr('class', 'links').attr('d', linkRadial().angle(function (d) {
+      var link = svg.append('g').attr('id', 'link_layer').attr('stroke', 'black').attr('stroke-opacity', 0.9).attr('stroke-width', 3).selectAll('path').data(root.links()).enter().append('path').attr('class', function (d) {
+        if (d.target.depth > 1 && d.target.data.data.attributes.containerPort !== d.target.data.parent.data.attributes.targetPort) {
+          return 'miss-link';
+        } else {
+          return 'link';
+        }
+      }).attr('d', linkRadial().angle(function (d) {
         return d.x;
       }).radius(function (d) {
         return d.y;
-      })).attr('fill', function (d) {
-        if (d.target.depth > 1 && d.target.data.data.attributes.containerPort !== d.target.data.parent.data.attributes.targetPort) {
-          return 'red';
-        } else {
-          return 'none';
-        }
-      });
+      })).style('fill-opacity', 0.9).style('fill', 'none');
+      src_selectAll('.miss-link').attr('stroke', 'red');
       src_select('#link_layer').attr('transform', this.state.zoomTransform);
       var nodeIndex = -1;
       var node = svg.append('g').attr('id', 'node_layer').attr('stroke-linejoin', 'round').attr('stroke-width', 3).selectAll('g').data(root.descendants()).enter().append('g').attr('class', 'node').attr('transform', function (d) {

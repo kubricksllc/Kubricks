@@ -82,7 +82,17 @@ class SpiderTree extends Component {
       .data(root.links())
       .enter()
       .append('path')
-      .attr('class', 'links')
+      .attr('class', d => {
+        if (
+          d.target.depth > 1 &&
+          d.target.data.data.attributes.containerPort !==
+            d.target.data.parent.data.attributes.targetPort
+        ) {
+          return 'miss-link';
+        } else {
+          return 'link';
+        }
+      })
       .attr(
         'd',
         d3
@@ -90,18 +100,10 @@ class SpiderTree extends Component {
           .angle(d => d.x)
           .radius(d => d.y)
       )
-      .attr('fill', d => {
-        if (
-          d.target.depth > 1 &&
-          d.target.data.data.attributes.containerPort !==
-            d.target.data.parent.data.attributes.targetPort
-        ) {
-          return 'red';
-        } else {
-          return 'none';
-        }
-      });
+      .style('fill-opacity', 0.9)
+      .style('fill', 'none');
 
+    d3.selectAll('.miss-link').attr('stroke', 'red');
     d3.select('#link_layer').attr('transform', this.state.zoomTransform);
 
     let nodeIndex = -1;
