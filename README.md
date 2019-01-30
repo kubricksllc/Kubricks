@@ -2,7 +2,7 @@
   <img width="220" height="220" src="https://raw.githubusercontent.com/th9061/Kubricks/master/build/background.png">
 </p>
 <h1 align="center"> Kubricks (Alpha) </h1>
-___
+
 **Kubricks is currently in an alpha release stage. Please do not rely solely on this product to troubleshoot your deployment. It is very important to cross check information being displayed to information from `kubectl describe`.**
 
 ## What is it?
