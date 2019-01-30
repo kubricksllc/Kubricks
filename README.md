@@ -1,29 +1,12 @@
-# Kubricks [logo] [screenshot]
+# Evelyn
 
-#What is it
-Kubricks is an Electron App designed to provide intuitive graphs of current cluster deployment to engineers. 
-  - Visualize cluster resources and their relationships 
-  - Condtionally render resources to highlight errors
+A landing page template.
 
-#How it works
-Kubricks queries Kubernetes apiserver using the Kubernetes Javascript Client library using the context of kubectl config current-context.
+* [Getting started](#getting-started)
 
-#Prerequisites 
-  - Must have a Kubernetes cluster deployed
-  - Configured kubectl to the right context, i.e. GKE, Minikube
+## Getting started
+* First, ensure that node.js & npm are both installed. If not, choose your OS and installation method from [this page](https://nodejs.org/en/download/package-manager/) and follow the instructions.
+* Next, use your command line to enter your project directory.
+* This template comes with a ready-to-use package file called `package-sample.json`. You just need to rename it to `package.json`, then run `npm install` to install all of the dependencies into your project.
 
-#IMPORTANT
-Kubricks is currently in beta release. Please do not rely on this product to troubleshoot your deployment errors. It is very important to cross check information being displayed to information from kubeclt describe. 
-
-#Navigating The App
-##Cluster View
-Cluster View mirrors the way kublet interacts with resources that are hosted on specific nodes. This view is primarily to display pods that are hosted on a particular node. Additionally, persistent volumes that are part of a pod's configuration are also rendered.  
-
-##Traffic View
-Traffic View mirrors the way kube-proxy directs incoming requests to different pods through services. This view is to render services with selected pods, and to highlight port mapping errors. 
-
-#Set Up
-  - go to www.kubricks.io and download the installer
-
-#Contributing
-Kubricks is currenty in beta release. There is still a long way to being a polished tool. Please make pull requests to help us 
+You're ready to go! Run any task by typing `npm run task` (where "task" is the name of the task in the `"scripts"` object). The most useful task for rapid development is `watch`. It will start a new server, open up a browser and watch for any SCSS or JS changes in the `src` directory; once it compiles those changes, the browser will automatically inject the changed file(s)!

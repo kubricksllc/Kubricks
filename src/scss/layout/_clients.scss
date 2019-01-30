@@ -1,0 +1,38 @@
+.clients {
+
+    .section-inner {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    li {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 10px 0;
+    }
+}
+
+@include media( '>medium' ) {
+
+    .clients {
+
+        .section-inner {
+            padding-top: 26px;
+            padding-bottom: 26px;
+        }
+
+        ul {
+            justify-content: space-around;
+        }
+
+        li {
+            width: auto;
+        }
+    }
+}
