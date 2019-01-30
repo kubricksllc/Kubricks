@@ -1,4 +1,4 @@
-const { ServiceQueryBody, PodQueryBody } = require('./Constructors.js');
+const { ServiceQueryBody, PodQueryBody } = require('./ResponseClasses.js');
 const api = require('./apiQuery');
 
 const nodeQuery = {

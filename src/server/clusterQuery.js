@@ -1,4 +1,4 @@
-const Constructor = require('./Constructors.js');
+const Constructor = require('./ResponseClasses.js');
 const api = require('./apiQuery');
 
 const clusterQuery = {

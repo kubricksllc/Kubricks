@@ -18,7 +18,7 @@ export function buildSingleTree(service, listOfPodsInStore, serviceIdx) {
   }
 
   listOfPodsInStore.forEach((pod, idx) => {
-    if (key && JSON.stringify(pod.labels) === key) {
+    if (key && JSON.stringify(pod.labels).includes(key)) {
       const podNode = new Builder.PodNode(
         pod.name,
         pod.labels,
