@@ -27,6 +27,19 @@ main {
     padding-bottom: 48px;
 }
 
+.stack {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 1.2em 0 1.2em 0;
+}
+
+.stack svg {
+    width: 7%;
+    height: 7%;
+}
+
 @include media( '>medium' ) {
 
     .section-inner {

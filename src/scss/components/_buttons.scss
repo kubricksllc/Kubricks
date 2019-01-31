@@ -83,18 +83,17 @@
     background: linear-gradient(65deg, color(primary, 1) -25%, color(primary, 2) 100%);
 
     &:hover {
-        background: lighten(mix(color(primary, 1), color(primary, 2)), .5%);
+        background: lighten(mix(color(primary, 3), color(primary, 2)), .5%);
         background: linear-gradient(65deg, lighten(color(primary, 1), .5%) -25%, lighten(color(primary, 2), .5%) 100%);
     }
 }
 
 .button-secondary {
-    background: mix(color(primary, 1), color(secondary, 2));
-    background: linear-gradient(65deg, color(primary, 1) -25%, color(secondary, 2) 100%);
+    background: #00000075;
 
     &:hover {
-        background: lighten(mix(color(primary, 1), color(secondary, 2)), .5%);
-        background: linear-gradient(65deg, lighten(color(primary, 1), .5%) -25%, lighten(color(secondary, 2), .5%) 100%);
+        background: lighten(mix(color(additional, 2), color(typography, 1)), .5%);
+        // background: linear-gradient(65deg, lighten(color(primary, 1), .5%) -25%, lighten(color(secondary, 2), .5%) 100%);
     }
 }
 
