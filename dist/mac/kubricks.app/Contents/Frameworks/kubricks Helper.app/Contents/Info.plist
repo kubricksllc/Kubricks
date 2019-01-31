@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>BuildMachineOSBuild</key>
+    <string>16G1710</string>
+    <key>CFBundleIdentifier</key>
+    <string>kubricks.helper</string>
+    <key>CFBundleName</key>
+    <string>Electron Helper</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>DTCompiler</key>
+    <string>com.apple.compilers.llvm.clang.1_0</string>
+    <key>DTSDKBuild</key>
+    <string>10.12</string>
+    <key>DTSDKName</key>
+    <string>macosx10.12</string>
+    <key>DTXcode</key>
+    <string>0833</string>
+    <key>DTXcodeBuild</key>
+    <string>8E3004b</string>
+    <key>LSUIElement</key>
+    <true/>
+    <key>NSSupportsAutomaticGraphicsSwitching</key>
+    <true/>
+    <key>CFBundleExecutable</key>
+    <string>kubricks Helper</string>
+    <key>CFBundleDisplayName</key>
+    <string>kubricks Helper</string>
+    <key>CFBundleVersion</key>
+    <string>1.0.0</string>
+  </dict>
+</plist>

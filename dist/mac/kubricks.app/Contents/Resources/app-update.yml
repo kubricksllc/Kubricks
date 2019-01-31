@@ -1,0 +1,4 @@
+owner: th9061
+repo: Kubricks
+provider: github
+updaterCacheDirName: kubricks-updater

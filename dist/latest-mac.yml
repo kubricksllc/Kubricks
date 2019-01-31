@@ -1,0 +1,12 @@
+version: 1.0.0
+files:
+  - url: kubricks-1.0.0-mac.zip
+    sha512: Sp0Vj/QzA26OdKma82NCqZSk2keMd6TxM3dHncL8LJlat1jaj2uXV5TFxl6d31lzLCvfAk+tvGzNtOjoxDmL7w==
+    size: 60069016
+    blockMapSize: 63733
+  - url: kubricks-1.0.0.dmg
+    sha512: MHQ2uUM9N/n4qba02EHb+qAYb+P1ji2rDsaojE34INqInXEuEZSbrFM09PIkKtyuOYaI5RH00vJuajbIXhgE1Q==
+    size: 62368331
+path: kubricks-1.0.0-mac.zip
+sha512: Sp0Vj/QzA26OdKma82NCqZSk2keMd6TxM3dHncL8LJlat1jaj2uXV5TFxl6d31lzLCvfAk+tvGzNtOjoxDmL7w==
+releaseDate: '2019-01-31T20:21:29.334Z'
