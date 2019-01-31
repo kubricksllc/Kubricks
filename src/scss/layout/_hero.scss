@@ -4,6 +4,11 @@
     overflow: hidden;
 }
 
+.hero-btns {
+    display: flex;
+    flex-direction: column;
+}
+
 .hero-paragraph {
     margin-bottom: 32px;
 }
@@ -31,6 +36,11 @@
 
     .hero {
         padding-top: 80px;
+    }
+
+    .hero-btns {
+        flex-direction: row;
+        justify-content: space-evenly;
     }
 
     .hero-paragraph {
