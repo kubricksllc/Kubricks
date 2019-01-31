@@ -79,6 +79,7 @@ class WorkerNode extends Component {
           y={yScale}
           id={`node#${this.props.nodeIndex}`}
         >
+          <title>{param}</title>
           <g>
             <rect
               fill="none"

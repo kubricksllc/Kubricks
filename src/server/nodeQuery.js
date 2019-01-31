@@ -3,7 +3,6 @@ const api = require('./apiQuery');
 
 const nodeQuery = {
   getServicesAndPods: (req, res, next) => {
-    console.log(res);
     Promise.all([api.getAllServices(), api.getAllPods()])
       .then(result => {
         const services = result[0].body.items.reduce(
