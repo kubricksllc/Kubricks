@@ -58602,7 +58602,7 @@ function NodePage_setPrototypeOf(o, p) { NodePage_setPrototypeOf = Object.setPro
 var NodePageContainer = styled_components_browser_esm["a" /* default */].div.withConfig({
   displayName: "NodePage__NodePageContainer",
   componentId: "sc-10xk8b-0"
-})(["width:97%;height:97%;"]);
+})(["width:100%;height:100%;"]);
 
 var NodePage_NodePage =
 /*#__PURE__*/
