@@ -20,7 +20,7 @@
       "email": "taihyun.ray.lee@gmail.com"
     }
   ],
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --open --mode development ",
     "build": "electron-packager . Kubricks --overwrite",
