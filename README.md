@@ -19,7 +19,7 @@ In order to properly utilize the Kubricks app, a few conditions have to be met. 
 Kubricks queries Kubernetes apiserver through the Kubernetes Javascript Client library, using the context of `kubectl config current-context`.
 
 ## Installation
-  - If would like to give Kubricks a try, please visit kubricks.io and download the installer for your operating system.
+  - If would like to give Kubricks a try, please visit [kubricks.io](https://kubricks.io) and download the installer for your operating system.
 
 # Navigating The App
 ___
